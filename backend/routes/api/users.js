@@ -9,11 +9,6 @@ const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
-router.get('/', async (req, res, next) => {
-  const users = await User.find();
-  res.json(users);
-});
-
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
 
@@ -75,6 +70,36 @@ router.get('/current', restoreUser, (req, res) => {
     lastName: req.user.lastName,
     email: req.user.email
   });
+});
+
+router.get('/:userId', async (req, res) => {
+  const user = await User.findById(req.params.userId);
+
+  const userInfo = {
+    _id: user._id,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName
+  };
+  return res.json(userInfo);
+});
+
+router.get('/', async (req, res) => {
+  const users = await User.find();
+  const usersArray = Object.values(users);
+  const usersObject = {};
+
+  usersArray.forEach((user)=>{
+    const userInfo = {
+      _id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName
+    };
+    usersObject[user._id] = userInfo;
+  })
+
+  return res.json({users: usersObject});
 });
 
 module.exports = router;
