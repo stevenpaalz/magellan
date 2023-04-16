@@ -9,10 +9,9 @@ const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
-router.get('/', function(req, res, next) {
-  res.json({
-    message: "GET /api/users"
-  });
+router.get('/', async (req, res, next) => {
+  const users = await User.find();
+  res.json(users);
 });
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
