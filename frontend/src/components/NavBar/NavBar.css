@@ -59,10 +59,9 @@ nav {
     color: var(--offwhite);
     font-size: var(--font-size-400);
     font-weight: var(--font-weight-semibold);
-    /* margin-right: 12px; */
     cursor: pointer;
     height: 40px;
-    width: 100px;
+    width: 75px;
     align-items: center;
     vertical-align: middle;
     text-align: center;
@@ -71,7 +70,4 @@ nav {
   
 .login-button:hover {
     color: white;
-    /* text-shadow:  rgba(0, 0, 0, 0.1) 0px 1px 20px 0px; */
-    /* text-shadow: 1px 1px rgba(0, 0, 0, 0.1); */
-
 }
