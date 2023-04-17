@@ -19,6 +19,10 @@ const questSchema = new Schema({
             type: Number,
             required: true
         },
+        formattedAddress: {
+            type: String,
+            required: true
+        },
         lat: {
             type: Number,
             required: true
@@ -28,7 +32,7 @@ const questSchema = new Schema({
             required: true
         },
         radius: {
-            type: Numner,
+            type: Number,
             required: true
         },
         tags: {
@@ -37,7 +41,7 @@ const questSchema = new Schema({
         },
         creator: {
             type: Schema.Types.ObjectId,
-            ref: User
+            ref: 'User'
         }
     }, {
         timestamps: true
