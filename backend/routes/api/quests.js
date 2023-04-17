@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Quest = mongoose.model('Quest');
 const { requireUser } = require('../../config/passport');
+const { GetGeo } = require('../../config/geocode');
 const Review = require('../../models/Review');
 const { validateQuestInput, validateQuestUpdate} = require('../../validations/quests');
 const validateReviewInput = require('../../validations/reviews');
@@ -63,6 +64,9 @@ router.get('/', async (req, res) => {
 router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
+        const latlng = GetGeo(formattedAddressInput);
+        const latInput = latlng[0];
+        const lngInput = latlng[1];
 
         const newQuest = new Quest({
             title: req.body.title,
@@ -70,8 +74,8 @@ router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
             checkpoints: req.body.checkpoints,
             duration: req.body.duration,
             formattedAddress: formattedAddressInput,
-            lat: 10,
-            lng: 10,
+            lat: latInput,
+            lng: lngInput,
             radius: req.body.radius,
             tags: req.body.tags,
             creator: req.user._id
@@ -88,20 +92,24 @@ router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
 
 router.patch('/:id', requireUser, validateQuestUpdate, async (req, res, next) => {
     try {
-        const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
-
         const updateQuest = await Quest.findById(req.params.id);
 
         if ((JSON.stringify(req.user._id)) !== (JSON.stringify(updateQuest.creator))) {
             throw new Error("Cannot update this quest");
         }
+
+        const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
+        const latlng = GetGeo(formattedAddressInput);
+        const latInput = latlng[0];
+        const lngInput = latlng[1];
+
         updateQuest.title = req.body.title;
         updateQuest.description = req.body.description;
         updateQuest.checkpoints = req.body.checkpoints;
         updateQuest.duration = req.body.duration;
         updateQuest.formattedAddress = formattedAddressInput;
-        updateQuest.lat = 10;
-        updateQuest.lng = 10;
+        updateQuest.lat = latInput;
+        updateQuest.lng = lngInput;
         updateQuest.radius = req.body.radius;
         updateQuest.tags = req.body.tags;
         updateQuest.creator = req.user._id;
