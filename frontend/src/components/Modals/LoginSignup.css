@@ -1,0 +1,41 @@
+div.page-overlay{
+    height: 100vh;
+    width: 100%;
+    background-color:#31afad60;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form.login-signup-form{
+    border-radius: 5px;
+    border: 1px solid #31AFAC;
+    background-color: white;
+    width: 600px;
+    padding: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+p.error{
+    color: #F23005;
+    font-size: 12px;
+}
+p.error::before{
+    content:"🚨 ";
+}
+p.error::after{
+    content:" 🚨";
+}
+
+button.form-swap{
+    color: #31AFAC;
+}
+button.form-swap:hover{
+    color: #0f9391;
+    cursor:pointer;
+}
