@@ -72,6 +72,7 @@ button.form-swap{
     font-size: 18px;
 }
 button.form-swap:hover{
-    color: #0f9391;
+    background-color: transparent;
+    color: #8dd8d7;
     cursor:pointer;
 }

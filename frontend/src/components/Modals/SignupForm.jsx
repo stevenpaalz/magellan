@@ -60,9 +60,7 @@ export default function SignUpForm(){
                     </label>
                     {errors.email && <p className="error">{errors.email}</p>}
                     <label><p>home city:</p>
-                    <div className="city-state">
                         <input type="text" name="homeCity" value={homeCity} onChange={e => setHomeCity(e.target.value)}/>
-                    </div>
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
                     <select name="homeState">

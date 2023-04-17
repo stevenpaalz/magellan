@@ -13,16 +13,14 @@ const LoggedOutNavBar = () => {
     const modalState = useSelector(state => state.modals?.modalState)
     function signupClick(){
         dispatch(setModal("signUp"))
-        console.log(modalState)
     }
     function loginClick(){
         dispatch(setModal("logIn"))
-        console.log(modalState)
     }
     useEffect(() => {
         if (!modalState) return;
         const closeModals = (e) => {
-          if(e.target.classList.contains("login-signup-form")) return;
+          if(e.target.classList.contains("login-signup-form")|| e.target.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.classList.contains("login-signup-form")) return;
           dispatch(setModal(false));
         };
         document.addEventListener('click', closeModals);

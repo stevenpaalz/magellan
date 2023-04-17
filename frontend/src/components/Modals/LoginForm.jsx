@@ -52,10 +52,7 @@ export default function LoginForm(){
                     {errors.password && <p className="error">{errors.password}</p>}
                     <input type="submit" value="sign up" className="submit-button"/>
                     <button className="demo-login" onClick={demoLogin}>login with demo user</button>
-                    
-                    <div className="form-bottom">
                        <p>Don't have an account?<button className="form-swap" onClick={swapForm}>sign up</button></p> 
-                    </div>
                 </form>
             </div>
         )
