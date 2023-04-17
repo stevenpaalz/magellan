@@ -6,6 +6,17 @@ const Quest = mongoose.model('Quest');
 const { requireUser } = require('../../config/passport');
 const validateQuestInput = require('../../validations/quests');
 
+router.get('/:id', async (req, res) => {
+    try {
+        const quest = await Quest.findById(req.params.id)
+                                .populate("creator", "_id firstName lastName")
+        return res.json(quest);
+    }
+    catch(err) {
+        return res.json(null);
+    }
+})
+
 router.get('/', async (req, res) => {
     try {
         const quests = await Quest.find()
@@ -19,7 +30,6 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
-    debugger
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
 
@@ -44,5 +54,6 @@ router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
         next(err);
     }
 })
+
 
 module.exports = router;
