@@ -10,7 +10,7 @@ const uniqueTitle = async (value, {req}) => {
     return true;
 }
 
-const validateQuestInput = [
+exports.validateQuestInput = [
     check('title')
         .exists({ checkFalsy: true }).withMessage('Quest must have a title')
         .custom(uniqueTitle),
@@ -39,4 +39,30 @@ const validateQuestInput = [
     handleValidationErrors
 ];
   
-module.exports = validateQuestInput;
+exports.validateQuestUpdate = [
+    check('title')
+        .exists({ checkFalsy: true }).withMessage('Quest must have a title'),
+    check('description')
+        .exists({checkFalsy: true}).withMessage('Quest must have a description'),
+    check('checkpoints')
+        .isArray({min: 5})
+        .withMessage('Quest must have at least 5 checkpoints'),
+    check('duration')
+        .exists({checkFalsy: true}).withMessage('Quest must have a duration')
+        .isFloat({min: 0}).withMessage('Duration must be greater than 0 hours'),
+    check('radius')
+        .exists({checkFalsy: true}).withMessage('Quest must have a radius')
+        .isFloat({min: 0}).withMessage('Radius must be greater than 0 hours'),
+    check('streetAddress')
+        .exists({checkFalsy: true}).withMessage("Missing street address"),
+    check('city')
+        .exists({checkFalsy: true}).withMessage("Missing city field"),
+    check('state')
+        .exists({checkFalsy: true}).withMessage("Missing state field"),
+    check('zipcode')
+        .exists({checkFalsy: true}).withMessage("Missing zipcde field"),
+    check('tags')
+        .isArray({min: 1})
+        .withMessage('Quest must have at least 1 tag'),
+    handleValidationErrors
+];
