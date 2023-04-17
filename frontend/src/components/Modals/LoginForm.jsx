@@ -6,7 +6,7 @@ import './LoginSignup.css'
 
 export default function LoginForm(){
 
-    const modalState = useSelector(state => state.modal.modalState)
+    
     const dispatch = useDispatch()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -36,10 +36,8 @@ export default function LoginForm(){
     function swapForm(){
         dispatch(setModal("signUp"))
     }
-
-    if (modalState !== "logIn"){
-        return null
-    }else{
+    const modalState = useSelector(state => state.modal?.modalState)
+    if (modalState && modalState === "logIn"){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
@@ -52,11 +50,6 @@ export default function LoginForm(){
                         <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
-                    <label>confirm password
-                        <input type="password" name="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
-                    </label>
-                    {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-                    <input type="submit" value="sign up"/>
                     <button className="demo-login" onClick={demoLogin}>login with demo user</button>
                     <div className="form-bottom">
                        <p>Don't have an account?<button className="form-swap" onClick={swapForm}>sign up</button></p> 
@@ -64,5 +57,8 @@ export default function LoginForm(){
                 </form>
             </div>
         )
+    }else{
+        return null
+        
     }
 }

@@ -9,7 +9,7 @@ export default function modalReducer(state={}, action){
     const newState = {...state};
     switch(action.type){
         case SET_MODAL:
-            newState[modalState] = action.modal;
+            newState["modalState"] = action.modal;
             return newState;
         default:
             return state;

@@ -2,11 +2,11 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/session";
 import { setModal } from "../../store/modal";
-import USstates from "../../../data/States";
+import USstates from "../../data/States";
 import './LoginSignup.css'
 
-export default function SignUpFormForm(){
-    const modalState = useSelector(state => state.modal.modalState)
+export default function SignUpForm(){
+    const modalState = useSelector(state => state.modal?.modalState)
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -35,18 +35,14 @@ export default function SignUpFormForm(){
                 else setErrors([res.statusText]);
                 console.log(data);
               });
-
         }else{
             setErrors({confirmPassword: "password and confirmpassword do not match!"})
         }
-        
     }
     function swapForm(){
         dispatch(setModal("signUp"))
     }
-    if (modalState!=="signUp"){
-        return null
-    }else{
+    if (modalState && modalState === "signUp"){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
@@ -87,5 +83,8 @@ export default function SignUpFormForm(){
                 </form>
             </div>
         )
+    }else{
+        return null
+        
     }
 }
