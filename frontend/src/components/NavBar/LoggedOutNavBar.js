@@ -8,10 +8,12 @@ const LoggedOutNavBar = () => {
         <nav>
         <div className="nav-left">
             <NavLink exact to="/">
-                <img src="https://www.tutorialspoint.com/assets/questions/media/426142-1668760872.png" alt="Logo" className="nav-bar-logo"/>
+                <img src="../../../assets/logo.png" alt="Logo" className="nav-bar-logo"/>
             </NavLink>
         </div>
         <div className="nav-right">
+        <button className="signup-button">sign up</button>    
+        <button className="login-button">log in</button>                    
                 {/* <LoginFormModal />
                 <SignupFormModal/> */}
         </div>
