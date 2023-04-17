@@ -9,12 +9,14 @@ const csurf = require('csurf');
 require('./models/User');
 require('./models/Quest');
 require('./models/Review');
+require('./models/Event');
 require('./config/passport');
 const passport = require('passport');
 
 const usersRouter = require('./routes/api/users');
 const questsRouter = require('./routes/api/quests');
 const reviewsRouter = require('./routes/api/reviews');
+const eventsRouter = require('./routes/api/events');
 const csrfRouter = require('./routes/api/csrf');
 
 var app = express();
@@ -43,6 +45,7 @@ app.use(
 app.use('/api/users', usersRouter);
 app.use('/api/quests', questsRouter);
 app.use('/api/reviews', reviewsRouter);
+app.use('/api/events', eventsRouter);
 app.use('/api/csrf', csrfRouter);
 
 app.use((req, res, next) => {
