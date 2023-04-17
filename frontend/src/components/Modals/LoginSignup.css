@@ -3,17 +3,50 @@ div.page-overlay{
     width: 100%;
     background-color:#31afad60;
     position: absolute;
-    z-index: 2;
+    top: 0;
+    left: 0;
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.login-signup-form button, .submit-button{
+    background-color: #31AFAC;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    margin: 10px
+}
+.login-signup-form button:hover, .submit-button:hover{
+    background-color: #4edad8;
+    cursor: pointer;
+}
+.login-signup-form h1{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px;
+}
+.login-signup-form input{
+    
+}
+.login-signup-form label{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+}
+.login-signup-form p{
+    margin-bottom: 5px;
 }
 
 form.login-signup-form{
     border-radius: 5px;
     border: 1px solid #31AFAC;
     background-color: white;
-    width: 600px;
+    width: 300px;
     padding: 20px;
     display:flex;
     flex-direction: column;
@@ -34,6 +67,9 @@ p.error::after{
 
 button.form-swap{
     color: #31AFAC;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
 }
 button.form-swap:hover{
     color: #0f9391;

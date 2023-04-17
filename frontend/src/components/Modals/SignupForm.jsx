@@ -6,7 +6,7 @@ import USstates from "../../data/States";
 import './LoginSignup.css'
 
 export default function SignUpForm(){
-    const modalState = useSelector(state => state.modal?.modalState)
+    const modalState = useSelector(state => state.modals?.modalState)
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -47,20 +47,22 @@ export default function SignUpForm(){
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
                     <h1>sign up for magellan!</h1> 
-                    <label>first name
+                    <label><p>first name:</p>
                         <input type="text" name="firstName" value={firstName} onChange={e => setFirstName(e.target.value)}/>
                     </label>
                     {errors.firstName && <p className="error">{errors.firstName}</p>}
-                    <label>last name
+                    <label><p>last name:</p>
                         <input type="text" name="lastName" value={lastName} onChange={e => setLastName(e.target.value)}/>
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
-                    <label>email
+                    <label><p>email:</p>
                         <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
                     </label>
                     {errors.email && <p className="error">{errors.email}</p>}
-                    <label>home city
+                    <label><p>home city:</p>
+                    <div className="city-state">
                         <input type="text" name="homeCity" value={homeCity} onChange={e => setHomeCity(e.target.value)}/>
+                    </div>
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
                     <select name="homeState">
@@ -68,15 +70,15 @@ export default function SignUpForm(){
                         {USstates.map((state)=><option value={state} onChange={e=>setHomeState(e.target.value)}>{state}</option>)}
                     </select>
                     {errors.homeState && <p className="error">{errors.homeState}</p>}
-                    <label>password
+                    <label><p>password:</p>
                         <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
-                    <label>confirm password
+                    <label><p>confirm password:</p>
                         <input type="password" name="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
                     </label>
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-                    <input type="submit" value="sign up"/>
+                    <input type="submit" value="sign up" className="submit-button"/>
     
                        <p>Already have an account?<button className="form-swap" onClick={swapForm}>log in</button></p> 
                     

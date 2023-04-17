@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 const LoggedOutNavBar = () => {
     const dispatch = useDispatch()
-    const modalState = useSelector(state => state.modal?.modalState)
+    const modalState = useSelector(state => state.modals?.modalState)
     function signupClick(){
         dispatch(setModal("signUp"))
         console.log(modalState)
@@ -22,7 +22,7 @@ const LoggedOutNavBar = () => {
     useEffect(() => {
         if (!modalState) return;
         const closeModals = (e) => {
-          if(e.target.classList.includes("login-signup-form")) return;
+          if(e.target.classList.contains("login-signup-form")) return;
           dispatch(setModal(false));
         };
         document.addEventListener('click', closeModals);
