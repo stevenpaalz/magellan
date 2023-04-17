@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
     <NavBar />
-    <HomePage /> 
+    {/* <HomePage />  */}
     <Switch>
       <AuthRoute exact path="/" component={SplashPage} />
 

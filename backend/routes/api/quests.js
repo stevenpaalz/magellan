@@ -29,7 +29,7 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
             text: req.body.text
         })
         let review = await newReview.save();
-        review = await review.populate("author", "_id firstName lastName");
+        review = await review.populate("author", "_id email firstName lastName");
         return res.json(review);
     }
     catch(err) {
@@ -40,7 +40,7 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
 router.get('/:id', async (req, res) => {
     try {
         const quest = await Quest.findById(req.params.id)
-                                .populate("creator", "_id firstName lastName")
+                                .populate("creator", "_id email firstName lastName")
         return res.json(quest);
     }
     catch(err) {
