@@ -10,7 +10,9 @@ const validateReviewInput = require('../../validations/reviews');
 
 router.get('/:id/reviews', async (req, res) => {
     try {
-        const reviews = await Review.find({ quest: {id:  req.params.id }});
+        const reviews = await Review.find({ quest: req.params.id })
+                                    .populate("author", "_id firstName lastName")
+                                    .sort({createdAt: -1});
         return res.json(reviews);
     }
     catch(err) {
@@ -23,8 +25,8 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
         const newReview = new Review({
             quest: req.params.id,
             author: req.user._id,
-            rating: req.params.rating,
-            text: req.params.text
+            rating: req.body.rating,
+            text: req.body.text
         })
         let review = await newReview.save();
         review = await review.populate("author", "_id firstName lastName");

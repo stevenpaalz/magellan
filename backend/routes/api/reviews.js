@@ -18,6 +18,19 @@ router.get("/", async (req, res, next) => {
     }
 })
 
+router.delete("/:id", requireUser, async (req, res, next) => {
+    try {
+        const deleteReview = await Review.findById(req.params.id)
 
+        if ((JSON.stringify(req.user._id)) !== (JSON.stringify(deleteReview.author))) {
+            throw new Error("Cannot delete this review");
+        }
+        deleteReview.deleteOne();
+        return res.json(deleteReview)
+    }
+    catch(err) {
+        next(err);
+    }
+})
 
 module.exports = router;
