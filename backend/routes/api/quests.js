@@ -4,7 +4,36 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Quest = mongoose.model('Quest');
 const { requireUser } = require('../../config/passport');
+const Review = require('../../models/Review');
 const { validateQuestInput, validateQuestUpdate} = require('../../validations/quests');
+const validateReviewInput = require('../../validations/reviews');
+
+router.get('/:id/reviews', async (req, res) => {
+    try {
+        const reviews = await Review.find({ quest: {id:  req.params.id }});
+        return res.json(reviews);
+    }
+    catch(err) {
+        return res.json(null);
+    }
+})
+
+router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, next) => {
+    try {
+        const newReview = new Review({
+            quest: req.params.id,
+            author: req.user._id,
+            rating: req.params.rating,
+            text: req.params.text
+        })
+        let review = await newReview.save();
+        review = await review.populate("author", "_id firstName lastName");
+        return res.json(review);
+    }
+    catch(err) {
+        next(err);
+    }
+})
 
 router.get('/:id', async (req, res) => {
     try {
