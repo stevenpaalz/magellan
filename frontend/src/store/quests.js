@@ -33,7 +33,11 @@ const receiveQuestReview = (review) => ({
 
 export const getAllQuests = () => async dispatch => {
     const res = await jwtFetch('/api/quests');
-    const quests = await res.json();
+    const data = await res.json();
+    const quests = {}
+    data.forEach ((e) => {
+        quests[e].id = e
+    });
     return dispatch(receiveAllQuests(quests));
 };
 
