@@ -4,14 +4,16 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Quest = mongoose.model('Quest');
 const { requireUser } = require('../../config/passport');
+const { getLatLng } = require('../../config/geocode');
 const Review = require('../../models/Review');
 const { validateQuestInput, validateQuestUpdate} = require('../../validations/quests');
 const validateReviewInput = require('../../validations/reviews');
+const { multipleFilesUpload, multipleMulterUpload } = require("../../awsS3");
 
 router.get('/:id/reviews', async (req, res) => {
     try {
         const reviews = await Review.find({ quest: req.params.id })
-                                    .populate("author", "_id firstName lastName")
+                                    .populate("author", "_id email firstName lastName profileImageUrl")
                                     .sort({createdAt: -1});
         return res.json(reviews);
     }
@@ -29,7 +31,7 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
             text: req.body.text
         })
         let review = await newReview.save();
-        review = await review.populate("author", "_id email firstName lastName");
+        review = await review.populate("author", "_id email firstName lastName profileImageUrl");
         return res.json(review);
     }
     catch(err) {
@@ -40,7 +42,7 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
 router.get('/:id', async (req, res) => {
     try {
         const quest = await Quest.findById(req.params.id)
-                                .populate("creator", "_id email firstName lastName")
+                                .populate("creator", "_id email firstName lastName profileImageUrl")
         return res.json(quest);
     }
     catch(err) {
@@ -51,7 +53,7 @@ router.get('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const quests = await Quest.find()
-                                    .populate("creator", "_id firstName lastName")
+                                    .populate("creator", "_id email firstName lastName profileImageUrl")
                                     .sort({createdAt: -1});
         return res.json(quests);
     }
@@ -60,9 +62,13 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
+router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput, async (req, res, next) => {
+    const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
+        const latlng = await getLatLng(formattedAddressInput);
+        const latInput = latlng[0];
+        const lngInput = latlng[1];
 
         const newQuest = new Quest({
             title: req.body.title,
@@ -70,15 +76,16 @@ router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
             checkpoints: req.body.checkpoints,
             duration: req.body.duration,
             formattedAddress: formattedAddressInput,
-            lat: 10,
-            lng: 10,
+            lat: latInput,
+            lng: lngInput,
             radius: req.body.radius,
             tags: req.body.tags,
-            creator: req.user._id
+            creator: req.user._id,
+            imageUrls
         })
 
         let quest = await newQuest.save();
-        quest = await quest.populate("creator", "_id firstName lastName");
+        quest = await quest.populate("creator", "_id email firstName lastName profileImageUrl");
         return res.json(quest);
     }
     catch(err) {
@@ -86,25 +93,31 @@ router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
     }
 })
 
-router.patch('/:id', requireUser, validateQuestUpdate, async (req, res, next) => {
+router.patch('/:id', multipleMulterUpload("images"), requireUser, validateQuestUpdate, async (req, res, next) => {
+    const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
     try {
-        const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
-
         const updateQuest = await Quest.findById(req.params.id);
 
         if ((JSON.stringify(req.user._id)) !== (JSON.stringify(updateQuest.creator))) {
             throw new Error("Cannot update this quest");
         }
+
+        const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
+        const latlng = getLatLng(formattedAddressInput);
+        const latInput = latlng[0];
+        const lngInput = latlng[1];
+
         updateQuest.title = req.body.title;
         updateQuest.description = req.body.description;
         updateQuest.checkpoints = req.body.checkpoints;
         updateQuest.duration = req.body.duration;
         updateQuest.formattedAddress = formattedAddressInput;
-        updateQuest.lat = 10;
-        updateQuest.lng = 10;
+        updateQuest.lat = latInput;
+        updateQuest.lng = lngInput;
         updateQuest.radius = req.body.radius;
         updateQuest.tags = req.body.tags;
         updateQuest.creator = req.user._id;
+        updateQuest.imageUrls = imageUrls;
         let quest = await updateQuest.save();
         return res.json(quest);
     }
