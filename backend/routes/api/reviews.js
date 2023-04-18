@@ -9,7 +9,7 @@ const { requireUser } = require('../../config/passport');
 router.get("/", async (req, res, next) => {
     try {
         const reviews = await Review.find()
-                                    .populate("author", "_id firstName lastName")
+                                    .populate("author", "_id firstName lastName profileImageUrl")
                                     .sort({createdAt: -1});
         return res.json(reviews);
     }

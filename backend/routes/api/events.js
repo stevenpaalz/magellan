@@ -12,8 +12,8 @@ router.get('/:id', async (req, res) => {
     try {
         const event = await Event.findById(req.params.id)
                                 .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
-                                .populate("host", "_id email firstName lastName")
-                                .populate("attendees", "_id email firstName lastName")
+                                .populate("host", "_id email firstName lastName profileImageUrl")
+                                .populate("attendees", "_id email firstName lastName profileImageUrl")
         return res.json(event);
     }
     catch(err) {
@@ -25,8 +25,8 @@ router.get('/', async (req, res) => {
     try {
         const events = await Event.find()
                                 .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
-                                .populate("host", "_id email firstName lastName")
-                                .populate("attendees", "_id email firstName lastName")
+                                .populate("host", "_id email firstName lastName profileImageUrl")
+                                .populate("attendees", "_id email firstName lastName profileImageUrl")
                                 .sort({createdAt: -1});
         return res.json(events);
     }
@@ -44,7 +44,7 @@ router.post('/', requireUser, validateEventInput, async (req, res, next) => {
             startTime: req.body.startTime
         })
         let event = await newEvent.save();
-        event = await event.populate("host", "_id email firstName lastName");
+        event = await event.populate("host", "_id email firstName lastName profileImageUrl");
         event = await event.populate("attendees", "_id email firstName lastName");
         event = await event.populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
         return res.json(event);

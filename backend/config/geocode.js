@@ -1,11 +1,11 @@
-const Geocode = require('react-geocode');
 const { googleAPIKey } = require('./keys');
 
-Geocode.setApiKey(googleAPIKey);
-Geocode.enableDebug();
+const { Client } = require('@googlemaps/google-maps-services-js');
 
-exports.GetGeo = async (address) => {
-    const response = await Geocode.fromAddress(address) 
-    const { lat, lng } = response.results[0].geometry.location;
-    return [lat, lng];
+const client = new Client();
+
+exports.getLatLng = async (address) => {
+  const response = await client.geocode({ params: { address, key: googleAPIKey } });
+  const { lat, lng } = response.data.results[0].geometry.location;
+  return [lat, lng];
 }
