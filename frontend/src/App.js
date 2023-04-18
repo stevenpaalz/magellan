@@ -5,8 +5,16 @@ import SplashPage from './components/SplashPage';
 import HomePage from './components/HomePage';
 import QuestShowPage from './components/QuestShowPage';
 
+import { getCurrentUser } from './store/session';
+
 const App = () => {
-  return (
+
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUser()).then(() => setLoaded(true));
+  }, [dispatch]);
+  return loaded && (
     <>
     <NavBar />
     {/* <HomePage />  */}
