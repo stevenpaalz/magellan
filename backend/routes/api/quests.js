@@ -43,7 +43,7 @@ router.get('/:id', async (req, res) => {
     try {
         const quest = await Quest.findById(req.params.id)
                                 .populate("creator", "_id email firstName lastName profileImageUrl")
-        return res.json({quest: quest});
+        return res.json(quest);
     }
     catch(err) {
         return res.json(null);
