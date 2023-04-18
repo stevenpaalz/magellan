@@ -80,6 +80,8 @@
 }
 
 .quest-show-title {
+    font-size: var(--font-size-600);
+    font-weight: var(--font-weight-semibold);
 
 }
 
@@ -125,3 +127,26 @@
 
 }
 
+.food-tag{
+    background-color: #F23005;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: var(--font-weight-semibold);
+    margin-right: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.history-tag{
+    background-color: #F23005;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: var(--font-weight-semibold);
+    margin-right: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+}

@@ -7,14 +7,12 @@ import { getQuest } from "../../store/quests";
 const QuestShowPage = () => {
 const { id } = useParams();
   const dispatch = useDispatch();
-  const quest = useSelector(getQuest(id));
-//   const quest = useSelector(state => state.quests[questId]);
-  console.log(quest)
-
-
+//   const quest = useSelector(state => state.);
+  const quest = useSelector(state => {
+    return state.quests ? state.quests[id] : null
+  });
 
   useEffect(() => {
-    debugger
     dispatch(getQuest(id));
   }, [dispatch, id]);
 

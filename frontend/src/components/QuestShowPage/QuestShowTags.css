@@ -1,0 +1,14 @@
+/* <div className="quest-show-tags">
+  {tags.map((tag, index) => (
+    <div
+      key={index}
+      className="quest-show-tag"
+      style={{
+        color: tag === "Food" ? "green" : tag === "Landmarks" ? "blue" : "black",
+      }}
+    >
+      {tag}
+    </div>
+  ))}
+</div> */
+
