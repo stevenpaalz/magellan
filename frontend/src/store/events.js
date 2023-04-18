@@ -39,7 +39,9 @@ export const deleteEvent = (eventId) => async dispatch => {
     const res = await jwtFetch(`/api/events/${eventId}`, {
         method: 'DELETE'
     });
-    dispatch(removeEvent(eventId));
+    if (res.ok) {
+        dispatch(removeEvent(eventId));
+    }
 }
 
 export const createEvent = (event) => async dispatch => {
@@ -48,12 +50,12 @@ export const createEvent = (event) => async dispatch => {
         body: JSON.stringify(event)
     });
     const data = await res.json();
-    return dispatch(receiveEvent(data.event));
+    return dispatch(receiveEvent(data));
 }
 
 function eventsReducer(state = {}, action) {
     let newState = {...state};
-    switch (action.type) {
+    switch(action.type) {
         case RECEIVE_ALL_EVENTS:
             return { ...action.events };
         case RECEIVE_EVENT:
@@ -61,6 +63,7 @@ function eventsReducer(state = {}, action) {
             return newState;
         case REMOVE_EVENT:
             delete newState[action.eventId];
+            return newState;
         default:
             return state;
     }
