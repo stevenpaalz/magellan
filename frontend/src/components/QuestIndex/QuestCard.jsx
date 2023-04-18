@@ -1,8 +1,11 @@
-
+import { useSelector } from "react-redux"
 
 export default function QuestCard({quest}){
-    
-
+    const questReviews = useSelector(state=>state.quests[quest.id].reviewIds)
+    const starRating = questReviews.forEach
+    useEffect(()=>{
+        
+    }, [quest])
     return(
         <div classname="quest-card">
             <img></img>
