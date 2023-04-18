@@ -22,8 +22,6 @@ const dan = await User.findOne({email: "dan@email.com"});
 
 const quests = [];
 
-console.log(demo);
-
 quests.push(
   new Quest({
     title: "a/A Where?",

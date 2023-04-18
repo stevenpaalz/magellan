@@ -1,8 +1,16 @@
 import React from 'react';
 import SplashPageText from './SplashPageText';
 import "./SplashPage.css"
+import { useDispatch } from 'react-redux';
+import { setModal } from '../../store/modal';
 
 const SplashPage = () => {
+  
+  const dispatch = useDispatch()
+  function openSignup(){
+    dispatch(setModal("signUp"))
+  }
+
     return (
       <>
         <div className="splash-page-body">
@@ -20,7 +28,7 @@ const SplashPage = () => {
               <SplashPageText />
             </div>
             <div>
-                <button className="splash-right-cta">Where will your next quest take you?</button>
+                <button className="splash-right-cta" onClick={openSignup}>Where will your next quest take you?</button>
             </div>
           </div>
         </div>

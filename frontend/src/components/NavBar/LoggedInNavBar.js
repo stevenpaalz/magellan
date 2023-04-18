@@ -25,7 +25,7 @@ const LoggedInNavBar = () => {
         <nav>
             <div className="nav-left">
                 <NavLink exact to="/home">
-                    <img src="../../../assets/logo.png" alt="Logo" className="nav-bar-logo"/>
+                    <img src="../../../assets/headerlogo.png" alt="Logo" className="nav-bar-logo"/>
                 </NavLink>
             </div>
             <div className="nav-right">   

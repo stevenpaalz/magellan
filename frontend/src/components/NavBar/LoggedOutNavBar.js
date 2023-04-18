@@ -20,7 +20,7 @@ const LoggedOutNavBar = () => {
     useEffect(() => {
         if (!modalState) return;
         const closeModals = (e) => {
-          if(e.target.classList.contains("login-signup-form")|| e.target.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.classList.contains("login-signup-form")) return;
+          if(e.target.classList.contains("login-signup-form")|| e.target.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.parentElement.parentElement.classList.contains("login-signup-form")) return;
           dispatch(setModal(false));
         };
         document.addEventListener('click', closeModals);
@@ -29,17 +29,17 @@ const LoggedOutNavBar = () => {
 
     return(
         <nav>
-            <div className="nav-left">
-                <NavLink exact to="/">
-                    <img src="../../../assets/logo.png" alt="Logo" className="nav-bar-logo"/>
-                </NavLink>
-            </div>
-            <div className="nav-right">
-                <button className="signup-button" onClick={signupClick}>sign up</button>    
-                <button className="login-button" onClick={loginClick}>log in</button>                    
-            <LoginForm />
-            <SignUpForm />
-            </div>
+        <div className="nav-left">
+            <NavLink exact to="/">
+                <img src="../../../assets/headerlogo.png" alt="Logo" className="nav-bar-logo"/>
+            </NavLink>
+        </div>
+        <div className="nav-right">
+        <button className="signup-button" onClick={signupClick}>sign up</button>    
+        <button className="login-button" onClick={loginClick}>log in</button>                    
+        <LoginForm />
+        <SignUpForm />
+        </div>
         </nav>
     )
 }
