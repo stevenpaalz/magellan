@@ -42,6 +42,10 @@ const questSchema = new Schema({
         creator: {
             type: Schema.Types.ObjectId,
             ref: 'User'
+        },
+        imageUrls: {
+            type: [String],
+            required: false
         }
     }, {
         timestamps: true

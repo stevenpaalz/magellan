@@ -8,6 +8,10 @@ const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
+const { getLatLng } = require('../../config/geocode');
+
+const DEFAULT_PROFILE_IMAGE_URL = 'https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg';
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
@@ -23,10 +27,23 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     return next(err);
   }
 
+  const profileImageUrl = req.file ?
+      await singleFileUpload({ file: req.file, public: true }) :
+      DEFAULT_PROFILE_IMAGE_URL;
+
+  const latlng = await getLatLng(`${req.body.homeCity}, ${req.body.homeState}`);
+  const latInput = latlng[0];
+  const lngInput = latlng[1];
+
   const newUser = new User({
     email: req.body.email,
     firstName: req.body.firstName,
-    lastName: req.body.lastName
+    lastName: req.body.lastName,
+    homeCity: req.body.homeCity,
+    homeState: req.body.homeState,
+    lat: latInput,
+    lng: lngInput,
+    profileImageUrl
   });
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -45,7 +62,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
   });
 });
 
-router.post('/login', validateLoginInput, async (req, res, next) => {
+router.post('/login', singleMulterUpload("image"), validateLoginInput, async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
     if (err) return next(err);
     if (!user) {
@@ -68,6 +85,7 @@ router.get('/current', restoreUser, (req, res) => {
     _id: req.user._id,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
+    profileImageUrl: req.user.profileImageUrl,
     email: req.user.email
   });
 });
@@ -79,7 +97,8 @@ router.get('/:userId', async (req, res) => {
     _id: user._id,
     email: user.email,
     firstName: user.firstName,
-    lastName: user.lastName
+    lastName: user.lastName,
+    profileImageUrl: user.profileImageUrl
   };
   return res.json(userInfo);
 });
@@ -94,7 +113,8 @@ router.get('/', async (req, res) => {
       _id: user._id,
       email: user.email,
       firstName: user.firstName,
-      lastName: user.lastName
+      lastName: user.lastName,
+      profileImageUrl: user.profileImageUrl
     };
     usersObject[user._id] = userInfo;
   })

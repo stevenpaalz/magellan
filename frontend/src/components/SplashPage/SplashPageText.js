@@ -6,13 +6,11 @@ const SplashPageText = () => {
         <>
         <div className="splash-page-body-text">
             <div  className="splash-page-body-text">
-                The perfect way to explore a new city, or
-                fall in love all over again with the city you live in.
-                A great activity for friends, families, or work groups. 
+                Discover your city, one quest at a time. Here is where we can add more information about what magellan does. This will be max three sentences.
             </div>
-            <div  className="splash-page-body-text">
-                Today is the day to start questing!
-            </div>
+            {/* <div  className="splash-page-body-text">
+                Where will your next quest take you?
+            </div> */}
         </div>
         </>
     )

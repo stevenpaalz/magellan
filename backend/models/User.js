@@ -17,6 +17,26 @@ const userSchema = new Schema({
     hashedPassword: {
       type: String,
       required: true
+    },
+    homeCity: {
+      type: String,
+      required: true
+    },
+    homeState: {
+      type: String,
+      required: true
+    },
+    lat: {
+      type: Number,
+      required: true
+    },
+    lng: {
+      type: Number,
+      required: true
+    },
+    profileImageUrl: {
+      type: String,
+      required: true
     }
   }, {
     timestamps: true

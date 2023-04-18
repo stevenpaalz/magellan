@@ -72,3 +72,66 @@ nav {
 .login-button:hover {
     color: white;
 }
+
+.logout-button {
+    background-color: var(--turquoise);
+    border: 1px solid var(--turquoise);
+    border-radius: 5px;
+    color: var(--offwhite);
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    /* padding: 8px 8px 8px 8px; */
+}
+
+.logout-button:hover {
+    /* background-color: var(--offwhite);
+    border: 1px solid var(--turquoise); */
+    color: var(--red);
+}
+
+.user-icon-holder {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.fa-solid.fa-user {
+color: white;
+font-size: var(--font-size-400);
+
+}
+
+.fa-solid.fa-user:hover {
+    color: var(--red);
+}
+
+.create-quest-nav-button {
+    background-color: var(--turquoise);
+    border: 1px solid var(--turquoise);
+    border-radius: 5px;
+    color: var(--offwhite);
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    /* padding: 8px 16px;  */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.create-quest-nav-button:hover {
+    color: var(--red);
+}
+
+

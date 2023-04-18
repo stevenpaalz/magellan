@@ -69,17 +69,17 @@ export const getCurrentUser = () => async dispatch => {
 
 //getAllUser not on MERN Twitter
 export const getAllUser = () => async dispatch => {
-    const res = await jwtFetch('/api/users')
+    const res = await jwtFetch('/api/users');
     const users = await res.json();
     return dispatch(receiveAllUser(users));
-}
+};
 
 //getUser not on MERN Twitter
 export const getUser = (userId) => async dispatch => {
-    const res = await jwtFetch(`/api/users/${userId}`)
+    const res = await jwtFetch(`/api/users/${userId}`);
     const user = await res.json();
     return dispatch(receiveUser(user));
-}
+};
 
 const initialState = {
     user: undefined
