@@ -17,10 +17,10 @@ async function jwtFetch(url, options = {}) {
     if (options.method.toUpperCase() !== "GET") {
         options.headers["Content-Type"] =
           options.headers["Content-Type"] || "application/json";
-          debugger
+        //   debugger
         options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
     }
-    debugger
+    // debugger
     const res = await fetch(url, options);
 
     if (res.status >= 400) throw res;
