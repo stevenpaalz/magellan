@@ -5,6 +5,7 @@ import { setModal } from "../../store/modal";
 import USstates from "../../data/States";
 import './LoginSignup.css'
 import profileUrls from "../../data/ProfileImgUrls";
+import { useEffect }  from "react";
 
 export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
@@ -18,7 +19,8 @@ export default function SignUpForm(){
     const [profImg, setProfImg] = useState()
     const [homeState, setHomeState] = useState()
     const [errors, setErrors] = useState({})
-    
+    const [dropdownButtonValue, setDropdownButtonValue] = useState("select a profile image ⌵")
+    const [imgDropdownSelected, setImgDropdownSelected] = useState(false)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -41,6 +43,19 @@ export default function SignUpForm(){
             setErrors({confirmPassword: "password and confirm password do not match!"})
         }
     }
+    useEffect(() => {
+        if (!imgDropdownSelected) return;
+        const closeDropdown = () => {
+          setImgDropdownSelected(false);
+        };
+        document.addEventListener('click', closeDropdown);
+        return () => document.removeEventListener("click", closeDropdown);
+      }, [imgDropdownSelected]);
+    function imgDropdownClick(){
+        if (!imgDropdownSelected){
+            setImgDropdownSelected(true)
+        }
+    }
     function swapForm(){
         dispatch(setModal("logIn"))
     }
@@ -57,10 +72,17 @@ export default function SignUpForm(){
                         <input type="text" name="lastName" value={lastName} onChange={e => setLastName(e.target.value)}/>
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
-                    <select name="profileImg" className="img-dropdown">
+                    <div>
+                        <button className="img-dropdown" onClick={imgDropdownClick} > {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
+                            {imgDropdownSelected && <div className="dropdown-options"> 
+                            {profileUrls.map((img, i)=><img onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
+                            </div>}
+                        
+                    </div>
+                    {/* <select name="profileImg" className="img-dropdown">
                         <option disabled selected value="">select a profile image</option>
-                        {profileUrls.map((img, i)=><option value={i} onChange={e=>setProfImg(e.target.value)}><img className="prof-img-dropdown"src={img} alt = ""/></option>)}
-                    </select>
+                        {profileUrls.map((img, i)=><option style={{backgroundImage: `url(${img})`}} value={i} onChange={e=>setProfImg(e.target.value)}></option>)}
+                    </select> */}
                     {errors.profileImageUrl && <p className="error">{errors.profileImageUrl}</p>}
                     <label><p>email:</p>
                         <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
