@@ -4,102 +4,25 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 const Quest = require("../models/Quest.js");
+const Review = require('../models/Review.js');
 
-const NUM_SEED_USERS = 5;
-const NUM_SEED_QUESTS = 5;
+const seedQuests = async () => {
 
-const users = [];
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+      console.log('Connected to MongoDB successfully');
+  })
 
-users.push(
-    new User ({
-      firstName: 'Demo',
-      lastName: 'User',
-      email: 'demo@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10),
-      homeCity: "New York",
-      homeState: "NY",
-      lat: 40.74343509394614,
-      lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
-    })
-)
+const demo = await User.findOne({email: "demo@email.com"});
+const yong = await User.findOne({email: "yong@email.com"});
+const jamie = await User.findOne({email: "jamie@email.com"});
+const steve = await User.findOne({email: "steve@email.com"});
+const dan = await User.findOne({email: "dan@email.com"});
 
-users.push(
-    new User ({
-      firstName: 'Steve',
-      lastName: 'Paalz',
-      email: 'steve@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10),
-      homeCity: "New York",
-      homeState: "NY",
-      lat: 40.74343509394614,
-      lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
-    })
-)
-
-users.push(
-    new User ({
-      firstName: 'Dan',
-      lastName: 'Holodak',
-      email: 'dan@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10),
-      homeCity: "New York",
-      homeState: "NY",
-      lat: 40.74343509394614,
-      lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
-    })
-)
-
-users.push(
-    new User ({
-      firstName: 'Yong',
-      lastName: 'Lin',
-      email: 'yong@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10),
-      homeCity: "New York",
-      homeState: "NY",
-      lat: 40.74343509394614,
-      lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
-    })
-)
-
-users.push(
-    new User ({
-      firstName: 'Jamie',
-      lastName: 'Burchfield',
-      email: 'jamie@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10),
-      homeCity: "New York",
-      homeState: "NY",
-      lat: 40.74343509394614,
-      lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
-    })
-)
-
-for (let i = 1; i < NUM_SEED_USERS; i++) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
-    users.push(
-      new User ({
-        firstName: firstName,
-        lastName: lastName,
-        email: faker.internet.email(firstName, lastName),
-        hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
-        homeCity: "New York",
-        homeState: "NY",
-        lat: 40.74343509394614,
-        lng: -73.98816281069031,
-        profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
-      })
-    )
-}
-
-const demoId = User.findOne({email: "demo@email.com"})._id;
 const quests = [];
+
+console.log(demo);
 
 quests.push(
   new Quest({
@@ -122,7 +45,7 @@ quests.push(
       "Landmarks",
       "a/A"
     ],
-    creator: demoId,
+    creator: demo._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/unionsqnyc-jpg.jpg"]
   })
 );
@@ -147,7 +70,7 @@ quests.push(
           "Culture",
           "Food"
       ],
-      creator: demoId,
+      creator: demo._id,
       imageUrls: ["https://magellan-seeds.s3.amazonaws.com/njgcailbq4761.jpg"],
   })
 );
@@ -172,7 +95,7 @@ quests.push(
         "History",
         "Landmarks"
     ],
-    creator: demoId,
+    creator: jamie._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/GettyImages-660180168-1024x683.jpg"],
   })
 );
@@ -197,7 +120,7 @@ quests.push(
         "Landmarks",
         "Tourist traps"
     ],
-    creator: demoId,
+    creator: demo._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Times-Square-New-York-City.jpeg"],
   })
 );
@@ -222,28 +145,26 @@ quests.push(
         "Food",
         "Culture"
     ],
-    creator: demoId,
+    creator: yong._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Flushing.jpg"],
   })
 );
 
-mongoose
-    .connect(db, { useNewUrlParser: true })
-    .then(() => {
-        console.log('Connected to MongoDB successfully');
-        insertSeeds();
-    })
-    .catch(err => {
-        console.error(err.stack);
-        process.exit(1);
-    });
+// mongoose
+//     .connect(db, { useNewUrlParser: true })
+//     .then(() => {
+//         console.log('Connected to MongoDB successfully');
+//         insertSeeds();
+//     })
+//     .catch(err => {
+//         console.error(err.stack);
+//         process.exit(1);
+//     });
 
 const insertSeeds = () => {
-    console.log("Resetting db and seeding users and quests...");
+    console.log("Resetting db and seeding quests...");
     
-    User.collection.drop()
-                    .then(() => User.insertMany(users))
-                    .then(() => Quest.collection.drop())
+    Quest.collection.drop()
                     .then(() => Quest.insertMany(quests))
                     .then(() => {
                         console.log("Done!");
@@ -254,3 +175,8 @@ const insertSeeds = () => {
                         process.exit(1);
                     });
 }
+
+insertSeeds();
+}
+
+seedQuests();

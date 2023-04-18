@@ -43,7 +43,7 @@ router.get('/:id', async (req, res) => {
     try {
         const quest = await Quest.findById(req.params.id)
                                 .populate("creator", "_id email firstName lastName profileImageUrl")
-        return res.json(quest);
+        return res.json({quest: quest});
     }
     catch(err) {
         return res.json(null);
@@ -61,8 +61,8 @@ router.get('/', async (req, res) => {
         return res.json([]);
     }
 })
-
-router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput, async (req, res, next) => {
+multipleMulterUpload("images")
+router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
     const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
