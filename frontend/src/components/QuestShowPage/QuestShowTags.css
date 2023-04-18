@@ -10,6 +10,8 @@
   height: auto;
   margin-left: 5px;
   margin-right: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 
@@ -25,6 +27,8 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   .quest-show-tag-landmarks {
@@ -39,6 +43,8 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   .quest-show-tag-public-art {
@@ -53,6 +59,8 @@
   height: auto;
   margin-left: 5px;
   margin-right: 5px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   .quest-show-tag-tourist-traps {
@@ -95,6 +103,8 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   .quest-show-tag-green {
@@ -123,6 +133,8 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   .quest-show-tag-food-drink {
@@ -137,6 +149,8 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   .quest-show-tag-locals-only {
@@ -151,6 +165,8 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }
 
   
@@ -167,4 +183,6 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
   }

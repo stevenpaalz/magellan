@@ -40,7 +40,7 @@ const { id } = useParams();
                         <div className="quest-show-description">{quest.description}</div>
                         <div className="quest-show-radius">Radius: {quest.radius} miles</div>
                         <div className="quest-show-time-needed">Duration: {quest.duration} hours</div>
-                        <div className="quest-show-reviews">Reviews</div>
+                        <div className="quest-show-reviews">Reviews Placeholder</div>
                     </div>
                     <div className="quest-show-buttons-holder">
                         <button className="quest-show-start-quest">Start Quest</button>
