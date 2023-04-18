@@ -10,6 +10,12 @@ div.page-overlay{
     justify-content: center;
     align-items: center;
 }
+.prof-img-dropdown{
+    height: 145px;
+    width: 145px;
+    border-radius: 5px;
+    object-fit: cover;
+}
 .login-signup-form button, .submit-button{
     background-color: #31AFAC;
     font-size: 18px;
@@ -29,8 +35,8 @@ div.page-overlay{
     font-weight: bold;
     margin: 10px;
 }
-.login-signup-form input{
-    
+.img-dropdown{
+    margin:10px;
 }
 .login-signup-form label{
     display: flex;
