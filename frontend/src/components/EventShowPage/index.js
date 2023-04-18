@@ -18,7 +18,7 @@ function EventShowPage() {
     return(
         <>
             <h1>hello from event show page {event._id}</h1>
-            <p>{event.quest.imageUrls}</p>
+            <img src={event.quest.imageUrls}></img>
         </>
 
     )
