@@ -29,17 +29,17 @@ const LoggedOutNavBar = () => {
 
     return(
         <nav>
-        <div className="nav-left">
-            <NavLink exact to="/">
-                <img src="../../../assets/logo.png" alt="Logo" className="nav-bar-logo"/>
-            </NavLink>
-        </div>
-        <div className="nav-right">
-        <button className="signup-button" onClick={signupClick}>sign up</button>    
-        <button className="login-button" onClick={loginClick}>log in</button>                    
-        <LoginForm />
-        <SignUpForm />
-        </div>
+            <div className="nav-left">
+                <NavLink exact to="/">
+                    <img src="../../../assets/logo.png" alt="Logo" className="nav-bar-logo"/>
+                </NavLink>
+            </div>
+            <div className="nav-right">
+                <button className="signup-button" onClick={signupClick}>sign up</button>    
+                <button className="login-button" onClick={loginClick}>log in</button>                    
+            <LoginForm />
+            <SignUpForm />
+            </div>
         </nav>
     )
 }

@@ -8,8 +8,8 @@ import { getQuest, updateQuest, createQuest } from "../../store/quests";
 export default function QuestForm() {
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
-    const { questId } = useParams(); 
-    let quest = useSelector(getQuest(questId));
+    const { _id } = useParams(); 
+    let quest = useSelector(getQuest(_id));
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -24,12 +24,24 @@ export default function QuestForm() {
     const [imageFiles, setImageFiles] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
 
-    useEffect(() => {
-        if (questId) {
-            dispatch(fetchListing(listingId));
+    let submitButton; 
+    let formHeading;
+    if (_id) {
+        submitButton = <button className="sFormButton" type="submit"
+                >Edit Quest</button>
+        formHeading = <h1 className='formHeading'>Edit Listing</h1>
+    } else {
+        submitButton = <button className="sFormButton" type="submit"
+                >Create Quest</button>
+        formHeading = <h1 className='formHeading'>Create a New Listing</h1>
+    };
+
+    // useEffect(() => {
+    //     if (_id) {
+    //         dispatch(fetchListing(listingId));
             
-        }
-    }, [dispatch, listingId])
+    //     }
+    // }, [dispatch, listingId])
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -57,17 +69,16 @@ export default function QuestForm() {
 
         if (imageFiles.length !== 0) {
 			for (let photo of imageFiles) {
-				formData.append("quest[photos][]", photo);
-			}
-		}
+				formData.append("quest[imageUrls][]", photo);
+			};
+		};
 
-        if (questId) {
-			formData.append('quest[id]', questId);
+        if (_id) {
+			formData.append('quest[id]', _id);
             for (let key in quest) {
 				formData.append(`quest[${key}]`, quest[key]);
-			}
-		}
-
+			};
+		};
         formData.append('quest[title]', title);
         formData.append('quest[description]', description);
         formData.append('quest[checkpoints]', checkpoints);
@@ -79,18 +90,39 @@ export default function QuestForm() {
         formData.append('quest[radius]', radius);
         formData.append('quest[tags]', tags);
         
-        if (questId) {
-            dispatch(updateQuest(formData, questId));
+        if (_id) {
+            dispatch(updateQuest(formData, _id));
         } else {
             dispatch(createQuest(formData));
-        }
-    }
+        };
+    };
 
     if (modalState && modalState === "questForm"){
         return(
             <div className="page-overlay">
+                {formHeading}
                 <form className="quest-form" onSubmit={handleSubmit}>
-
+                    <label >
+                        Title 
+                        <input 
+                            type="text"
+                            onChange={(e) => setTitle(e.target.value)}
+                        /> 
+                    </label>
+                    <label >
+                        Description 
+                        <input 
+                            type="text"
+                            onChange={(e) => setDescription(e.target.value)}
+                        /> 
+                    </label>
+                    <label >
+                        Checkpoints
+                        <input 
+                            type="text"
+                            onChange={(e) => setDescription(e.target.value)}
+                        /> 
+                    </label>
                 </form>
             </div>
         )
