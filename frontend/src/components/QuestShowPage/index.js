@@ -3,11 +3,11 @@ import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuest } from "../../store/quests";
+import QuestShowTags from "./QuestShowTags";
 
 const QuestShowPage = () => {
 const { id } = useParams();
   const dispatch = useDispatch();
-//   const quest = useSelector(state => state.);
   const quest = useSelector(state => {
     return state.quests ? state.quests[id] : null
   });
@@ -23,25 +23,23 @@ const { id } = useParams();
         <div className="quest-show-full-page">
             <div className="quest-show-holder">
                 <div className="quest-show-left">
-                    <div className="quest-show-checkpoint-holder">Checkpoint Holder
-                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
-                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
-                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
-                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
-                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
+                    <div className="quest-show-map-holder">
+                        <div className="quest-show-map"></div>
                     </div>
-                    {/* <div className="quest-show-map">Map?</div> */}
                 </div>
                 <div className="quest-show-right">
                     <div className="quest-show-header-holder">
-                        <div className="quest-show-title">Title</div>
-                        <div className="quest-show-tags">Tags</div>
-                        <div className="quest-show-image">Image?</div>
+                            <div className="quest-show-title">{quest.title}</div>
+                            <img src={quest.imageUrls[0]} className="quest-show-image"/>                    </div>
+
+                    <div className="quest-show-tags-holder">
+                        <QuestShowTags tags={quest.tags} />
                     </div>
+
                     <div className="quest-show-body-holder">
-                        <div className="quest-show-description">Description</div>
-                        <div className="quest-show-radius">Radius</div>
-                        <div className="quest-show-time-needed">Duration</div>
+                        <div className="quest-show-description">{quest.description}</div>
+                        <div className="quest-show-radius">Radius: {quest.radius} miles</div>
+                        <div className="quest-show-time-needed">Duration: {quest.duration} hours</div>
                         <div className="quest-show-reviews">Reviews</div>
                     </div>
                     <div className="quest-show-buttons-holder">
