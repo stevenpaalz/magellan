@@ -13,7 +13,12 @@ users.push(
       firstName: 'Demo',
       lastName: 'User',
       email: 'demo@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10)
+      hashedPassword: bcrypt.hashSync('password', 10),
+      homeCity: "New York",
+      homeState: "NY",
+      lat: 40.74343509394614,
+      lng: -73.98816281069031,
+      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
     })
 )
 
@@ -22,7 +27,12 @@ users.push(
       firstName: 'Steve',
       lastName: 'Paalz',
       email: 'steve@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10)
+      hashedPassword: bcrypt.hashSync('password', 10),
+      homeCity: "New York",
+      homeState: "NY",
+      lat: 40.74343509394614,
+      lng: -73.98816281069031,
+      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
     })
 )
 
@@ -31,7 +41,12 @@ users.push(
       firstName: 'Dan',
       lastName: 'Holodak',
       email: 'dan@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10)
+      hashedPassword: bcrypt.hashSync('password', 10),
+      homeCity: "New York",
+      homeState: "NY",
+      lat: 40.74343509394614,
+      lng: -73.98816281069031,
+      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
     })
 )
 
@@ -40,7 +55,12 @@ users.push(
       firstName: 'Yong',
       lastName: 'Lin',
       email: 'yong@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10)
+      hashedPassword: bcrypt.hashSync('password', 10),
+      homeCity: "New York",
+      homeState: "NY",
+      lat: 40.74343509394614,
+      lng: -73.98816281069031,
+      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
     })
 )
 
@@ -49,7 +69,12 @@ users.push(
       firstName: 'Jamie',
       lastName: 'Burchfield',
       email: 'jamie@email.com',
-      hashedPassword: bcrypt.hashSync('password', 10)
+      hashedPassword: bcrypt.hashSync('password', 10),
+      homeCity: "New York",
+      homeState: "NY",
+      lat: 40.74343509394614,
+      lng: -73.98816281069031,
+      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
     })
 )
 
@@ -61,7 +86,12 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
         firstName: firstName,
         lastName: lastName,
         email: faker.internet.email(firstName, lastName),
-        hashedPassword: bcrypt.hashSync(faker.internet.password(), 10)
+        hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
+        homeCity: "New York",
+        homeState: "NY",
+        lat: 40.74343509394614,
+        lng: -73.98816281069031,
+        profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
       })
     )
 }
@@ -78,7 +108,7 @@ mongoose
     });
 
 const insertSeeds = () => {
-    console.log("Resetting db and seeding users and tweets...");
+    console.log("Resetting db and seeding users...");
     
     User.collection.drop()
                     .then(() => User.insertMany(users))
