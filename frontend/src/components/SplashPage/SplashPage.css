@@ -1,6 +1,6 @@
 .splash-page-body {
     background-color: var(--offwhite);
-    height: 100vh;
+    height: calc(100vh - 80px);
     display: flex;
     flex-direction: row;
     /* position: relative; */

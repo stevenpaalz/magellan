@@ -50,9 +50,9 @@ export default function LoginForm(){
                         <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
-                    <input type="submit" value="sign up" className="submit-button"/>
+                    <input type="submit" value="log in" className="submit-button"/>
                     <button className="demo-login" onClick={demoLogin}>login with demo user</button>
-                       <p>Don't have an account?<button className="form-swap" onClick={swapForm}>sign up</button></p> 
+                       <p>Don't have an account?<button className="form-swap" onClick={swapForm}>sign up!</button></p> 
                 </form>
             </div>
         )
