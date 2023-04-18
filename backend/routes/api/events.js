@@ -46,7 +46,7 @@ router.post('/', requireUser, validateEventInput, async (req, res, next) => {
         let event = await newEvent.save();
         event = await event.populate("host", "_id email firstName lastName profileImageUrl");
         event = await event.populate("attendees", "_id email firstName lastName");
-        event = await event.populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
+        event = await event.populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
         return res.json(event);
     }
     catch(err) {
