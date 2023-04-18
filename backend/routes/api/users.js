@@ -11,8 +11,6 @@ const validateLoginInput = require('../../validations/login');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { getLatLng } = require('../../config/geocode');
 
-const DEFAULT_PROFILE_IMAGE_URL = 'https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg';
-
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
 
@@ -27,10 +25,6 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     return next(err);
   }
 
-  const profileImageUrl = req.file ?
-      await singleFileUpload({ file: req.file, public: true }) :
-      DEFAULT_PROFILE_IMAGE_URL;
-
   const latlng = await getLatLng(`${req.body.homeCity}, ${req.body.homeState}`);
   const latInput = latlng[0];
   const lngInput = latlng[1];
@@ -43,7 +37,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     homeState: req.body.homeState,
     lat: latInput,
     lng: lngInput,
-    profileImageUrl
+    profileImageUrl: req.body.profileImageUrl
   });
 
   bcrypt.genSalt(10, (err, salt) => {
