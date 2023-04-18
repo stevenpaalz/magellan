@@ -10,7 +10,7 @@ const LoggedInNavBar = () => {
   
   const logoutUser = e => {
       e.preventDefault();
-      dispatch(logout()).then(history.replace("/"));
+      dispatch(logout());
   }
 
     return (
