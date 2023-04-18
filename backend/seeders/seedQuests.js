@@ -150,17 +150,6 @@ quests.push(
   })
 );
 
-// mongoose
-//     .connect(db, { useNewUrlParser: true })
-//     .then(() => {
-//         console.log('Connected to MongoDB successfully');
-//         insertSeeds();
-//     })
-//     .catch(err => {
-//         console.error(err.stack);
-//         process.exit(1);
-//     });
-
 const insertSeeds = () => {
     console.log("Resetting db and seeding quests...");
     

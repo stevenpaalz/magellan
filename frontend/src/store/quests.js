@@ -101,7 +101,7 @@ function questsReducer(state = {}, action) {
         case RECEIVE_ALL_QUESTS:
             return { ...action.quests };
         case RECEIVE_QUEST:
-            return { ...state, [action.quest.id]: action.quest };
+            return { ...state, [action.quest._id]: action.quest };
         case REMOVE_QUEST:
             const newQuest = { ...state };
             delete newQuest[action.questId];
