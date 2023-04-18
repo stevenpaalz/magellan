@@ -1,32 +1,3 @@
-// import React, { useEffect } from "react";
-// import "./QuestShowPage.css"
-// import { useParams } from "react-router-dom";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getQuest } from "../../store/quests";
-
-
-// const QuestShowPage = () => {
-//     // const { questId } = useParams();
-//     const questId = "643deb21ec37b96aa0b455d5";
-//     const dispatch = useDispatch();
-//     const quest = useSelector(state => state.quests[questId]);
-
-//     useEffect(() => {
-//         dispatch(getQuest(questId))
-//     }, [dispatch, questId])
-
-//     if (!quest) return null;
-
-//     return (
-//         <>
-//         <h1>QuestShowPage</h1>
-//         <h1>{quest.title}</h1>
-//         </>
-//     )
-// }
-
-// export default QuestShowPage;
-
 import React, { useEffect } from "react";
 import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
@@ -34,26 +5,53 @@ import { useSelector, useDispatch } from "react-redux";
 import { getQuest } from "../../store/quests";
 
 const QuestShowPage = () => {
-//   const { questId } = "643ea4d3a2ffa7568bc9906c";
-const { questId } = useParams();
+const { id } = useParams();
   const dispatch = useDispatch();
-//   const quest = useSelector(getQuest(questId));
+  const quest = useSelector(getQuest(id));
 //   const quest = useSelector(state => state.quests[questId]);
-  console.log(questId)
-//   debugger;
+  console.log(quest)
 
 
 
-//   useEffect(() => {
-//     dispatch(getQuest(questId));
-//   }, [dispatch, questId]);
+  useEffect(() => {
+    dispatch(getQuest(id));
+  }, [dispatch, id]);
 
-//   if (!quest) return null;
+  if (!quest) return null;
 
   return (
     <>
-      <h1>QuestShowPage</h1>
-      {/* <h1>{quest.title}</h1> */}
+        <div className="quest-show-full-page">
+            <div className="quest-show-holder">
+                <div className="quest-show-left">
+                    <div className="quest-show-checkpoint-holder">Checkpoint Holder
+                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
+                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
+                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
+                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
+                        <div className="quest-show-checkpoint">Checkpoint 1: Placeholder Placeholder</div>
+                    </div>
+                    {/* <div className="quest-show-map">Map?</div> */}
+                </div>
+                <div className="quest-show-right">
+                    <div className="quest-show-header-holder">
+                        <div className="quest-show-title">Title</div>
+                        <div className="quest-show-tags">Tags</div>
+                        <div className="quest-show-image">Image?</div>
+                    </div>
+                    <div className="quest-show-body-holder">
+                        <div className="quest-show-description">Description</div>
+                        <div className="quest-show-radius">Radius</div>
+                        <div className="quest-show-time-needed">Duration</div>
+                        <div className="quest-show-reviews">Reviews</div>
+                    </div>
+                    <div className="quest-show-buttons-holder">
+                        <button className="quest-show-start-quest">Start Quest</button>
+                        <button className="quest-show-schedule-quest">Schedule for Later</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </>
   );
 };
