@@ -27,7 +27,8 @@ time, mark, audio, video {
 	font: inherit;
     font-family: 'Barlow', sans-serif;
 	vertical-align: baseline;
-    color: #111111
+    color: #111111;
+    text-decoration: none;
 }
 
 /* HTML5 display-role reset for older browsers */

@@ -17,12 +17,12 @@ const LoggedInNavBar = () => {
         <nav>
             <div className="nav-left">
                 <NavLink exact to="/home">
-                    <img src="https://www.tutorialspoint.com/assets/questions/media/426142-1668760872.png" alt="Logo" className="nav-bar-logo"/>
+                    <img src="../../../assets/logo.png" alt="Logo" className="nav-bar-logo"/>
                 </NavLink>
             </div>
             <div className="nav-right">   
                 <NavLink exact to="/">
-                    <div className="create-quest-nav-button">Create Quest</div>
+                    <div className="create-quest-nav-button">create quest</div>
                 </NavLink>
 
                 <NavLink exact to="/">
@@ -31,7 +31,7 @@ const LoggedInNavBar = () => {
                     </div>                
                 </NavLink>
 
-                <button className="logout-button" onClick={logoutUser}>Log Out</button>
+                <button className="logout-button" onClick={logoutUser}>log out</button>
             </div>
         </nav>
     );
