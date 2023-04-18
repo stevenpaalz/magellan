@@ -14,6 +14,7 @@ const { id } = useParams();
 
 
   useEffect(() => {
+    debugger
     dispatch(getQuest(id));
   }, [dispatch, id]);
 
