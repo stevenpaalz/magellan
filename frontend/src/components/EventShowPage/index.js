@@ -7,6 +7,9 @@ import QuestMap from "../Map";
 import QuestDetails from "../QuestShowPage/QuestDetails";
 import QuestShowTags from "../QuestShowPage/QuestShowTags";
 import EventDetails from "./EventDetails";
+import HiddenCheckpoints from "./HiddenCheckpoints";
+import RevealedCheckpoints from "./RevealedCheckpoints";
+
 
 
 const EventShowPage = () => {
@@ -54,11 +57,11 @@ const EventShowPage = () => {
                                 <EventDetails event={event} startTime={formattedStartTime} />
                             </div>
 
-                            <div className="event-show-checkpoints-holder">Checkpoints
+                            <div className="event-show-checkpoints-holder">
                                 {currentTime >= startTime ?
-                                    <div className="checkpoints-revealed">Checkpoint Revealed</div>
+                                    <RevealedCheckpoints checkpoints={event.quest.checkpoints} />
                                     :
-                                    <div className="checkpoints-hidden">Checkpoint Hidden</div>
+                                    <HiddenCheckpoints checkpoints={event.quest.checkpoints} />
                                 }
                             </div>
 
