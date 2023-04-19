@@ -26,6 +26,7 @@ const App = () => {
       <Route exact path="/quests/:id" component={QuestShowPage} />
       <Route exact path="/events/:id" component={EventShowPage} />
       <Route exact path="/user-profile" component={UserProfilePage} />
+    
 
 
       {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}
