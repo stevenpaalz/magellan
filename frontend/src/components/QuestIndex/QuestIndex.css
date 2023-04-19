@@ -1,0 +1,35 @@
+img.star-rating{
+    height: 20px;
+    margin: 5px 0px;
+}
+div.quest-card{
+    padding: 20px;
+    background-color: white;
+    border-radius: 7px;
+    width: 85%;
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.home-flex{
+    background-color: var(--offwhite);
+}
+h1.quest-title{
+    font-size: 27px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.card-column{
+    width: 50%;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+}
+.quest-start-image{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}

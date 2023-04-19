@@ -54,7 +54,7 @@ div.page-overlay{
     margin: 10px;
 }
 .option-image:hover{
-    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
 .dropdown-options{
