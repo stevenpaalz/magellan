@@ -6,6 +6,7 @@ import modals from './modal';
 import quests from './quests';
 import reviews from './reviews';
 import events from './events';
+import users from './users';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   modals,
   quests,
   reviews,
-  events
+  events,
+  users
 });
 
 let enhancer;
