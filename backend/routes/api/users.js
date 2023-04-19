@@ -10,6 +10,7 @@ const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { getLatLng } = require('../../config/geocode');
+const Event = mongoose.model('Event');
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
@@ -84,6 +85,22 @@ router.get('/current', restoreUser, (req, res) => {
   });
 });
 
+router.get('/:userId/events', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    const hostedEvents = await Event.find({host: user})
+    const attendedEvents = await Event.find({attendees: user})
+    const events = {...hostedEvents, ...attendedEvents};
+    return res.json(events);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
+})
+
 router.get('/:userId', async (req, res) => {
   const user = await User.findById(req.params.userId);
 
@@ -96,19 +113,6 @@ router.get('/:userId', async (req, res) => {
   };
   return res.json(userInfo);
 });
-
-// try {
-//   const events = await Event.find()
-//                           .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
-//                           .populate("host", "_id email firstName lastName profileImageUrl")
-//                           .populate("attendees", "_id email firstName lastName profileImageUrl")
-//                           .sort({createdAt: -1});
-//   return res.json(events);
-// }
-// catch(err) {
-//   return res.json(null);
-// }
-
 
 router.get('/', async (req, res, next) => {
   try{
