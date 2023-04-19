@@ -77,7 +77,8 @@ export const createEvent = (event) => async dispatch => {
             body: JSON.stringify(event)
         });
         const data = await res.json();
-        return dispatch(receiveEvent(data));
+        dispatch(receiveEvent(data));
+        return data._id
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
