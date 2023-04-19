@@ -61,8 +61,9 @@ router.get('/', async (req, res) => {
         return res.json([]);
     }
 })
-multipleMulterUpload("images")
-router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
+   
+
+router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput, async (req, res, next) => {
     const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
