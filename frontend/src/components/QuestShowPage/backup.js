@@ -3,10 +3,11 @@ import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuest } from "../../store/quests";
+import { getAllReviews } from "../../store/reviews";
 import QuestShowTags from "./QuestShowTags";
 import QuestShowReviews from "./QuestShowReviews";
 import QuestMap from "../Map";
-import QuestDetails from "./QuestDetails";
+import StarRating from "../QuestIndex/StarRating";
 
 const QuestShowPage = () => {
 const { id } = useParams();
@@ -16,11 +17,24 @@ const { id } = useParams();
     return state.quests ? state.quests[id] : null
   });
 
+  const reviews = useSelector(state => {
+    return state.reviews ? state.reviews : null;
+  });
+
   useEffect(() => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    dispatch(getAllReviews());
+  }, [dispatch]);
+
+  const filteredReviews = Object.values(reviews).filter((review) => {
+    return review.quest === id;
+  });
+
   if (!quest) return null;
+  if (!filteredReviews) return null;
 
   return (
     <>
@@ -46,7 +60,13 @@ const { id } = useParams();
                     
                     <div className="quest-show-right">
                         <div className="quest-show-body-holder">
-                            <QuestDetails quest={quest} />
+                            <div className="quest-show-description"><span className="show-label">What to expect:</span> {quest.description}</div>
+                            <div className="quest-show-text"><span className="show-label">Radius:</span> {quest.radius}  miles</div>
+                            <div className="quest-show-text"><span className="show-label">Duration:</span> {quest.duration} hours</div>
+                        
+                                <div className="quest-show-text star-rating"><span className="show-rating-label">Rating:</span> 
+                                    <StarRating questReviews={filteredReviews} />
+                                </div>
                         </div>
 
 
