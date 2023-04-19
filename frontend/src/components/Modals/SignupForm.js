@@ -9,6 +9,7 @@ import { useEffect }  from "react";
 
 export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
+    const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -21,25 +22,19 @@ export default function SignUpForm(){
     const [errors, setErrors] = useState({})
     const [dropdownButtonValue, setDropdownButtonValue] = useState("select a profile image ⌵")
     const [imgDropdownSelected, setImgDropdownSelected] = useState(false)
-
+    useEffect(()=>{
+        if (sessionErrors){
+            setErrors(sessionErrors)
+        }
+        
+    }, [sessionErrors])
     function handleSubmit(e){
         e.preventDefault();
         if (password === confirmPassword){
-            const newUser = {firstName, lastName, homeCity, homeState, email, password, profileImageUrl: profileUrls[profImg]};
-            console.log(newUser);
+
+            const newUser = {firstName, lastName, homeCity, homeState, email, password, profileImageUrl: profileUrls[profImg]}
             return dispatch(signup(newUser))
-            .catch(async (res) => {
-                let data;
-                try {
-                  data = await res.clone().json();
-                } catch {
-                  data = await res.text();
-                }
-                if (data?.errors) setErrors(data.errors);
-                else if (data) setErrors([data]);
-                else setErrors([res.statusText]);
-                console.log(data);
-              });
+
         }else{
             setErrors({confirmPassword: "password and confirm password do not match!"})
         }
@@ -75,16 +70,11 @@ export default function SignUpForm(){
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
                     <div>
-                        <button className="img-dropdown" onClick={imgDropdownClick} > {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
+                        <button className="img-dropdown" onClick={imgDropdownClick} >{Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
                             {imgDropdownSelected && <div className="dropdown-options"> 
                             {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
                             </div>}
-                        
                     </div>
-                    {/* <select name="profileImg" className="img-dropdown">
-                        <option disabled selected value="">select a profile image</option>
-                        {profileUrls.map((img, i)=><option style={{backgroundImage: `url(${img})`}} value={i} onChange={e=>setProfImg(e.target.value)}></option>)}
-                    </select> */}
                     {errors.profileImageUrl && <p className="error">{errors.profileImageUrl}</p>}
                     <label><p>email:</p>
                         <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>

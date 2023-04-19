@@ -24,7 +24,7 @@ const LoggedOutNavBar = () => {
     useEffect(() => {
         if (modalState !== "signUp" && modalState !== "logIn") return;
         const closeModals = (e) => {
-          if(e.target.classList.contains("login-signup-form")|| e.target.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.parentElement.classList.contains("login-signup-form")||e.target.parentElement.parentElement.parentElement.parentElement.classList.contains("login-signup-form")) return;
+          if(e.target.classList.contains("login-signup-form")|| e.target.parentElement?.classList.contains("login-signup-form")||e.target.parentElement?.parentElement?.classList.contains("login-signup-form")||e.target.parentElement?.parentElement?.parentElement?.classList.contains("login-signup-form")||e.target.parentElement?.parentElement?.parentElement?.parentElement?.classList.contains("login-signup-form")) return;
           dispatch(setModal(false));
         };
         document.addEventListener('click', closeModals);
