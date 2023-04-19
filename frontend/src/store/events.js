@@ -3,6 +3,8 @@ import jwtFetch from "./jwt";
 export const RECEIVE_ALL_EVENTS = "events/RECEIVE_ALL_EVENTS";
 export const RECEIVE_EVENT = "events/RECEIVE_EVENT";
 export const REMOVE_EVENT = "events/REMOVE_EVENT";
+const RECEIVE_EVENT_ERRORS = "events/RECEIVE_EVENT_ERRORS";
+const CLEAR_EVENT_ERRORS = "events/CLEAR_EVENT_ERRORS";
 
 const receiveAllEvents = (events) => ({
     type: RECEIVE_ALL_EVENTS,
@@ -19,20 +21,44 @@ const removeEvent = (eventId) => ({
     eventId
 });
 
+const receiveErrors = errors => ({
+    type: RECEIVE_EVENT_ERRORS,
+    errors
+});
+
+export const clearEventErrors = errors => ({
+    type: CLEAR_EVENT_ERRORS,
+    errors
+});
+
 export const getAllEvents = () => async dispatch => {
-    const res = await jwtFetch('/api/events');
-    const data = await res.json();
-    const events = {};
-    data.forEach((el)=>{
-        events[el._id] = el
-    });
-    return dispatch(receiveAllEvents(events));
+    try {
+        const res = await jwtFetch('/api/events');
+        const data = await res.json();
+        const events = {};
+        data.forEach((el)=>{
+            events[el._id] = el
+        });
+        return dispatch(receiveAllEvents(events));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            dispatch(receiveErrors(resBody.errors));
+        }
+    }
 }
 
 export const getEvent = (eventId) => async dispatch => {
-    const res = await jwtFetch(`/api/events/${eventId}`);
-    const event = await res.json();
-    return dispatch(receiveEvent(event));
+    try{
+        const res = await jwtFetch(`/api/events/${eventId}`);
+        const event = await res.json();
+        return dispatch(receiveEvent(event));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+          return dispatch(receiveErrors(resBody.errors));
+        }
+    }
 }
 
 export const deleteEvent = (eventId) => async dispatch => {
@@ -45,12 +71,19 @@ export const deleteEvent = (eventId) => async dispatch => {
 }
 
 export const createEvent = (event) => async dispatch => {
-    const res = await jwtFetch('/api/events', {
-        method: 'POST',
-        body: JSON.stringify(event)
-    });
-    const data = await res.json();
-    return dispatch(receiveEvent(data));
+    try{
+        const res = await jwtFetch('/api/events', {
+            method: 'POST',
+            body: JSON.stringify(event)
+        });
+        const data = await res.json();
+        return dispatch(receiveEvent(data));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+          return dispatch(receiveErrors(resBody.errors));
+        }
+    }
 }
 
 function eventsReducer(state = {}, action) {
@@ -68,5 +101,19 @@ function eventsReducer(state = {}, action) {
             return state;
     }
 }
+
+const nullErrors = null;
+
+export const eventErrorsReducer = (state = nullErrors, action) => {
+  switch(action.type) {
+    case RECEIVE_EVENT_ERRORS:
+      return action.errors;
+    case RECEIVE_EVENT:
+    case CLEAR_EVENT_ERRORS:
+      return nullErrors;
+    default:
+      return state;
+  }
+};
 
 export default eventsReducer;
