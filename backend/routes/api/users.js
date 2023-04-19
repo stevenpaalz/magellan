@@ -97,23 +97,44 @@ router.get('/:userId', async (req, res) => {
   return res.json(userInfo);
 });
 
-router.get('/', async (req, res) => {
-  const users = await User.find();
-  const usersArray = Object.values(users);
-  const usersObject = {};
+// try {
+//   const events = await Event.find()
+//                           .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
+//                           .populate("host", "_id email firstName lastName profileImageUrl")
+//                           .populate("attendees", "_id email firstName lastName profileImageUrl")
+//                           .sort({createdAt: -1});
+//   return res.json(events);
+// }
+// catch(err) {
+//   return res.json(null);
+// }
 
-  usersArray.forEach((user)=>{
-    const userInfo = {
-      _id: user._id,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      profileImageUrl: user.profileImageUrl
-    };
-    usersObject[user._id] = userInfo;
-  })
 
-  return res.json({users: usersObject});
+router.get('/', async (req, res, next) => {
+  try{
+    const users = await User.find();
+    const usersArray = Object.values(users);
+    const usersObject = {};
+
+    usersArray.forEach((user)=>{
+      const userInfo = {
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        profileImageUrl: user.profileImageUrl
+      };
+      usersObject[user._id] = userInfo;
+    })
+
+    return res.json({users: usersObject});
+  } catch{
+    const error = new Error('Event not found');
+    error.statusCode = 404;
+    error.errors = { message: "No event found with that id" };
+    return next(error);
+  }
+  
 });
 
 module.exports = router;
