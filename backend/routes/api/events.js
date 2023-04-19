@@ -11,7 +11,7 @@ const validateEventInput = require('../../validations/events');
 router.get('/:id', async (req, res) => {
     try {
         const event = await Event.findById(req.params.id)
-                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
+                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
                                 .populate("host", "_id email firstName lastName profileImageUrl")
                                 .populate("attendees", "_id email firstName lastName profileImageUrl")
         return res.json(event);
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const events = await Event.find()
-                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
+                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
                                 .populate("host", "_id email firstName lastName profileImageUrl")
                                 .populate("attendees", "_id email firstName lastName profileImageUrl")
                                 .sort({createdAt: -1});

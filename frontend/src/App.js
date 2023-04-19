@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import EventShowPage from './components/EventShowPage';
 import { getCurrentUser } from './store/session';
+import UserProfilePage from './components/UserProfilePage';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
       <Route exact path="/quests" component={HomePage} />
       <Route exact path="/quests/:id" component={QuestShowPage} />
       <Route exact path="/events/:id" component={EventShowPage} />
+      <Route exact path="/user-profile" component={UserProfilePage} />
 
 
       {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}
