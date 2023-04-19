@@ -85,7 +85,7 @@ const QuestShowPage = () => {
             </div>
         </div>
         <div>
-            <EventForm />
+            <EventForm quest={quest} host={sessionUser} />
         </div>
     </>
   );

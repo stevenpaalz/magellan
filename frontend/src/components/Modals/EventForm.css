@@ -1,5 +1,24 @@
 .modal-content {
     background: white;
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
+    border-radius: 5px;
+    border: 1px solid #31AFAC;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
+
+.custom-datetime-picker {
+    position: relative; /* Make the input field a positioned element */
+  }
+  
+  .custom-datetime-picker .react-datetime-picker__wrapper {
+    position: absolute; /* Position the calendar absolutely */
+    top: 100%; /* Position the calendar below the input field */
+    left: 0; /* Align the calendar with the left edge of the input field */
+    z-index: 1; /* Make sure the calendar is above other elements */
+  }
