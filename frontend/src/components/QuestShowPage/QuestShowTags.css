@@ -1,19 +1,3 @@
-.quest-show-tag-food {
-  background-color: #FFDB58;
-  color: white;
-  border-radius: 20px;
-  display: inline-block;
-  padding: 2px 16px 2px 16px;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-300);
-  box-sizing: border-box;
-  height: auto;
-  margin-left: 5px;
-  margin-right: 5px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
-}
-
 
   .quest-show-tag-family-friendly {
     background-color: var(--orange);
@@ -77,7 +61,7 @@
     margin-right: 5px;
   }
 
-  .quest-show-tag-transporation {
+  .quest-show-tag-transportation {
     background-color: #a9a9a9;
     color: black;
     border-radius: 20px;
@@ -137,14 +121,14 @@
 
   }
 
-  .quest-show-tag-food-drink {
+  .quest-show-tag-food-and-drink {
     background-color: var(--red);
     color: white;
     border-radius: 20px;
     display: inline-block;
     padding: 2px 16px 2px 16px;
     font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
+    font-size: var(--font-size-200);
     box-sizing: border-box;
     height: auto;
     margin-left: 5px;
