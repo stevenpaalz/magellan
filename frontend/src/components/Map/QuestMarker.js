@@ -1,23 +1,25 @@
 import React from "react";
-
-const QuestMarker = ({ quest }) => {
+import { Link } from "react-router-dom";
+const QuestMarker = ({ quest, decor, key }) => {
 
     //template for marker styling
     const markerStyle = {
-        border: '1px solid white',
-        borderRadius: '5px',
-        height: 13,
-        width: 40,
+        border: '3px solid white',
+        borderRadius: '100%',
+        height: '30px',
+        width: '30px',
         backgroundColor: 'red',
         color: 'white',
         cursor: 'pointer',
         zIndex: 10,
         textAlign: 'center',
+        fontSize: '20px',
+        fontWeight: 'bold'
     };
 
     return (
         <>
-            <div className="questMarker" style={markerStyle} >{quest.title}</div>
+            <Link key={key} to={`/quests/${quest._id}`}><div className="questMarker" style={markerStyle} >{decor}</div></Link>
         </>
     )
 }
