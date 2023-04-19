@@ -30,6 +30,8 @@ const { id } = useParams();
             <div className="quest-show-holder">
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${quest.imageUrls[0]})`} }>
                     <div className="quest-show-title">{quest.title}</div>
+                    <QuestShowTags tags={quest.tags} />
+
                 </div>
 
                 <div className="quest-show-full-bottom">
@@ -37,6 +39,7 @@ const { id } = useParams();
                         <div className="quest-show-map-holder">
                             <QuestMap style={{ height: '100%', width: '100%' }} lat={quest.lat} lng={quest.lng} quest={quest} />
                         </div>
+                        
                         <div className="quest-show-reviews-holder">
                             <div className="quest-show-reviews-header">Reviews</div>
                             <QuestShowReviews id={id} />
@@ -44,13 +47,14 @@ const { id } = useParams();
                     </div>
                     
                     <div className="quest-show-right">
-                        <div className="quest-show-body-holder">
-                            <div className="quest-show-description">{quest.description}</div>
-                            <div className="quest-show-tags-holder">
+                            {/* <div className="quest-show-tags-holder">
                                 <QuestShowTags tags={quest.tags} />
-                            </div>
-                            <div className="quest-show-text">Radius: {quest.radius} miles</div>
-                            <div className="quest-show-text">Duration: {quest.duration} hours</div>
+                            </div> */}
+                        <div className="quest-show-body-holder">
+                            <div className="quest-show-description"><span class="show-label">What to expect</span>: {quest.description}</div>
+                            <div className="quest-show-text"><span class="show-label">Radius</span>: {quest.radius}  miles</div>
+                            <div className="quest-show-text"><span class="show-label">Duration</span>: {quest.duration} hours</div>
+                            <div className="quest-show-text"><span class="show-label">Rating</span>: Forthcoming stars</div>
                         </div>
 
 
