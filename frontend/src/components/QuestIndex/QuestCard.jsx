@@ -6,7 +6,7 @@ export default function QuestCard({i, quest, reviews}){
     // const questReviews = Object.values(reviews).filter((review)=>review.quest === quest._id)
     return(
         <div className="quest-card">
-            <img className="quest-start-image" src={quest.imageUrls? quest.imageUrls[0] : ""} />
+            <img className="quest-start-image" src={quest.imageUrls? quest.imageUrls[0] : ""} alt=""/>
             <div className="quest-info">
                 <h1 className="quest-title">{i+1}. {quest.title}</h1>
                 <label><p>rating:</p>

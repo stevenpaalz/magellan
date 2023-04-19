@@ -9,7 +9,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
       !loggedIn ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/home" /> //if logged in direct to home page
+        <Redirect to="/quests" /> //if logged in direct to home page
       )
     )} />
   );

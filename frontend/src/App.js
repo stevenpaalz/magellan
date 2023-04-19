@@ -22,11 +22,11 @@ const App = () => {
     <NavBar />
     {/* <HomePage />  */}
     <Switch>
-      <Route exact path="/" component={SplashPage} />
-      <Route exact path="/quests" component={HomePage} />
-      <Route exact path="/quests/:id" component={QuestShowPage} />
-      <Route exact path="/events/:id" component={EventShowPage} />
-      <Route exact path="/user-profile" component={UserProfilePage} />
+      <AuthRoute exact path="/" component={SplashPage} />
+      <ProtectedRoute exact path="/quests" component={HomePage} />
+      <ProtectedRoute exact path="/quests/:id" component={QuestShowPage} />
+      <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
+      <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
 
 
       {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}

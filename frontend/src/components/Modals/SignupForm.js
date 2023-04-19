@@ -70,16 +70,11 @@ export default function SignUpForm(){
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
                     <div>
-                        <button className="img-dropdown" onClick={imgDropdownClick} > {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
+                        <button className="img-dropdown" onClick={imgDropdownClick} >{Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
                             {imgDropdownSelected && <div className="dropdown-options"> 
                             {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
                             </div>}
-                        
                     </div>
-                    {/* <select name="profileImg" className="img-dropdown">
-                        <option disabled selected value="">select a profile image</option>
-                        {profileUrls.map((img, i)=><option style={{backgroundImage: `url(${img})`}} value={i} onChange={e=>setProfImg(e.target.value)}></option>)}
-                    </select> */}
                     {errors.profileImageUrl && <p className="error">{errors.profileImageUrl}</p>}
                     <label><p>email:</p>
                         <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>

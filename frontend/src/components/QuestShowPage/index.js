@@ -35,7 +35,7 @@ const { id } = useParams();
                 <div className="quest-show-full-bottom">
                     <div className="quest-show-left">
                         <div className="quest-show-map-holder">
-                            <QuestMap style={{ height: '100%', width: '100%' }} lat={quest.lat} lng={quest.lng} quest={quest} />
+                            <QuestMap style={{ height: '100%', width: '100%' }} lat={quest.lat} lng={quest.lng} quests={[quest]} />
                         </div>
                         
                         <div className="quest-show-reviews-holder">

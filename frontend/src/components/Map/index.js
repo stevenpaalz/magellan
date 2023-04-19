@@ -67,11 +67,12 @@ const QuestMap = ({ quests, style, quest, lat, lng }) => {
         defaultZoom={defaultProps.zoom}
         >
             {quests?.map((quest, i) => (
-                <QuestMarker
+                <QuestMarker 
+                    key={i}
                     lat={quest.lat}
                     lng={quest.lng}
                     quest={quest}
-                    i={i}
+                    decor={quests.length===1?"★":i+1}
                 />
             ))}
         </GoogleMapReact>
