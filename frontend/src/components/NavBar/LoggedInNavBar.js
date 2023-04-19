@@ -16,7 +16,7 @@ const LoggedInNavBar = () => {
     return (
         <nav>
             <div className="nav-left">
-                <NavLink exact to="/home">
+                <NavLink exact to="/quests">
                     <img src="../../../assets/headerlogo.png" alt="Logo" className="nav-bar-logo"/>
                 </NavLink>
             </div>
