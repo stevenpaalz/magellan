@@ -6,6 +6,7 @@ import { getQuest } from "../../store/quests";
 import { getAllReviews } from "../../store/reviews";
 import QuestShowTags from "./QuestShowTags";
 import QuestShowReviews from "./QuestShowReviews";
+import QuestMap from "../Map";
 
 const QuestShowPage = () => {
 const { id } = useParams();
@@ -15,26 +16,9 @@ const { id } = useParams();
     return state.quests ? state.quests[id] : null
   });
 
-  const reviews = useSelector(state => {
-    return state.reviews ? state.reviews : null
-    });
-
-
-
   useEffect(() => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
-
-    useEffect(() => {
-    dispatch(getAllReviews());
-    }, [dispatch]);
-    // console.log(reviews)
-
-    const filteredReviews = Object.values(reviews).filter((review) => {
-        return review.quest === id;
-      });
-      
-      console.log(filteredReviews);
 
   if (!quest) return null;
 
@@ -50,9 +34,12 @@ const { id } = useParams();
 
                 <div className="quest-show-full-bottom">
                     <div className="quest-show-left">
-                        <div className="quest-show-map-holder">Map</div>
+                        <div className="quest-show-map-holder">
+                            < QuestMap />
+                        </div>
                         <div className="quest-show-reviews-holder">
-                            {/* <QuestShowReviews id={id} /> */}
+                            <div className="quest-show-reviews-header">Reviews</div>
+                            <QuestShowReviews id={id} />
                         </div>
                     </div>
                     

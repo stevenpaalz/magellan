@@ -1,53 +1,40 @@
-// import React, { useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getQuest } from "../../store/quests";
-// import { getAllReviews } from "../../store/reviews";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllReviews } from "../../store/reviews";
 
-// const QuestShowPage = ( {id}) => {
-// const { id } = useParams();
-//   const dispatch = useDispatch();
-  
-//   const quest = useSelector(state => {
-//     return state.quests ? state.quests[id] : null
-//   });
 
-//   const allReviews = useSelector(state => {
-//     return state.reviews ? state.reviews : null
-//     });
+const QuestShowReviews = ({ id }) => {
 
-//   useEffect(() => {
-//     dispatch(getQuest(id));
-//   }, [dispatch, id]);
-
-//   useEffect(() => {
-//     dispatch(getAllReviews());
-//     }, [dispatch]);
-//     console.log(reviews)
-
-//   if (!quest) return null;
-//   if (!allReviews) return null;
-
-//   const myReviews = allReviews.filter(review => review.quest === id)
+  const dispatch = useDispatch();
 
 
 
+  const reviews = useSelector(state => {
+    return state.reviews ? state.reviews : null
+    });
 
-// const QuestShowReviews = () => {
 
+    useEffect(() => {
+    dispatch(getAllReviews());
+    }, [dispatch]);
 
+    const filteredReviews = Object.values(reviews).filter((review) => {
+        return review.quest === id;
+      });
+      
+      console.log(filteredReviews);
 
-    
-//     return (
-//       <div className="quest-show-reviews">
-//         {reviews.map((review) => (
-//           <div key={review} className={`quest-show-review`}>
-//             {review}
-//           </div>
-//         ))}
-//       </div>
-//     );
-//   };
-  
+    if (!filteredReviews) return null;
 
-//   export default QuestShowReviews;
+        return (
+            <div className="quest-show-reviews">
+                {filteredReviews.map((review) => (
+                    <div className="quest-show-review">
+                        <div className="quest-show-review-text">"{review.text}"</div>
+                    </div>
+                ))}
+            </div>
+        )
+    }
+
+    export default QuestShowReviews;

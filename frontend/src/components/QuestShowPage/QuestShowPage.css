@@ -64,12 +64,26 @@
 
 .quest-show-reviews-holder {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 50%; 
     overflow-x: hidden;
     overflow-y: auto;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-right: 24px;
+    padding-left: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.quest-show-reviews-header {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 12px;
+}
+
+.quest-show-review {
+    margin-bottom: 12px;
 }
 
 
