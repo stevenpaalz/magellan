@@ -59,7 +59,10 @@
 .quest-show-map-holder {
     display: flex;
     height: 50%; 
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+
 }
 
 .quest-show-reviews-holder {
@@ -69,7 +72,6 @@
     height: 50%; 
     overflow-x: hidden;
     overflow-y: auto;
-    border: 1px solid rgba(0, 0, 0, 0.1);
     padding-right: 24px;
     padding-left: 24px;
     padding-top: 24px;
@@ -114,8 +116,6 @@
     border-radius: 50%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .quest-show-body-holder {
     flex-direction: column;

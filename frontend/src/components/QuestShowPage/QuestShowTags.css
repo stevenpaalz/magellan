@@ -1,172 +1,60 @@
-
+  .quest-show-tag {
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 4px 8px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-200);
+    box-sizing: border-box;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
   .quest-show-tag-family-friendly {
     background-color: var(--orange);
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
+  
   .quest-show-tag-landmarks {
     background-color: var(--turquoise);
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
+  
   .quest-show-tag-public-art {
     background-color: var(--blue);
-    color: white;
-      border-radius: 20px;
-  display: inline-block;
-  padding: 2px 16px 2px 16px;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-300);
-  box-sizing: border-box;
-  height: auto;
-  margin-left: 5px;
-  margin-right: 5px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
+  
   .quest-show-tag-tourist-traps {
     background-color: #D3D3D3;
     color: black;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
   }
-
+  
   .quest-show-tag-transportation {
     background-color: #a9a9a9;
     color: black;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-200);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
   }
-
+  
   .quest-show-tag-sporty {
     background-color: #FFDB58;
     color: black;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
+  
   .quest-show-tag-green {
     background-color: #556b2f;
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
   }
-
+  
   .quest-show-tag-obscure {
     background-color: #E636FA;
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-200);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
+  
   .quest-show-tag-food-and-drink {
     background-color: var(--red);
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-200);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
+  
   .quest-show-tag-locals-only {
     background-color: #ff7f50;
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-200);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
-
   
-
   .quest-show-tag-culture {
     background-color: #556b2f;
-    color: white;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 16px 2px 16px;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-300);
-    box-sizing: border-box;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
   }
+  
