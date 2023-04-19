@@ -16,6 +16,15 @@ const validateRegisterInput = [
     check('lastName')
         .exists({checkFalsy: true})
         .withMessage('Last name is invalid'),
+    check('homeCity')
+        .exists({checkFalsy: true})
+        .withMessage('Home city is missing'),
+    check('homeState')
+        .exists({checkFalsy: true})
+        .withMessage('Home state is missing'),
+    check('profileImageUrl')
+        .exists({checkFalsy: true})
+        .withMessage('Must select profile image'),
   handleValidationErrors
 ];
 
