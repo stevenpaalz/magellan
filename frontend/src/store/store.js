@@ -5,13 +5,15 @@ import errors from './errors';
 import modals from './modal';
 import quests from './quests';
 import reviews from './reviews';
+import events from './events';
 
 const rootReducer = combineReducers({
   session,
   errors,
   modals,
   quests,
-  reviews
+  reviews,
+  events
 });
 
 let enhancer;

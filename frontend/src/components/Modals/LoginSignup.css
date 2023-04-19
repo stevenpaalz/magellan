@@ -10,6 +10,16 @@ div.page-overlay{
     justify-content: center;
     align-items: center;
 }
+.prof-img-dropdown{
+    height: 145px;
+    width: 145px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.prof-img-dropdown option{
+    height: fit-content;
+    width: fit-content;
+}
 .login-signup-form button, .submit-button{
     background-color: #31AFAC;
     font-size: 18px;
@@ -29,9 +39,36 @@ div.page-overlay{
     font-weight: bold;
     margin: 10px;
 }
-.login-signup-form input{
-    
+
+.selected-image{
+    height: 120px;
+    width: 120px;
+    border-radius: 5px;
+    object-fit: cover;
 }
+.option-image{
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    object-fit: fill;
+    margin: 10px;
+}
+.option-image:hover{
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+.dropdown-options{
+    position: absolute;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #8dd8d7;
+    padding: 10px;
+    height: 30vh;
+    overflow-y: scroll;
+    border-radius: 5px;
+}
+
 .login-signup-form label{
     display: flex;
     flex-direction: column;

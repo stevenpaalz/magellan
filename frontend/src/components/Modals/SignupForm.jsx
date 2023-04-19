@@ -4,6 +4,8 @@ import { signup } from "../../store/session";
 import { setModal } from "../../store/modal";
 import USstates from "../../data/States";
 import './LoginSignup.css'
+import profileUrls from "../../data/ProfileImgUrls";
+import { useEffect }  from "react";
 
 export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
@@ -14,14 +16,16 @@ export default function SignUpForm(){
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [homeCity, setHomeCity] = useState("")
+    const [profImg, setProfImg] = useState()
     const [homeState, setHomeState] = useState()
     const [errors, setErrors] = useState({})
-    
+    const [dropdownButtonValue, setDropdownButtonValue] = useState("select a profile image ⌵")
+    const [imgDropdownSelected, setImgDropdownSelected] = useState(false)
 
     function handleSubmit(e){
         e.preventDefault();
         if (password === confirmPassword){
-            const newUser = {firstName, lastName, homeCity: `${homeCity}, ${homeState}`, email, password}
+            const newUser = {firstName, lastName, homeCity, homeState, email, password, profileImageUrl: profileUrls[profImg]}
             return dispatch(signup(newUser))
             .catch(async (res) => {
                 let data;
@@ -36,11 +40,24 @@ export default function SignUpForm(){
                 console.log(data);
               });
         }else{
-            setErrors({confirmPassword: "password and confirmpassword do not match!"})
+            setErrors({confirmPassword: "password and confirm password do not match!"})
+        }
+    }
+    useEffect(() => {
+        if (!imgDropdownSelected) return;
+        const closeDropdown = () => {
+          setImgDropdownSelected(false);
+        };
+        document.addEventListener('click', closeDropdown);
+        return () => document.removeEventListener("click", closeDropdown);
+      }, [imgDropdownSelected]);
+    function imgDropdownClick(){
+        if (!imgDropdownSelected){
+            setImgDropdownSelected(true)
         }
     }
     function swapForm(){
-        dispatch(setModal("signUp"))
+        dispatch(setModal("logIn"))
     }
     if (modalState && modalState === "signUp"){
         return(
@@ -55,6 +72,18 @@ export default function SignUpForm(){
                         <input type="text" name="lastName" value={lastName} onChange={e => setLastName(e.target.value)}/>
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
+                    <div>
+                        <button className="img-dropdown" onClick={imgDropdownClick} > {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
+                            {imgDropdownSelected && <div className="dropdown-options"> 
+                            {profileUrls.map((img, i)=><img onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
+                            </div>}
+                        
+                    </div>
+                    {/* <select name="profileImg" className="img-dropdown">
+                        <option disabled selected value="">select a profile image</option>
+                        {profileUrls.map((img, i)=><option style={{backgroundImage: `url(${img})`}} value={i} onChange={e=>setProfImg(e.target.value)}></option>)}
+                    </select> */}
+                    {errors.profileImageUrl && <p className="error">{errors.profileImageUrl}</p>}
                     <label><p>email:</p>
                         <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
                     </label>
@@ -78,7 +107,7 @@ export default function SignUpForm(){
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
                     <input type="submit" value="sign up" className="submit-button"/>
     
-                       <p>Already have an account?<button className="form-swap" onClick={swapForm}>log in</button></p> 
+                       <p>Already have an account?<button className="form-swap" onClick={swapForm}>log in!</button></p> 
                     
                 </form>
             </div>
