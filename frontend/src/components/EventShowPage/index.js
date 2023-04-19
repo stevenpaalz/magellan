@@ -13,7 +13,9 @@ function EventShowPage() {
         dispatch(getEvent(id));
     }, [dispatch, id]);
 
-    if (!event) return null;
+    if (!event) return(
+        <h1>Loading...</h1>
+    );
 
     return(
         <>

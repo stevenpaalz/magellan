@@ -57,30 +57,22 @@ const QuestMap = ({ quests, style, quest, lat, lng }) => {
     };
 
     return (
-        // Important! Always set the container height explicitly
-        <div className="map" style={style}>
-            <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
-            >
-                {/* {quests ? (
-                    quests.map((quest) => (
-                        <QuestMarker
-                            lat={quest.lat}
-                            lng={quest.lng}
-                            quest={quest}
-                        />
-                    ))
-                ) : (
-                    // <QuestMarker
-                    //     lat={quest.lat}
-                    //     lng={quest.lng}
-                    //     quest={quest}
-                    // />
-                )} */}
-            </GoogleMapReact>
-        </div>
+    // Important! Always set the container height explicitly
+    <div className="map" style={{ height: '100vh', width: '50%' }}>
+        <GoogleMapReact
+        bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+        >
+            {/* {quests.map((quest) => (
+                <QuestMarker
+                    lat={quest.lat}
+                    lng={quest.lng}
+                    quest={quest}
+                />
+            ))} */}
+        </GoogleMapReact>
+    </div>
     );
 }
 

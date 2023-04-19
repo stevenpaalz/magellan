@@ -36,7 +36,7 @@ export const getAllQuests = () => async dispatch => {
     const data = await res.json();
     const quests = {}
     data.forEach ((e) => {
-        quests[e].id = e
+        quests[e._id] = e
     });
     return dispatch(receiveAllQuests(quests));
 };

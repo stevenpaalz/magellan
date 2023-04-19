@@ -1,0 +1,7 @@
+.home-flex{
+    display: flex;
+    flex-direction: row;
+}
+.homepage-left{
+    width:50%
+}
