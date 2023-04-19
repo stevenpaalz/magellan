@@ -64,7 +64,6 @@ router.get('/', async (req, res) => {
         return res.json([]);
     }
 })
-   
 
 router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput, async (req, res, next) => {
     const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
@@ -73,17 +72,16 @@ router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput
         const latlng = await getLatLng(formattedAddressInput);
         const latInput = latlng[0];
         const lngInput = latlng[1];
-
         const newQuest = new Quest({
             title: req.body.title,
             description: req.body.description,
-            checkpoints: req.body.checkpoints,
+            checkpoints: req.body.checkpoints.split(","),
             duration: req.body.duration,
             formattedAddress: formattedAddressInput,
             lat: latInput,
             lng: lngInput,
             radius: req.body.radius,
-            tags: req.body.tags,
+            tags: req.body.tags.split(","),
             creator: req.user._id,
             imageUrls
         })

@@ -46,7 +46,6 @@ div.page-overlay{
 
 .form-input-field {
     border-radius: 4px;
-    background-color: rgb(246, 246, 250);
     border: 1px solid rgb(209, 209, 213);
     margin-left: 20px;
 }
@@ -58,7 +57,6 @@ div.page-overlay{
 .form-input-field-td {
     width: 400px; 
     border-radius: 4px;
-    background-color: rgb(246, 246, 250);
     border: 1px solid rgb(209, 209, 213);
     margin-left: 20px;
 }
@@ -70,7 +68,6 @@ div.page-overlay{
 .form-input-field-c {
     width: 150px; 
     border-radius: 4px;
-    background-color: rgb(246, 246, 250);
     border: 1px solid rgb(209, 209, 213);
     margin-left: 20px;
 }

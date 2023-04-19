@@ -117,6 +117,7 @@ export const createQuest = (formData) => async dispatch => {
             dispatch(receiveQuest(quest));
         };
     } catch(err) {
+        console.log(err)
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
             return dispatch(receiveQuestError(resBody.errors));

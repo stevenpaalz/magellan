@@ -6,12 +6,13 @@ import { getQuest, updateQuest, createQuest } from "../../store/quests";
 import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
+import { useEffect } from "react";
 
 export default function QuestForm() {
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
-    // const { _id } = useParams(); 
-    // let quest = useSelector(getQuest(_id));
+    const { _id } = useParams(); 
+    let quest = useSelector(state => state.quests?._id);
     const fileRef = useRef(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -23,33 +24,32 @@ export default function QuestForm() {
     const [zipcode, setZipcode] = useState("")
     const [radius, setRadius] = useState("");
     const [tags, setTags] = useState("");
-    const [imageFiles, setImageFiles] = useState([]);
+    const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
-    const logcheckpoints = Array(5);
 
     let submitButton; 
     let formHeading;
-    // if (_id) {
-    //     submitButton = <button className="sFormButton" type="submit"
-    //             >Edit Quest</button>
-    //     formHeading = <h1 className='formHeading'>Edit Listing</h1>
-    // } else {
+    if (_id) {
+        submitButton = <button className="sFormButton" type="submit"
+                >Edit Quest</button>
+        formHeading = <h1 className='formHeading'>Edit Listing</h1>
+    } else {
         submitButton = <button className="form-button-create" type="submit"
                 >Create Quest</button>
         formHeading = <h1 className='form-heading'>Create a New Quest</h1>
-    // };
+    };
 
-    // useEffect(() => {
-    //     if (_id) {
-    //         dispatch(fetchListing(listingId));
+    useEffect(() => {
+        if (_id) {
+            dispatch(getQuest(_id));
             
-    //     }
-    // }, [dispatch, listingId])
+        }
+    }, [dispatch, _id])
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
         const files = currentTarget.files; 
-        setImageFiles(files);
+        setImages(files);
         if (files.length !==0) {
             let filesLoaded = 0; 
             const urls = [];
@@ -69,46 +69,28 @@ export default function QuestForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(); 
-        if (imageFiles.length !== 0) {
-			for (let photo of imageFiles) {
-				formData.append("imageUrls", photo);
-			};
-		};
-
-        // if (_id) {
-		// 	formData.append('quest[id]', _id);
-        //     for (let key in quest) {
-		// 		formData.append(`quest[${key}]`, quest[key]);
-		// 	};
-		// };
+        Array.from(images).forEach(image => formData.append("images", image));
         let formCheckPoints = [];
         for (let key in checkpoints) {
             formCheckPoints.push(checkpoints[key])
         }
-
         fileRef.current.value = null;
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('checkpoints', formCheckPoints);
+        formData.append('checkpoints', [formCheckPoints]);
         formData.append('duration', duration);
         formData.append('streetAddress', streetAddress);
         formData.append('city', city);
         formData.append('state', state);
         formData.append('zipcode', zipcode);
         formData.append('radius', radius);
-        formData.append('tags', tags);
+        formData.append('tags', [tags]);
         
-        // console.log(logcheckpoints)
-        for (const pair of formData.entries()) {
-            console.log(`${pair[0]}, ${pair[1]}`)
-        }
-        
-
-        // if (_id) {
-        //     dispatch(updateQuest(formData, _id));
-        // } else {
+        if (_id) {
+            dispatch(updateQuest(formData, _id));
+        } else {
             dispatch(createQuest(formData));
-        // };
+        };
     };
 
     function closeForm(){
