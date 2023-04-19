@@ -18,7 +18,7 @@ export default function QuestIndex({quests}){
         <div className="card-column">
             {quests.map((quest, i)=>
             <Link key={i} to={`/quests/${quest._id}`}>
-                <QuestCard quest={quest} reviews={Object.values(reviews).filter((review)=>review.quest === quest._id)}/>
+                <QuestCard i={i} quest={quest} reviews={Object.values(reviews).filter((review)=>review.quest === quest._id)}/>
             </Link>)}
         </div>
     )

@@ -1,23 +1,25 @@
 import React from "react";
 
-const QuestMarker = ({ quest }) => {
+const QuestMarker = ({ quest, i }) => {
 
     //template for marker styling
     const markerStyle = {
-        border: '1px solid white',
-        borderRadius: '5px',
-        height: 13,
-        width: 40,
+        border: '3px solid white',
+        borderRadius: '100%',
+        height: 30,
+        width: 30,
         backgroundColor: 'red',
         color: 'white',
         cursor: 'pointer',
         zIndex: 10,
         textAlign: 'center',
+        fontSize: '20px',
+        fontWeight: 'bold'
     };
 
     return (
         <>
-            <div className="questMarker" style={markerStyle} >{quest.title}</div>
+            <div className="questMarker" style={markerStyle} >{i+1}</div>
         </>
     )
 }

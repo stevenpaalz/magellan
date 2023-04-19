@@ -10,6 +10,10 @@ export default function StarRating({questReviews}){
         return(
             <p>loading...</p>
         )
+    }else if(!stars){
+        return(
+            <p className="no-reviews">(no reviews 😢)</p>
+        )
     }else{
     return(
         <img className="star-rating"src={`./../../../assets/stars/${stars}.png`} alt={`${stars} star rating`} />
