@@ -1,0 +1,150 @@
+.event-show-details-holder {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    /* border: 2px solid var(--turquoise); */
+}
+.event-show-checkpoints-holder {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 24px;
+
+
+
+
+    margin-bottom: 24px;
+}
+
+.host-avatar {
+    width: 75px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.event-details-header-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* padding-top: 12px;
+    padding-bottom: 12px; */
+
+}
+
+
+.event-details-header {
+    font-size: var(--font-size-500);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+}
+
+.event-show-attendees-holder {
+    display: flex;
+    flex-direction: row;
+}
+.event-show-attendees-name {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-normal)
+}
+
+.attendees-holder {
+  overflow-x: unset;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.attendees-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.attendee-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 12px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 12px;
+  width: 100px; 
+  justify-content: center;
+  text-align: center; */
+}
+
+.attendee-details {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.attendee-avatar-holder {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  height: 70px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 70px;
+  margin-right: 12px;
+}
+
+.avatar-circle {
+  align-items: center;
+  background-color: var(--turquoise);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  font-size: 32px;
+  height: 50px;
+  justify-content: center;
+  margin-bottom: 5px;
+  width: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.attendee-name {
+  font-size: var(--font-size-100);
+  height: 2.75em;
+  letter-spacing: -.2px;
+  line-height: 16px;
+  text-align: center;
+  white-space: normal;
+  width: 150%;
+  word-wrap: break-word;
+}
+
+
+.checkpoint-holder {
+    display: flex;
+    margin-top: 12px;
+}
+
+.checkpoint-text {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-normal);
+    margin-left: 12px;
+    padding-bottom: 12px;
+}
+
+.checkpoint-hidden-text {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-normal);
+    margin-left: 12px;
+    padding-bottom: 12px;
+    color: transparent;
+    text-shadow: 0 0 12px #000;
+}
+
+.hidden-square {
+    text-shadow: 0 0 12px #000;
+    color: transparent;
+    margin-left: 12px;
+}
