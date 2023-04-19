@@ -21,7 +21,7 @@
     cursor: auto;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.1) 10px 10px 20px 10px;
-    width: 75%;
+    width: 85%;
     height: auto;
     margin: 0 0 0 0;
     background-color: #fff;
@@ -62,7 +62,6 @@
     padding-top: 24px;
     padding-left: 24px;
     padding-right: 24px;
-
 }
 
 .quest-show-reviews-holder {
@@ -108,13 +107,6 @@
 
 .quest-show-tags-holder {
     margin-bottom: 36px;
-}
-
-.quest-show-image {
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .quest-show-body-holder {

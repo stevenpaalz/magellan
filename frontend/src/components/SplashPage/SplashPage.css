@@ -1,9 +1,8 @@
 .splash-page-body {
-    background-color: var(--offwhite);
+    /* background-color: var(--offwhite); */
     height: calc(100vh - 80px);
     display: flex;
     flex-direction: row;
-    /* position: relative; */
 }
 
 .splash-left {
@@ -19,12 +18,9 @@
 
 .splash-left-hero-image-holder {
     display: flex;
-    /* align-items: flex-end; */
-    /* height: 100vh; */
 }
 
 .splash-page-hero-image {
-    /* width: 100%; */
     height: 600px;
     width: auto;
 }
@@ -40,9 +36,6 @@
 }
 
 .splash-right-logo-holder {
-    /* align-self: flex-start; */
-    /* margin-top: 0; */
-    /* margin: auto; */
 }
 
 .splash-right-logo{
@@ -50,8 +43,6 @@
 }
 
 .splash-right-text-holder {
-    /* margin-bottom: auto; */
-    /* margin: auto; */
     width: 80%;
 }
 
@@ -67,7 +58,6 @@
     background-color: var(--red);
     color: white;
     border-radius: 5px;
-    /* border: none; */
     font-size: var(--font-size-400);
     cursor: pointer;
     padding: 8px 12px;
