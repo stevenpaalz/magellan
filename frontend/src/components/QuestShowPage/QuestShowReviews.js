@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllReviews } from "../../store/reviews";
+import StarRating from "../QuestIndex/StarRating";
 
 const QuestShowReviews = ({ id }) => {
   const dispatch = useDispatch();
@@ -17,18 +18,20 @@ const QuestShowReviews = ({ id }) => {
     return review.quest === id;
   });
 
-  console.log(filteredReviews);
-
   if (!filteredReviews) return null;
 
   return (
+    <>
     <div className="quest-show-reviews">
       {filteredReviews.map((review) => (
-        <div className="quest-show-review">
+        <div className="quest-show-review" key={review.text}>
+
+          <StarRating questReviews={[review]} />
           <div className="quest-show-review-text">"{review.text}"</div>
         </div>
       ))}
     </div>
+    </>
   );
 };
 

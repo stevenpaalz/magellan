@@ -1,3 +1,4 @@
+/* Main Elements */
 .quest-show-full-page {
     justify-content: center;
     top: 80px;
@@ -46,6 +47,28 @@
     height: 65vh;
 }
 
+/* Hero Image & Title */
+.quest-show-title {
+    font-size: 50px;
+    font-weight: var(--font-weight-semibold);
+    margin-right: 24px;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.1);
+}
+
+.quest-show-tags-holder {
+    margin-bottom: 36px;
+}
+
+.quest-show-tags {
+    padding-top: 6px;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+}
+
+/* Left Side  */
 .quest-show-left {
     box-sizing: border-box;
     border-radius: 0px 0px 0px 32px;
@@ -86,9 +109,10 @@
 }
 
 .quest-show-review {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
+/* Right Side */
 
 .quest-show-right {
     width: 50%;
@@ -96,19 +120,6 @@
     flex-direction: column;
     display: flex;
     position: relative;
-}
-
-.quest-show-title {
-    font-size: 50px;
-    font-weight: var(--font-weight-semibold);
-    margin-right: 24px;
-    color: white;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    background-color: rgba(0,0,0,0.1);
-}
-
-.quest-show-tags-holder {
-    margin-bottom: 36px;
 }
 
 .quest-show-body-holder {
@@ -122,17 +133,30 @@
 
 .quest-show-description {
     font-size: var(--font-size-500);
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
 .show-label {
     font-weight: var(--font-weight-bold);
 }
+
+.show-rating-label {
+    font-weight: var(--font-weight-bold);
+    margin-right: 6px;
+}
+
 .quest-show-text {
     font-size: var(--font-size-400);
     margin-bottom: 12px;
 }
 
+.quest-show-text.star-rating {
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+}
+
+/* Buttons */
 .quest-show-buttons-holder {
     display: flex;
     flex-direction: row;
@@ -158,6 +182,7 @@
     background-color: #DC6E02;
 }
 
+
 .quest-show-schedule-quest {
     background-color: var(--turquoise);
     color: white;
@@ -174,9 +199,3 @@
     background-color: #238C83;
 }
 
-.quest-show-tags {
-    padding-top: 6px;
-    display: flex;
-    justify-content: right;
-    align-items: flex-end;
-}
