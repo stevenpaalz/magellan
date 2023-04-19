@@ -22,7 +22,9 @@ const HomePage = () => {
         <div className="homepage-left">
           <QuestMap quests={quests} style={mapstyle}/>
         </div>
+        <div>
           <QuestIndex quests={quests}/>
+          </div>
       </div>
     );
   }
