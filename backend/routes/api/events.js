@@ -8,23 +8,26 @@ const { requireUser } = require('../../config/passport');
 const Review = require('../../models/Review');
 const validateEventInput = require('../../validations/events');
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const event = await Event.findById(req.params.id)
-                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
+                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
                                 .populate("host", "_id email firstName lastName profileImageUrl")
                                 .populate("attendees", "_id email firstName lastName profileImageUrl")
         return res.json(event);
     }
     catch(err) {
-        return res.json(null);
+        const error = new Error('Event not found');
+        error.statusCode = 404;
+        error.errors = { message: "No event found with that id" };
+        return next(error);
     }
 })
 
 router.get('/', async (req, res) => {
     try {
         const events = await Event.find()
-                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
+                                .populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
                                 .populate("host", "_id email firstName lastName profileImageUrl")
                                 .populate("attendees", "_id email firstName lastName profileImageUrl")
                                 .sort({createdAt: -1});

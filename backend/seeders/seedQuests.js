@@ -39,9 +39,9 @@ quests.push(
     lng: -73.9937814750412,
     radius: 4,
     tags: [
-      "Food",
-      "Landmarks",
-      "a/A"
+      "food-and-drink",
+      "landmarks",
+      "locals-only"
     ],
     creator: demo._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/unionsqnyc-jpg.jpg"]
@@ -65,8 +65,9 @@ quests.push(
       lng: -73.99140920913186,
       radius: 4,
       tags: [
-          "Culture",
-          "Food"
+          "food-and-drink",
+          "transportation",
+          "obscure"
       ],
       creator: demo._id,
       imageUrls: ["https://magellan-seeds.s3.amazonaws.com/njgcailbq4761.jpg"],
@@ -90,8 +91,9 @@ quests.push(
     lng: -74.01081449917875,
     radius: 1,
     tags: [
-        "History",
-        "Landmarks"
+        "tourist-traps",
+        "landmarks",
+        "family-friendly"
     ],
     creator: jamie._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/GettyImages-660180168-1024x683.jpg"],
@@ -115,11 +117,37 @@ quests.push(
     lng: -73.98531811921835,
     radius: 3,
     tags: [
-        "Landmarks",
-        "Tourist traps"
+        "landmarks",
+        "tourist-traps"
     ],
     creator: demo._id,
     imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Times-Square-New-York-City.jpeg"],
+  })
+);
+
+quests.push(
+  new Quest({
+    title: "Walkin' around Williamsburg",
+    description: "Put on your walking shoes and get ready for an adventure through one of New York's most vibrant neighborhoods. McCarren Park, to the Williamsburg bridge, and everything in between.",
+    checkpoints: [
+        "Have a drink at a rooftop bar with a view of the city",
+        "Find country music at a famous bar in the neighborhood",
+        "Take a selfie in front of a vintage clothing store",
+        "Grab a pint at one of the many breweries in the neighborhood",
+        "Get something to eat at a food truck. Bonus points if you find tacos"
+    ],
+    duration: 2.5,
+    formattedAddress: "110 N 3rd St, Brooklyn, NY 11249",
+    lat: 40.71641322956318, 
+    lng: -73.96158852691455,
+    radius: 4,
+    tags: [
+        "food-and-drink",
+        "locals-only",
+        "green"
+    ],
+    creator: steve._id,
+    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Domino-Park-Williamsburg-waterfront-Brooklyn-NYC.jpg"]
   })
 );
 
@@ -140,11 +168,12 @@ quests.push(
     lng: -73.82958943271127,
     radius: 4,
     tags: [
-        "Food",
-        "Culture"
+        "food-and-drink",
+        "locals-only",
+        "obscure"
     ],
     creator: yong._id,
-    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Flushing.jpg"],
+    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Flushing.jpg"]
   })
 );
 

@@ -13,12 +13,14 @@ function EventShowPage() {
         dispatch(getEvent(id));
     }, [dispatch, id]);
 
-    if (!event) return null;
+    if (!event) return(
+        <h1>Loading...</h1>
+    );
 
     return(
         <>
             <h1>hello from event show page {event._id}</h1>
-            <p>{event.quest.imageUrls}</p>
+            <img src={event.quest.imageUrls}></img>
         </>
 
     )

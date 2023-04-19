@@ -25,7 +25,8 @@ export default function SignUpForm(){
     function handleSubmit(e){
         e.preventDefault();
         if (password === confirmPassword){
-            const newUser = {firstName, lastName, homeCity, homeState, email, password, profileImageUrl: profileUrls[profImg]}
+            const newUser = {firstName, lastName, homeCity, homeState, email, password, profileImageUrl: profileUrls[profImg]};
+            console.log(newUser);
             return dispatch(signup(newUser))
             .catch(async (res) => {
                 let data;
@@ -51,7 +52,8 @@ export default function SignUpForm(){
         document.addEventListener('click', closeDropdown);
         return () => document.removeEventListener("click", closeDropdown);
       }, [imgDropdownSelected]);
-    function imgDropdownClick(){
+    function imgDropdownClick(e){
+        e.preventDefault();
         if (!imgDropdownSelected){
             setImgDropdownSelected(true)
         }
@@ -75,7 +77,7 @@ export default function SignUpForm(){
                     <div>
                         <button className="img-dropdown" onClick={imgDropdownClick} > {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
                             {imgDropdownSelected && <div className="dropdown-options"> 
-                            {profileUrls.map((img, i)=><img onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
+                            {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
                             </div>}
                         
                     </div>
@@ -92,9 +94,9 @@ export default function SignUpForm(){
                         <input type="text" name="homeCity" value={homeCity} onChange={e => setHomeCity(e.target.value)}/>
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
-                    <select name="homeState">
-                        <option disabled selected value="">State</option>
-                        {USstates.map((state)=><option value={state} onChange={e=>setHomeState(e.target.value)}>{state}</option>)}
+                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState">
+                        <option disabled value={"default"}>State</option>
+                        {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>
                     {errors.homeState && <p className="error">{errors.homeState}</p>}
                     <label><p>password:</p>
