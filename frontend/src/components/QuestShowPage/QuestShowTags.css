@@ -1,0 +1,60 @@
+  .quest-show-tag {
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 4px 8px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-200);
+    box-sizing: border-box;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .quest-show-tag-family-friendly {
+    background-color: var(--orange);
+  }
+  
+  .quest-show-tag-landmarks {
+    background-color: var(--turquoise);
+  }
+  
+  .quest-show-tag-public-art {
+    background-color: var(--blue);
+  }
+  
+  .quest-show-tag-tourist-traps {
+    background-color: #D3D3D3;
+    color: black;
+  }
+  
+  .quest-show-tag-transportation {
+    background-color: #a9a9a9;
+    color: black;
+  }
+  
+  .quest-show-tag-sporty {
+    background-color: #FFDB58;
+    color: black;
+  }
+  
+  .quest-show-tag-green {
+    background-color: #556b2f;
+  }
+  
+  .quest-show-tag-obscure {
+    background-color: #E636FA;
+  }
+  
+  .quest-show-tag-food-and-drink {
+    background-color: var(--red);
+  }
+  
+  .quest-show-tag-locals-only {
+    background-color: #ff7f50;
+  }
+  
+  .quest-show-tag-culture {
+    background-color: #556b2f;
+  }
+  
