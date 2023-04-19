@@ -1,14 +1,22 @@
 import React from 'react';
 import SplashPageText from './SplashPageText';
 import "./SplashPage.css"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../store/modal';
+import { useHistory } from 'react-router-dom';
 
 const SplashPage = () => {
+  const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user)
   
   const dispatch = useDispatch()
   function openSignup(){
-    dispatch(setModal("signUp"))
+    if (!sessionUser) {
+      dispatch(setModal("signUp"))
+      return
+    } else {
+      history.replace('/quests');
+    }
   }
 
     return (

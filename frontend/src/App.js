@@ -20,7 +20,6 @@ const App = () => {
   return loaded && (
     <>
     <NavBar />
-    {/* <HomePage />  */}
     <Switch>
       <AuthRoute exact path="/" component={SplashPage} />
       <ProtectedRoute exact path="/quests" component={HomePage} />
