@@ -61,7 +61,7 @@ function EventForm({quest, host}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setInvalidDate(false);
-        if (!date.$d) {
+        if (!date) {
             setInvalidDate(true);
             return;
         }
@@ -88,7 +88,7 @@ function EventForm({quest, host}) {
                                 <p>Add guests:</p>
                                 <input type="text" placeholder="Email" value={guest} onChange={(e)=>{setGuest(e.target.value)}}/>
                                 <button onClick={addGuest}>Add Guest</button>
-                                {invalidUser && <p>Not a valid user</p>}
+                                {invalidUser && <p className="error">Not a valid user</p>}
                             </div>
 
                             <h3>Your Party:</h3>
@@ -96,7 +96,7 @@ function EventForm({quest, host}) {
                                 {attendees.map((attendee)=> (<li id={attendee + "-li"} key={attendee}>{attendee} <i onClick={removeAttendee} id={attendee} className="fa-solid fa-x"></i></li>))}
                             </ul>
                         </div>
-                        <div className="calendar">
+                        <div onClick={()=>setInvalidDate(false)} className="calendar">
                             <h3>Please select a date for your event</h3>
         
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -107,7 +107,7 @@ function EventForm({quest, host}) {
                                     onChange={setDate}
                                 />
                             </LocalizationProvider>
-                            {invalidDate && <p>Please enter a valid date</p>}
+                            {invalidDate && <p className="error">Please enter a valid date</p>}
                         </div>
                         <div className="modal-content-button">
                             <button type="submit">Schedule</button>
