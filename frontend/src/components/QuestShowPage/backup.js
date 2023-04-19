@@ -3,50 +3,38 @@ import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuest } from "../../store/quests";
+import { getAllReviews } from "../../store/reviews";
 import QuestShowTags from "./QuestShowTags";
 import QuestShowReviews from "./QuestShowReviews";
 import QuestMap from "../Map";
-import QuestDetails from "./QuestDetails";
-import { setModal } from "../../store/modal";
-import EventForm from "../Modals/EventForm";
-import { createEvent } from "../../store/events";
-import { useHistory } from "react-router-dom";
+import StarRating from "../QuestIndex/StarRating";
 
 const QuestShowPage = () => {
-    const history = useHistory();
-    const modalState = useSelector(state => state.modals?.modalState);
-    const sessionUser = useSelector(state => state.session.user)
-
-    const { id } = useParams();
-    const dispatch = useDispatch();
+const { id } = useParams();
+  const dispatch = useDispatch();
 
   const quest = useSelector(state => {
     return state.quests ? state.quests[id] : null
+  });
+
+  const reviews = useSelector(state => {
+    return state.reviews ? state.reviews : null;
   });
 
   useEffect(() => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
 
-  const startEvent = async (e) => {
-    e.preventDefault();
-    let event = {
-        host: sessionUser._id,
-        quest: quest._id,
-        attendees: [],
-        startTime: (new Date()).toISOString()
-    }
-    const id = await dispatch(createEvent(event));
-    history.replace(`/events/${id}`);
-  }
+  useEffect(() => {
+    dispatch(getAllReviews());
+  }, [dispatch]);
 
-  const openModal = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(setModal("createEvent"))
-  }
+  const filteredReviews = Object.values(reviews).filter((review) => {
+    return review.quest === id;
+  });
 
   if (!quest) return null;
+  if (!filteredReviews) return null;
 
   return (
     <>
@@ -61,7 +49,7 @@ const QuestShowPage = () => {
                 <div className="quest-show-full-bottom">
                     <div className="quest-show-left">
                         <div className="quest-show-map-holder">
-                            <QuestMap style={{ height: '100%', width: '100%' }} lat={quest.lat} lng={quest.lng} quests={[quest]} />
+                            <QuestMap style={{ height: '100%', width: '100%' }} lat={quest.lat} lng={quest.lng} quest={quest} />
                         </div>
                         
                         <div className="quest-show-reviews-holder">
@@ -72,20 +60,23 @@ const QuestShowPage = () => {
                     
                     <div className="quest-show-right">
                         <div className="quest-show-body-holder">
-                            <QuestDetails quest={quest} />
+                            <div className="quest-show-description"><span className="show-label">What to expect:</span> {quest.description}</div>
+                            <div className="quest-show-text"><span className="show-label">Radius:</span> {quest.radius}  miles</div>
+                            <div className="quest-show-text"><span className="show-label">Duration:</span> {quest.duration} hours</div>
+                        
+                                <div className="quest-show-text star-rating"><span className="show-rating-label">Rating:</span> 
+                                    <StarRating questReviews={filteredReviews} />
+                                </div>
                         </div>
 
 
                         <div className="quest-show-buttons-holder">
-                            <button onClick={startEvent} className="quest-show-start-quest">Start Quest</button>
-                            <button onClick={openModal} className="quest-show-schedule-quest">Schedule for Later</button>
+                            <button className="quest-show-start-quest">Start Quest</button>
+                            <button className="quest-show-schedule-quest">Schedule for Later</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <EventForm quest={quest} host={sessionUser} />
         </div>
     </>
   );

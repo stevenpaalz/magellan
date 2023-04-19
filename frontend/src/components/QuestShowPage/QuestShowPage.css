@@ -12,7 +12,7 @@
     align-items: center;
     padding-bottom: 28px;
     padding-top: 28px;
-    height: 100vh;
+    height: calc(100vh - 80px);
 }
 
 .quest-show-holder {
@@ -23,7 +23,7 @@
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.1) 10px 10px 20px 10px;
     width: 85%;
-    height: auto;
+    height: 100%;
     margin: 0 0 0 0;
     background-color: #fff;
 }
@@ -64,7 +64,6 @@
 .quest-show-tags {
     padding-top: 6px;
     display: flex;
-    justify-content: right;
     align-items: flex-end;
 }
 

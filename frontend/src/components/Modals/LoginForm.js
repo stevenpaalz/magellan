@@ -3,31 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { setModal } from "../../store/modal";
 import './LoginSignup.css'
+import { useEffect }  from "react";
 
 export default function LoginForm(){
 
-    
+    const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({})
+    useEffect(()=>{
+        if (sessionErrors){
+            setErrors(sessionErrors)
+        }
+        
+    }, [sessionErrors])
 
     function handleSubmit(e){
         e.preventDefault();
         const newUser = {email, password}
-        return dispatch(login(newUser))
-        .catch(async (res) => {
-            let data;
-            try {
-              data = await res.clone().json();
-            } catch {
-              data = await res.text();
-            }
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
-            console.log(data);
-          });
+        dispatch(login(newUser))
     }
     function demoLogin(e){
         e.preventDefault()
