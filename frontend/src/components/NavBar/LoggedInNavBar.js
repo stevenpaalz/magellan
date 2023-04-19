@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
+import ProfileMenu from './ProfileMenu';
 
 const LoggedInNavBar = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,10 @@ const LoggedInNavBar = () => {
                 </NavLink>
 
                 <button className="logout-button" onClick={logoutUser}>log out</button>
+
+                <NavLink exact to="/">
+                    <ProfileMenu />
+                </NavLink>
             </div>
         </nav>
     );
