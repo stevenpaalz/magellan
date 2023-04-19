@@ -39,14 +39,17 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const quest = await Quest.findById(req.params.id)
                                 .populate("creator", "_id email firstName lastName profileImageUrl")
         return res.json(quest);
     }
     catch(err) {
-        return res.json(null);
+        const error = new Error('Quest not found');
+        error.statusCode = 404;
+        error.errors = { message: "No quest found with that id" };
+        return next(error);
     }
 })
 
