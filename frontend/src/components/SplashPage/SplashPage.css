@@ -1,5 +1,5 @@
 .splash-page-body {
-    /* background-color: var(--offwhite); */
+    background-color: var(--offwhite);
     height: calc(100vh - 80px);
     display: flex;
     flex-direction: row;
