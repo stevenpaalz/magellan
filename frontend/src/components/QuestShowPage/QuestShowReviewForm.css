@@ -1,0 +1,9 @@
+.create-new-review-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+.rating-input-holder input {
+    width: 30px;
+}
