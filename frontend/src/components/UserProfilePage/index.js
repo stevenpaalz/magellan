@@ -5,6 +5,7 @@ import UserInfo from "./UserInfo";
 import PastEvents from "./PastEvents";
 import YourQuests from "./YourQuests";
 import UpcomingEvents from "./UpcomingEvents";
+import CurrentEvents from "./CurrentEvents";
 
 function UserProfilePage(){
     // const sessionUser = useSelector(state => state.session.user);
@@ -14,9 +15,10 @@ function UserProfilePage(){
                 <SideBar />
                 <div className="profile-right">
                 {(wildcard==="userInfo" || wildcard===undefined) &&<UserInfo />}
-                {(wildcard==="openEvents")&&<PastEvents />}
+                {(wildcard==="pastEvents")&&<PastEvents />}
                 {(wildcard==="upcomingEvents")&&<UpcomingEvents />}
                 {(wildcard==="yourQuests")&&<YourQuests />}
+                {(wildcard==="currentEvents")&&<CurrentEvents />}
                 </div>
                 </div>
             )
