@@ -142,7 +142,7 @@ export default function QuestForm() {
                             State
                             <select onChange={(e) => setState(e.target.value)}>
                                 {states.map((state) => (
-                                    <option value={state}>{state}</option>
+                                    <option key={state} value={state}>{state}</option>
                                 ))}
                             </select>
                         </label>
@@ -250,13 +250,13 @@ export default function QuestForm() {
                             />
                             <span className="slider"></span>
                         </label>                
-                        <label class="switch">
+                        <label className="switch">
                             Tourist-Traps
                             <input type="checkbox"
                                 value="tourist-traps"
                                 onChange={handleCheck}
                             />
-                            <span class="slider"></span>
+                            <span className="slider"></span>
                         </label>
                     </label>
                     <label className="form-label">
