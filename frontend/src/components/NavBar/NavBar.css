@@ -51,6 +51,7 @@ nav {
 
 .signup-button:hover {
     background: white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .login-button {
@@ -71,6 +72,8 @@ nav {
   
 .login-button:hover {
     color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+
 }
 
 .logout-button {
@@ -111,7 +114,7 @@ font-size: var(--font-size-400);
     color: var(--red);
 }
 
-.create-quest-nav-button {
+.nav-button {
     background-color: var(--turquoise);
     border: 1px solid var(--turquoise);
     border-radius: 5px;
@@ -134,19 +137,11 @@ font-size: var(--font-size-400);
     transition: transform 250ms;
 }
 
-.create-quest-nav-button:hover {
-    /* color: var(--red); */
-    transform: translateY(-5px);
-    /* color: var(--red); */
-    transform: translateY(-5px);
+.nav-button:hover {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-
-  /* transition: transform 250ms; */
-
-  /* transform: translateY(-5px); */
-
-  
   .profile-dropdown {
     border: 1px solid;
     min-height: 40px;
