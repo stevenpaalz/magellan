@@ -55,7 +55,7 @@
 }
 
 .splash-right-cta {
-    background-color: var(--red);
+    background-color: var(--orange);
     color: white;
     border-radius: 5px;
     font-size: var(--font-size-400);
