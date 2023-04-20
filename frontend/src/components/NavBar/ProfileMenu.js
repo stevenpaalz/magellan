@@ -42,7 +42,7 @@ const ProfileMenu = () => {
     <>
       <img 
         src={sessionUser?.profileImageUrl?sessionUser?.profileImageUrl:"https://magellan-seeds.s3.amazonaws.com/mag_white_small.png"} 
-        className="nav-avatar" 
+        className={showMenu? "active nav-avatar":"nav-avatar"} 
         alt="avatar" 
         onClick={openMenu}
       />
