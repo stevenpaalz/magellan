@@ -24,13 +24,13 @@ export default function UserInfo(){
             <h1>{sessionUser.lastName}</h1>
         </div>
         <div className="info-box">
-            <p>email address:</p>
+            <p>Email Address:</p>
             <h1>{sessionUser.email}</h1>
         </div>
-        {/* <div className="info-box">
+        <div className="info-box">
             <p>Home Town:</p>
-            <h1>{sessionUser.lastName}</h1>
-        </div> */}
+            <h1>Hometown, USA</h1>
+        </div>
         </div>
         </>
     )

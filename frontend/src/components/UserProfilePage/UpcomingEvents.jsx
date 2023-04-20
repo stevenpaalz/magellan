@@ -3,14 +3,14 @@ import EventsIndex from "./EventsIndex";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAllUserEvents } from "../../store/events";
+import { getAllEvents } from "../../store/events";
 
 export default function UpcomingEvents(){
     const sessionUser = useSelector(state => state.session.user);
-    const [filter, setFilter] = useState()
+    const [filter, setFilter] = useState("host")
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(getAllUserEvents(sessionUser._id))
+        dispatch(getAllEvents())
     },[dispatch])
     function handleClick(e){
         if (e.target.classList.contains("host-button")){
@@ -20,17 +20,21 @@ export default function UpcomingEvents(){
         }
     }
     const allEvents = useSelector(state=> state.events)
-    const pastEvents = Object.values(allEvents).filter((event)=> Date.parse(event.startTime) > Date.now)
-    const events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).any(attendee => attendee._id === sessionUser._id) )
+    let pastEvents = Object.values(allEvents).filter((event)=> Date.parse(event.startTime) > Date.now())
+    let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
+    useEffect(()=>{
+        events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
+    },[filter])
+    // debugger
     return(
         <>
-            <h1>{sessionUser.firstName}'s past events:</h1>
+            <h1>{sessionUser.firstName}'s upcoming events:</h1>
             <div className="host-attend-buttons">
-            <button className="host-button"onClick={handleClick}>You Hosted</button>
-            <button className="attend-button" onClick={handleClick}>You Attended</button>
+            <button className="host-button"onClick={handleClick}>You're Hosting</button>
+            <button className="attend-button" onClick={handleClick}>You're Attending</button>
             </div>
-            {(!events || events === [])&& <div className="quest-card"><h1>{sessionUser.firstName} has no upcoming events</h1></div>}
-            <EventsIndex events={events} />
+            {(!events || events.length === 0)&& <div className="card-column"><div className="quest-card"><h1>{sessionUser.firstName} has no upcoming events</h1></div></div>}
+            {(events && events.length!== 0) && <EventsIndex events={events.sort(event=>Date.parse(event.startTime))} />}
         </>
     )
 }

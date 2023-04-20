@@ -8,7 +8,7 @@ export default function EventCard({i, event, reviews}){
     const time = event?.startTime?.split("T")[1].split(".")[0].split(":")
     const formattedStart = `${date[1]}/${date[2]}/${date[0]} at ${time[0]}:${time[1]} o'clock`
     return(
-        <div className="quest-card">
+        <div className="quest-card" key={i}>
             <img className="quest-start-image" src={event.quest.imageUrls? event.quest.imageUrls[0] : ""} alt=""/>
             <div className="quest-info">
                 <h1 className="quest-title">{i+1}. {event.quest.title}</h1>
