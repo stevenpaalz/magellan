@@ -77,15 +77,9 @@
     background-color: #238C83;
 }
 
-p.error{
+p.formError{
     color: #F23005;
-    font-size: 12px;
-}
-p.error::before{
-    content:"🚨 ";
-}
-p.error::after{
-    content:" 🚨";
+    font-size: 14px;
 }
 
 #add-guest-button {
