@@ -10,6 +10,7 @@ const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { getLatLng } = require('../../config/geocode');
+const Event = mongoose.model('Event');
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
@@ -84,6 +85,22 @@ router.get('/current', restoreUser, (req, res) => {
   });
 });
 
+router.get('/:userId/events', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    const hostedEvents = await Event.find({host: user})
+    const attendedEvents = await Event.find({attendees: user})
+    const events = {...hostedEvents, ...attendedEvents};
+    return res.json(events);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
+})
+
 router.get('/:userId', async (req, res) => {
   const user = await User.findById(req.params.userId);
 
@@ -97,23 +114,31 @@ router.get('/:userId', async (req, res) => {
   return res.json(userInfo);
 });
 
-router.get('/', async (req, res) => {
-  const users = await User.find();
-  const usersArray = Object.values(users);
-  const usersObject = {};
+router.get('/', async (req, res, next) => {
+  try{
+    const users = await User.find();
+    const usersArray = Object.values(users);
+    const usersObject = {};
 
-  usersArray.forEach((user)=>{
-    const userInfo = {
-      _id: user._id,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      profileImageUrl: user.profileImageUrl
-    };
-    usersObject[user._id] = userInfo;
-  })
+    usersArray.forEach((user)=>{
+      const userInfo = {
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        profileImageUrl: user.profileImageUrl
+      };
+      usersObject[user._id] = userInfo;
+    })
 
-  return res.json({users: usersObject});
+    return res.json({users: usersObject});
+  } catch{
+    const error = new Error('Event not found');
+    error.statusCode = 404;
+    error.errors = { message: "No event found with that id" };
+    return next(error);
+  }
+  
 });
 
 module.exports = router;
