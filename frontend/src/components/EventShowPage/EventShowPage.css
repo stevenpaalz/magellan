@@ -1,7 +1,6 @@
 .event-show-details-holder {
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--turquoise);
     /* height: calc((100vh - 80px) * 0.7 * 0.5 * 0.7); */
 }
 .event-show-checkpoints-holder {
@@ -11,7 +10,6 @@
     overflow-y: auto;
     margin-top: 24px;
     margin-bottom: 24px;
-    border: 2px solid var(--red);
     /* height: calc((100vh - 80px) * 0.7 * 0.5 * 0.3); */
 }
 
@@ -19,13 +17,11 @@
   flex-direction: column;
   display: flex;
   align-items: center;
-  justify-content: center;    
   padding-right: 24px;
   padding-left: 24px;
   padding-top: 24px;
   padding-bottom: 24px;
-  height: calc((100vh - 80px) * 0.7 * 0.7);
-  border: 2px solid yellow;
+  height: calc((100vh - 80px) * 0.7 * 0.9);
 
 }
 
@@ -38,8 +34,7 @@
   padding-left: 24px;
   padding-top: 24px;
   padding-bottom: 24px;
-  height: calc((100vh - 80px) * 0.7 * 0.3);
-  border: 2px solid yellow;
+  height: calc((100vh - 80px) * 0.7 * 0.1);
 }
 
 
@@ -51,6 +46,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-bottom: 12px;
 }
 
 

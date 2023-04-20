@@ -62,8 +62,18 @@ const EventShowPage = () => {
                         </div>
                         
                         <div className="quest-show-reviews-holder">
-                            <QuestDetails quest={event.quest} />
+                            <QuestEventDetails quest={event.quest} startTime={formattedStartTime} />
                         </div>
+
+                        {currentTime < startTime && 
+                        <div className="event-show-buttons-holder">
+                            <button onClick={openModal} className="show-page-button show-page-button-blue-button">Edit Event</button>
+                            <button onClick={deleteThisEvent} className="show-page-button show-page-button-red-button">Delete Event</button>
+                        </div>
+                        }
+
+
+
                     </div>
                 
                     <div className="quest-show-right">
@@ -80,11 +90,8 @@ const EventShowPage = () => {
                                 }
                             </div>
                         </div>
+    
 
-                        <div className="event-show-buttons-holder">
-                            <button onClick={openModal} className="show-page-button show-page-button-blue-button">Edit Event</button>
-                            <button onClick={deleteThisEvent} className="show-page-button show-page-button-red-button">Delete Event</button>
-                        </div>
                     </div>
                     </div>
                 </div>
