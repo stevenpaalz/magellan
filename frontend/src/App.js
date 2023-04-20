@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import EventShowPage from './components/EventShowPage';
 import { getCurrentUser } from './store/session';
 import UserProfilePage from './components/UserProfilePage';
+import AboutPage from './components/AboutPage';
 
 const App = () => {
 
@@ -26,9 +27,8 @@ const App = () => {
       <ProtectedRoute exact path="/quests/:id" component={QuestShowPage} />
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
-
-
-      {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}
+      <Route exact path="/about" component={AboutPage}></Route>
+     {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}
     </Switch>
     </>
   );

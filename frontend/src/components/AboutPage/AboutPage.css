@@ -1,0 +1,138 @@
+.about-full-page {
+    justify-content: center;
+    top: 80px;
+    box-sizing: border-box;
+    flex-direction: column;
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    border: 4px solid transparent;
+    align-items: center;
+    padding-bottom: 28px;
+    padding-top: 28px;
+    height: calc(100vh - 80px);
+    /* background-color: var(--offwhite); */
+}
+
+
+.about-header-holder {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-logo {
+    display: flex;
+}
+.about-header {
+    display: flex;
+    font-size: 75px;
+    margin-left: -12px;
+}
+
+.teammates-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.teammate-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-right: 24px; */
+    width: 150px;
+}
+
+.teammate-avatar-holder {
+    background-color: var(--turquoise);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: flex;
+    object-position: center;
+    align-items: center;
+    transition: transform 0.5s;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.teammate-avatar-holder:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+}
+
+.teammate-avatar{
+    display: block;
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto; 
+}
+
+.teammate-name {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 2px;
+}
+
+.teammate-title {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-normal);
+}
+
+.about-socials-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 24px;
+
+}
+
+.teammate-linkedin-icon {
+    /* color: var(--orange); */
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    object-position: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    font-size: var(--font-size-400);
+    transition: transform 250ms;
+
+}
+
+.teammate-github-icon {
+    /* color: var(--orange); */
+    margin-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    object-position: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    font-size: var(--font-size-400);
+    transition: transform 250ms;
+
+}
+
+.teammate-linkedin-icon:hover {
+    cursor: pointer;
+    /* color: var(--red); */
+    transform: translateY(-5px);
+
+    
+}
+
+.teammate-github-icon:hover {
+    cursor: pointer;
+    /* color: var(--red); */
+    transform: translateY(-5px);
+
+}
+
+
