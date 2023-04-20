@@ -50,11 +50,14 @@ export const deleteReview = (reviewId) => async dispatch => {
 
 export const createReview = (questId, review) => async dispatch => {
     try {
+        
         const res = await jwtFetch(`/api/quests/${questId}/reviews`, {
             method: 'POST',
-            body: review
+            body: JSON.stringify(review)
         })
-        dispatch(receiveReview(review));
+        console.log(res);
+        const data = await res.json();
+        dispatch(receiveReview(data));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -64,11 +67,14 @@ export const createReview = (questId, review) => async dispatch => {
 }
 
 function reviewsReducer(state = {}, action) {
+    const newReview = { ...state };
     switch(action.type) {
         case RECEIVE_ALL_REVIEWS:
             return { ...action.reviews };
+        case RECEIVE_REVIEW:
+            newReview[action.review._id] = action.review;
+            return newReview;
         case REMOVE_REVIEW:
-            const newReview = { ...state };
             delete newReview[action.reviewId];
             return newReview;
         default:

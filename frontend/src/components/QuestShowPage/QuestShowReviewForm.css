@@ -1,9 +1,52 @@
 .create-new-review-form {
     display: flex;
     flex-direction: column;
-    margin-top: 8px;
+    height: 180px;
 }
 
 .rating-input-holder input {
-    width: 30px;
+    width: 50px;
+    margin-top: 4px;
+}
+
+.create-new-review-form > * {
+    margin: 6px 0;
+}
+
+.create-new-review h4 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgb(188, 188, 188);
+}
+
+#review-text-area {
+    width: 60%;
+    height: 50px;
+    overflow: wrap;
+    resize: none;
+}
+
+.create-new-review-form button {
+    width: 30%;
+    background-color: var(--turquoise);
+    color: var(--offwhite);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    padding: 4px 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    height: 30px;
+    margin-right: 12px;
+}
+
+.create-new-review-form button:hover {
+    background-color: #238c83;
+}
+
+.create-new-review-form label{
+    font-weight: 600;
 }

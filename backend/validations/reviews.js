@@ -4,10 +4,10 @@ const handleValidationErrors = require('./handleValidationErrors');
 const validateReviewInput = [
     check('text')
         .exists({ checkFalsy: true })
-        .withMessage('Review body must contain body'),
+        .withMessage('Review must contain body'),
     check('rating')
-        .exists({ checkFalsy: true })
-        .isFloat({min: 0, max: 5})
+        .exists({ checkFalsy: true }).withMessage('Rating is invalid')
+        .isFloat({min: 1, max: 5})
         .withMessage('Rating is invalid'),
   handleValidationErrors
 ];
