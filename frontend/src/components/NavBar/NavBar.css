@@ -51,6 +51,7 @@ nav {
 
 .signup-button:hover {
     background: white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .login-button {
@@ -71,6 +72,8 @@ nav {
   
 .login-button:hover {
     color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+
 }
 
 .logout-button {
@@ -111,7 +114,7 @@ font-size: var(--font-size-400);
     color: var(--red);
 }
 
-.create-quest-nav-button {
+.nav-button {
     background-color: var(--turquoise);
     border: 1px solid var(--turquoise);
     border-radius: 5px;
@@ -134,19 +137,11 @@ font-size: var(--font-size-400);
     transition: transform 250ms;
 }
 
-.create-quest-nav-button:hover {
-    /* color: var(--red); */
-    transform: translateY(-5px);
-    /* color: var(--red); */
-    transform: translateY(-5px);
+.nav-button:hover {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-
-  /* transition: transform 250ms; */
-
-  /* transform: translateY(-5px); */
-
-  
   .profile-dropdown {
     border: 1px solid;
     min-height: 40px;
@@ -177,6 +172,11 @@ font-size: var(--font-size-400);
     font-weight: var(--font-weight-semibold);
     text-align: 11;
   }
+  .bottom-section{
+    border-top: 2px dashed var(--red);
+    padding-top: 5px;
+    margin-top: 5px;
+  }
   
   .drop-down-option:hover {
     color: var(--orange);
@@ -200,12 +200,14 @@ font-size: var(--font-size-400);
     width: 55px;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background: url("https://magellan-seeds.s3.amazonaws.com/mag_white_small.png") no-repeat;
+    /* background: url("https://magellan-seeds.s3.amazonaws.com/mag_white_small.png") cover ; */
+    object-fit: cover;
     /* transition: transform 250ms; */
   }
 
-  .nav-avatar:hover {
+  .nav-avatar:hover, .nav-avatar.active {
     cursor: pointer;
-    content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png');
+    /* content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png'); */
+    box-shadow: 0 0px 10px rgba(255, 255, 255, 0.787);
     /* transform: translateY(-5px); */
   }

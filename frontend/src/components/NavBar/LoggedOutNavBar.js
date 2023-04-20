@@ -39,10 +39,13 @@ const LoggedOutNavBar = () => {
             </NavLink>
         </div>
         <div className="nav-right">
-        <button className="signup-button" onClick={signupClick}>sign up</button>    
-        <button className="login-button" onClick={loginClick}>log in</button>                    
-        <LoginForm />
-        <SignUpForm />
+            <NavLink exact to="/about">
+                    <div className="nav-button">about</div>
+            </NavLink> 
+            <button className="signup-button" onClick={signupClick}>sign up</button>    
+            <button className="login-button" onClick={loginClick}>log in</button>                    
+            <LoginForm />
+            <SignUpForm />
         </div>
         </nav>
     )

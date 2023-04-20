@@ -24,18 +24,20 @@ const QuestShowPage = () => {
   const quest = useSelector(state => {
     return state.quests ? state.quests[id] : null
   });
-
+  
   useEffect(() => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
-
+  
+  if (!quest) return null;
+  
   let editButton;
-  if (sessionUser && sessionUser._id === quest?.creator._id) {
-      editButton = <button onClick={updateClick} className="quest-show-start-quest">Update Quest</button>
+  if (sessionUser && sessionUser._id === quest.creator._id) {
+      editButton = <button onClick={updateClick} className="show-page-button show-page-button-orange-button">Update Quest</button>
   }
   let deleteButton;
-  if (sessionUser && sessionUser._id === quest?.creator._id) {
-      deleteButton = <button onClick={deleteClick} className="quest-show-start-quest">Delete Quest</button>
+  if (sessionUser && sessionUser._id === quest.creator._id) {
+      deleteButton = <button onClick={deleteClick} className="show-page-button show-page-button-orange-button">Delete Quest</button>
   }
 
   const startEvent = async (e) => {
@@ -67,12 +69,12 @@ const QuestShowPage = () => {
     history.replace(`/quests`);
   }
 
-  if (!quest) return null;
+
 
   return (
     <>
         <div className="quest-show-full-page">
-            <div className="quest-show-holder">
+            <div>
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${quest.imageUrls[0]})`} }>
                     <div className="quest-show-title">{quest.title}</div>
                     <QuestShowTags tags={quest.tags} />
@@ -86,7 +88,6 @@ const QuestShowPage = () => {
                         </div>
                         
                         <div className="quest-show-reviews-holder">
-                            <div className="quest-show-reviews-header">Reviews</div>
                             <QuestShowReviews id={id} />
                         </div>
                     </div>
@@ -100,8 +101,8 @@ const QuestShowPage = () => {
                         <div className="quest-show-buttons-holder">
                             {editButton}
                             {deleteButton}
-                            <button onClick={startEvent} className="quest-show-start-quest">Start Quest</button>
-                            <button onClick={openModal} className="quest-show-schedule-quest">Schedule for Later</button>
+                            <button onClick={startEvent} className="show-page-button show-page-button-orange-button">Start Quest</button>
+                            <button onClick={openModal} className="show-page-button">Schedule for Later</button>
                         </div>
                     </div>
                 </div>

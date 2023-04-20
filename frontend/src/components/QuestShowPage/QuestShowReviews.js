@@ -22,6 +22,7 @@ const QuestShowReviews = ({ id }) => {
 
   return (
     <>
+    <div className="quest-show-reviews-header">Reviews</div>
     <div className="quest-show-reviews">
       {filteredReviews.map((review) => (
         <div className="quest-show-review" key={review.text}>

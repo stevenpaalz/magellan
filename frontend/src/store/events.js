@@ -47,6 +47,22 @@ export const getAllEvents = () => async dispatch => {
         }
     }
 }
+export const getAllUserEvents = (userId) => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/users/${userId}/events`);
+        const data = await res.json();
+        const events = {};
+        data.forEach((el)=>{
+            events[el._id] = el
+        });
+        return dispatch(receiveAllEvents(events));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            dispatch(receiveErrors(resBody.errors));
+        }
+    }
+}
 
 export const getEvent = (eventId) => async dispatch => {
     try{
