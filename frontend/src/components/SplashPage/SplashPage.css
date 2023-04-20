@@ -21,8 +21,8 @@
 }
 
 .splash-page-hero-image {
-    height: 600px;
-    width: auto;
+    
+    width: 100%;
 }
 
 .splash-right {
@@ -36,10 +36,13 @@
 }
 
 .splash-right-logo-holder {
+    display: flex;
+    justify-content: center;
 }
 
 .splash-right-logo{
-    width: 500px;
+    width: 80%;
+    
 }
 
 .splash-right-text-holder {
@@ -52,19 +55,46 @@
     text-align: center;
     margin-top: -12px;
     margin-bottom: 24px;
+    text-shadow: 0 0 2px white;
+    
 }
 
 .splash-right-cta {
-    background-color: var(--red);
+    background-color: var(--orange);
     color: white;
+    font-weight: bold;
     border-radius: 5px;
     font-size: var(--font-size-400);
     cursor: pointer;
     padding: 8px 12px;
     border: 4px solid transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display:flex;
+    align-items: center;
+}
+.splash-right-cta p{
+    color: white;
+    margin-left: 5px
+}
+p.intro{
+    font-weight: 500;
+    line-height: 27px;
+    margin-top: 20px;
+}
+p.intro strong{
+    font-style: italic;
+    font-weight: 600;
+    line-height: 55px;
 }
 
 .splash-right-cta:hover{
     background-color: var(--turquoise);
+}
+.splash-right-cta:active{
+    background-color: #1f8684;
+}
+img.icon{
+    height: 23px;
+    width: 23px;
+    object-fit: cover;
 }
