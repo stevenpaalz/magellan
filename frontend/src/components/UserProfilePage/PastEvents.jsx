@@ -25,7 +25,6 @@ export default function PastEvents(){
     useEffect(()=>{
         events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     }, [filter])
-//    debugger
     // const allEvents = useSelector(state=> state.events)
     // let pastEvents = Object.values(allEvents).filter((event)=> Date.parse(event.startTime) > Date.now())
     // let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )

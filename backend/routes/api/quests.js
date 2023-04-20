@@ -35,7 +35,7 @@ router.post('/:id/reviews', requireUser, validateReviewInput, async (req, res, n
         return res.json(review);
     }
     catch(err) {
-        next(err);
+        return next(err);
     }
 })
 

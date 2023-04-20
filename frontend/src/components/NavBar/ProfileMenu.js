@@ -37,7 +37,6 @@ const ProfileMenu = () => {
     dispatch(setModal("questForm"))
     }
   const sessionUser = useSelector(state => state.session.user);
-  // debugger
   return (
     <>
       <img 
