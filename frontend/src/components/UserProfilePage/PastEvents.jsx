@@ -12,8 +12,6 @@ export default function PastEvents(){
     useEffect(()=>{
         dispatch(getAllUserEvents(sessionUser._id))
     },[dispatch])
-
-
     function handleClick(e){
         if (e.target.classList.contains("host-button")){
             setFilter("host")
@@ -31,7 +29,7 @@ export default function PastEvents(){
             <button className="host-button"onClick={handleClick}>You Hosted</button>
             <button className="attend-button" onClick={handleClick}>You Attended</button>
             </div>
-            {!events&& <div className="quest-card"><h1>{sessionUser.firstName} has no past events</h1></div>}
+            {(!events || events === [])&& <div className="quest-card"><h1>{sessionUser.firstName} has no past events</h1></div>}
             <EventsIndex events={events} />
         </>
     )

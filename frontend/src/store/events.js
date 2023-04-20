@@ -49,7 +49,7 @@ export const getAllEvents = () => async dispatch => {
 }
 export const getAllUserEvents = (userId) => async dispatch => {
     try {
-        const res = await jwtFetch(`users/${userId}/events`);
+        const res = await jwtFetch(`/api/users/${userId}/events`);
         const data = await res.json();
         const events = {};
         data.forEach((el)=>{
