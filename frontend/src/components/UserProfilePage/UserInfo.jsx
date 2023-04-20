@@ -29,7 +29,7 @@ export default function UserInfo(){
         </div>
         <div className="info-box">
             <p>Home Town:</p>
-            <h1>Hometown, USA</h1>
+            <h1>{sessionUser.homeCity}, {sessionUser.homeState}</h1>
         </div>
         </div>
         </>

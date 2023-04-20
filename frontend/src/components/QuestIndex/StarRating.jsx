@@ -10,7 +10,7 @@ export default function StarRating({questReviews}){
         return(
             <p>loading...</p>
         )
-    }else if(!stars){
+    }else if(!stars&&stars!==0){
         return(
             <p className="no-reviews">(no reviews 😢)</p>
         )
