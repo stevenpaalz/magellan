@@ -25,7 +25,6 @@ export default function UpcomingEvents(){
     useEffect(()=>{
         events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     },[filter])
-    // debugger
     return(
         <>
             <h1>{sessionUser.firstName}'s upcoming events:</h1>
