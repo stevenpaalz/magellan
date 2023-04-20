@@ -22,7 +22,7 @@ const LoggedInNavBar = () => {
                 </NavLink>
             </div>
             <div className="nav-right">   
-                <NavLink exact to="/">
+                {/* <NavLink exact to="/">
                     <div className="create-quest-nav-button">create quest</div>
                 </NavLink>
 
@@ -32,11 +32,10 @@ const LoggedInNavBar = () => {
                     </div>                
                 </NavLink>
 
-                <button className="logout-button" onClick={logoutUser}>log out</button>
+                <button className="logout-button" onClick={logoutUser}>log out</button> */}
 
-                <NavLink exact to="/">
-                    <ProfileMenu />
-                </NavLink>
+                
+                <ProfileMenu />
             </div>
         </nav>
     );

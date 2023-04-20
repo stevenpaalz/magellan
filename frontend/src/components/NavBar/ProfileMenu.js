@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { Link, useHistory } from "react-router-dom";
 
-//canpassinuser
 const ProfileMenu = () => {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -33,16 +32,23 @@ const ProfileMenu = () => {
 
   return (
     <>
-      <img src={"https://magellan-seeds.s3.amazonaws.com/mag_white_small.png"} className="nav-avatar" alt="avatar" onClick={openMenu}/>
+      <img 
+        src={"https://magellan-seeds.s3.amazonaws.com/mag_white_small.png"} 
+        className="nav-avatar" 
+        alt="avatar" 
+        onClick={openMenu}
+      />
       {showMenu && (
         <div className="profile-dropdown">
-          <Link to={"/user-profile"} className="drop-down-option">Profile</Link>
-          <Link to={"/quests"} className="drop-down-option">Create Quest</Link>
-          <div className="drop-down-option" onClick={logout}>Log out</div>
+          <a href="/user-profile" className="drop-down-option"><div>Profile</div></a>
+          <a href="/quests" className="drop-down-option"><div>Create Quest</div></a>
+          <div className="drop-down-line">------------------------------</div>
+          <div className="drop-down-option" onClick={logout}><div>Log out</div></div>
         </div>
       )}
     </>
   );
+
 }
 
 export default ProfileMenu;

@@ -133,156 +133,25 @@ font-size: var(--font-size-400);
 .create-quest-nav-button:hover {
     color: var(--red);
 }
-
-
-
-
-.drop-down-icon {
-    border-radius: 50%;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    box-sizing: border-box;
-    padding: 0 0 0 0;
-    background-color: transparent;
-    cursor: pointer;
-    border: 0;
-    display: block;
-    width: 24px;
-    height: 24px;
-    color: #111;
-    font-size: 12px;
-  }
-  
-  .drop-down-icon:hover {
-    background-color: rgba(0,0,0,0.06);
-  }
   
   .profile-dropdown {
     border: 1px solid;
-    box-sizing: border-box;
-    /* top: 14px; */
-    /* left: 682px; */
     min-height: 40px;
     min-width: 180px;
     max-height: 849.6px;
     max-width: 360px;
-    /* box-shadow: 0 0 8px rgba(0,0,0,0.1); */
     box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
     border-radius: 16px;
     position: absolute;
     display: flex;
-    background-color: #fff;
+    background-color: white;
     color: #fff; 
-    /* color:black; */
     margin: 8px;
-    /* flex: 1 1 auto; */
-    /* align-items: center; */
     flex-direction: column;
     padding: 10px 10px 10px 10px;
     z-index: 3;
     top: 70px;
     right: 0.5px;
-  }
-  
-  .drop-down-currently {
-    color: #111;
-    box-sizing: border-box;
-    padding: 8px 8px 8px 8px;
-    display: block;
-    flex-direction: row;
-    text-align: left;
-    font-weight: 400;;
-    font-size: 12px;
-  }
-  
-  .drop-down-snapshot {
-    /* background-color: #e9e9e9; */
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 8px 8px 8px 8px;
-    align-items: center;
-    flex-direction: row;
-    display: flex;
-    margin-bottom: 2px;
-    margin-top: 2px;
-  
-  }
-  
-  /* TO UPDATE */
-  .drop-down-picture{
-    font-weight: 600;
-    color: #111;
-    background-color:#e9e9e9;
-    border-radius: 50%;
-    font-size: 28px;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    margin-right: 8px;
-    line-height: 60px;
-  }
-  
-  .drop-down-picture-container{ 
-  }
-  
-  .drop-down-checkmark-container {
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    cursor: pointer;
-    flex-direction: row;
-  }
-  
-  .drop-down-snapshot:hover {
-    background-color:#e9e9e9;
-  }
-  
-  .drop-down-checkmark {
-    color: #111;
-    cursor: pointer;
-    stroke-width: 0;
-    display: block;
-    vertical-align: middle;
-  }
-  
-  .drop-down-account-details {
-    max-width: 176px;
-    box-sizing: border-box;
-    display: block;
-    margin-right: 8px;
-  }
-  
-  .drop-down-username {
-    text-align: left;
-    max-width: 100%;
-    font-weight: 600;
-    font-size: 16px;
-    color: #111;
-  }
-  
-  .drop-down-email {
-    margin-top: 2px;
-    box-sizing: border-box;
-    text-align: left;
-    max-width: 100%;
-    font-weight: 400;
-    font-size: 14px;
-    color: #5f5f5f;
-  }
-  
-  .drop-down-more-options {
-    margin-top: 16px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 8px 8px 8px 8px;
-    display: flex;
-    flex-direction: row;
-    text-align: left;
-    font-weight: 400;
-    font-size: 12px;
-    color: #111;
   }
   
   .drop-down-option{
@@ -291,25 +160,40 @@ font-size: var(--font-size-400);
     padding: 8px 8px 8px 8px;
     display: flex;
     margin: 0 0 0 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: #111;
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-semibold);
     text-align: 11;
   }
   
   .drop-down-option:hover {
-    background-color:#e9e9e9;
+    color: var(--orange);
+    background-color: var(--offwhite);
   }
 
+  .drop-down-line{
+    border-radius: 8px;
+    padding: 0px 8px 0px 8px;
+    display: flex;
+    margin: 0 0 0 0;
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-semibold);
+    color: rgb(206, 206, 206);
+    text-align: 11;
+  }
+  
+
   .nav-avatar {
-    height: 40px;
-    width: 40px;
+    height: 55px;
+    width: 55px;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background: url("https://magellan-seeds.s3.amazonaws.com/mag_white_small.png") no-repeat;
+    /* transition: transform 250ms; */
   }
 
-  .nav-avatar:hover {
+  .nav-avatar:hover,
+  .nav-avatar:focus {
     cursor: pointer;
     content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png');
+    /* transform: translateY(-5px); */
   }
