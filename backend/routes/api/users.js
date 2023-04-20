@@ -81,7 +81,9 @@ router.get('/current', restoreUser, (req, res) => {
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     profileImageUrl: req.user.profileImageUrl,
-    email: req.user.email
+    email: req.user.email,
+    homeCity: req.user.homeCity,
+    homeState: req.user.homeState
   });
 });
 
