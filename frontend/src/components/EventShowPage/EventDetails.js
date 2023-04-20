@@ -4,7 +4,7 @@ const EventDetails = ({ event, startTime }) => {
     return (
         <>
         <div className="event-details-header-holder">
-            <div className="event-details-header">Your Quest</div>
+            <div className="event-details-header">Your Event</div>
             {/* <div className="host-avatar-holder">
                 <img src="https://magellan-seeds.s3.amazonaws.com/mag_blue_small.png" className="host-avatar"></img> 
             </div> */}
