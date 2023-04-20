@@ -1,45 +1,59 @@
 .event-show-details-holder {
     display: flex;
     flex-direction: column;
-    height: 50%;
-    /* border: 2px solid var(--turquoise); */
+    /* height: calc((100vh - 80px) * 0.7 * 0.5 * 0.7); */
 }
 .event-show-checkpoints-holder {
     display: flex;
     flex-direction: column;
-    height: 50%;
     overflow-x: hidden;
     overflow-y: auto;
     margin-top: 24px;
-
-
-
-
     margin-bottom: 24px;
+    /* height: calc((100vh - 80px) * 0.7 * 0.5 * 0.3); */
 }
 
-.host-avatar {
-    width: 75px;
-    height: auto;
-    border-radius: 50%;
+.event-show-body-holder {
+  flex-direction: column;
+  display: flex;
+  /* align-items: center; */
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  height: calc((100vh - 80px) * 0.7 * 0.9);
+
 }
+
+.event-show-buttons-holder {
+  flex-direction: row;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  height: calc((100vh - 80px) * 0.7 * 0.1);
+}
+
+
+
 
 .event-details-header-holder {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    text-align: center;
-    /* padding-top: 12px;
-    padding-bottom: 12px; */
-
+    /* text-align: center; */
+    padding-bottom: 12px;
 }
 
 
 .event-details-header {
     font-size: var(--font-size-500);
     font-weight: var(--font-weight-bold);
-    text-align: center;
+    /* text-align: center; */
 }
 
 .event-show-attendees-holder {
@@ -69,13 +83,6 @@
   flex-direction: column;
   align-items: center;
   margin-right: 12px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 12px;
-  width: 100px; 
-  justify-content: center;
-  text-align: center; */
 }
 
 .attendee-details {
@@ -130,7 +137,7 @@
 .checkpoint-text {
     font-size: var(--font-size-300);
     font-weight: var(--font-weight-normal);
-    margin-left: 12px;
+    /* margin-left: 12px; */
     padding-bottom: 12px;
 }
 
@@ -151,4 +158,6 @@
 
 .checkpoint-label {
   margin-left: 12px;
+  font-size: var(--font-size-400);
+
 }
