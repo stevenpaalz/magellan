@@ -58,7 +58,7 @@ function EventForm({quest, host}) {
         e.preventDefault();
         if (guest) {
             setInvalidUser(false);
-            if (attendees[guest]) {
+            if (attendees[guest] || guest === host.email) {
                 setInvalidUser(true)
                 return;
             }

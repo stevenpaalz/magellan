@@ -26,7 +26,7 @@
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    margin: 10px;
+    margin: 10px auto;
     width: 300px;
 }
 
@@ -129,16 +129,33 @@ p.formError{
     align-content: flex-start;
     padding: 6px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .attendees-list-create li {
-    background-color: white;
-    margin: 3px 0;
-    padding: 6px;
+    background-color: var(--turquoise);
+    color: white;
+    margin: 2px 2px;
+    padding: 6px 8px;
     border-radius: 10px;
     width: fit-content;
+    line-height: 20px;
+}
+
+.attendees-list-create li i {
+    cursor: pointer;
+    padding: 0px 2px;
+}
+
+.attendees-list-create li i:hover {
+    font-size: 18px;
+    padding: 0px 1px;
 }
 
 .attendees-list-create li i{
     margin-left: 4px;
+}
+
+#add-guest-button:hover {
+    background-color: #DC6E02;
 }
