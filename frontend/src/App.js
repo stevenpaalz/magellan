@@ -28,7 +28,6 @@ const App = () => {
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
       <Route exact path="/about" component={AboutPage}></Route>
-     {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}
     </Switch>
     </>
   );

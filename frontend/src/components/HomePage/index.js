@@ -9,10 +9,18 @@ import { getAllQuests } from "../../store/quests";
 import { useState } from 'react';
 import allTags from '../../data/Tags';
 import { setModal } from '../../store/modal';
+import QuestForm from '../Modals/QuestForm';
 
 const HomePage = () => {
   const mapstyle={ height: 'calc(100vh - 80px)', width: '100%' }
   const dispatch= useDispatch()
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "visible";
+    }
+  }, [])
 
   const [tags, setTags] = useState({})
   const [filterDropdownSelected, setFilterDropdownSelected] = useState(false)
@@ -48,21 +56,33 @@ function filteredQuests(quests, tags){
   })
   return questarray
 }
-const quests = useSelector(state=>state.quests)
-const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests, tags) : Object.values(quests)
-const modalstate = useSelector(state=>state.modals.modalState)
+const quests = useSelector(state=>state.quests);
+const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests, tags) : Object.values(quests);
+const modalstate = useSelector(state=>state.modals.modalState);
+
+  const questModal = (e) => {
+    dispatch(setModal("questForm"));
+    e.stopPropagation();
+  }
+
     return (
       <div className="home-flex">
         <div className="homepage-left">
           <QuestMap quests={questsFiltered} style={mapstyle}/>
         </div>
         <div className="width50">
-          <button className="filter-dropdown" onClick={filterDropdownClick}>{modalstate==="filters"?"close filters ⌃":"select filters ⌵"}</button>
-          {(modalstate==="filters") && <div className="dropdown-options"> 
-                            {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><p className="dropdown-option">{tag}</p></label>)}
-                            </div>}
+          <div className="quests-button-index-headers">
+            <button className="filter-dropdown" onClick={filterDropdownClick}>{modalstate==="filters"?"close filters ⌃":"select filters ⌵"}</button>
+            {(modalstate==="filters") && <div className="dropdown-options"> 
+                              {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><p className="dropdown-option">{tag}</p></label>)}
+                              </div>}
+            <button onClick={questModal} className="create-quest-button">create quest</button>
+          </div>
 
           <QuestIndex quests={questsFiltered}/>
+          </div>
+          <div>
+            <QuestForm />
           </div>
       </div>
     );

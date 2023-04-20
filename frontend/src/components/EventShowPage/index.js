@@ -57,7 +57,7 @@ const EventShowPage = () => {
                 <div className="quest-show-full-bottom">
                     <div className="quest-show-left">
                         <div className="quest-show-map-holder">
-                            <QuestMap style={{ height: '100%', width: '100%' }} lat={event.quest.lat} lng={event.quest.lng} quest={event.quest} />
+                            <QuestMap style={{ height: '100%', width: '100%' }} lat={event.quest.lat} lng={event.quest.lng} quests={[event.quest]} />
                         </div>
                         
                         <div className="quest-show-reviews-holder">
