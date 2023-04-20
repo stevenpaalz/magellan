@@ -24,11 +24,13 @@ const QuestShowPage = () => {
   const quest = useSelector(state => {
     return state.quests ? state.quests[id] : null
   });
-
+  
   useEffect(() => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
-
+  
+  if (!quest) return null;
+  
   let editButton;
   if (sessionUser && sessionUser._id === quest.creator._id) {
       editButton = <button onClick={updateClick} className="quest-show-start-quest">Update Quest</button>
@@ -67,7 +69,7 @@ const QuestShowPage = () => {
     history.replace(`/quests`);
   }
 
-  if (!quest) return null;
+
 
   return (
     <>
