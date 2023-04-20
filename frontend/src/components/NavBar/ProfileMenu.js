@@ -49,9 +49,9 @@ const ProfileMenu = () => {
       {showMenu && (
         <div className="profile-dropdown">
           <a href="/user-profile" className="drop-down-option"><div>Profile</div></a>
-          <a href="/user-profile/yourQuests" className="drop-down-option"><div>Your Quests</div></a>
           <a href="/user-profile/upcomingEvents" className="drop-down-option"><div>Upcoming Events</div></a>
           <a href="/user-profile/openEvents" className="drop-down-option"><div>Open Events</div></a>
+          <a href="/user-profile/yourQuests" className="drop-down-option"><div>Designed Quests</div></a>
           <a onClick={createClick} className="drop-down-option"><div>Create Quest</div></a>
           {/* <div className="drop-down-line">------------------------------</div> */}
           <div className="bottom-section"><div className="drop-down-option" onClick={logout}><div>Log out</div></div></div>
