@@ -109,7 +109,9 @@ router.get('/:userId', async (req, res) => {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
-    profileImageUrl: user.profileImageUrl
+    profileImageUrl: user.profileImageUrl,
+    homeCity: user.homeCity,
+    homeState: user.homeState
   };
   return res.json(userInfo);
 });
