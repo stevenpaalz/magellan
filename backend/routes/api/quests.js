@@ -108,20 +108,20 @@ router.patch('/:id', multipleMulterUpload("images"), requireUser, validateQuestU
         const latlng = getLatLng(formattedAddressInput);
         const latInput = latlng[0];
         const lngInput = latlng[1];
-
-        updateQuest.title = req.body.title;
-        updateQuest.description = req.body.description;
-        updateQuest.checkpoints = req.body.checkpoints;
-        updateQuest.duration = req.body.duration;
-        updateQuest.formattedAddress = formattedAddressInput;
-        updateQuest.lat = latInput;
-        updateQuest.lng = lngInput;
-        updateQuest.radius = req.body.radius;
-        updateQuest.tags = req.body.tags;
-        updateQuest.creator = req.user._id;
-        updateQuest.imageUrls = imageUrls;
-        let quest = await updateQuest.save();
-        return res.json(quest);
+        return res.json(latInput)
+        // updateQuest.title = req.body.title;
+        // updateQuest.description = req.body.description;
+        // updateQuest.checkpoints = req.body.checkpoints;
+        // updateQuest.duration = req.body.duration;
+        // updateQuest.formattedAddress = formattedAddressInput;
+        // updateQuest.lat = latInput;
+        // updateQuest.lng = lngInput;
+        // updateQuest.radius = req.body.radius;
+        // updateQuest.tags = req.body.tags;
+        // updateQuest.creator = req.user._id;
+        // updateQuest.imageUrls = imageUrls;
+        // let quest = await updateQuest.save();
+        // return res.json(quest);
     }
     catch(err) {
         next(err);

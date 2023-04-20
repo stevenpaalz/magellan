@@ -128,3 +128,8 @@ div.page-overlay{
     justify-content: space-around;
 }
   
+.form-label-tag-header {
+    height: 20px; 
+    text-align: center;
+    align-content: center;
+}
