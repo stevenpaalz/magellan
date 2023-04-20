@@ -70,38 +70,59 @@ export default function UpdateForm() {
             setDuration(quest.duration);
             setRadius(quest.radius);
             setTags(quest.tags);
-            if (tags.includes("food-and-drinks")){
+            console.log(tags)
+            if (tags.includes("food-and-drink")){
                 setFoodNDrink(true)
-            }
+            } else {
+                setFoodNDrink(false)
+            };
             if (tags.includes("family-friendly")){
                 setFamilyFriendly(true)
-            }
+            } else {
+                setFamilyFriendly(false)
+            };
             if (tags.includes("landmarks")) {
                 setLandmarks(true)
-            }
+            } else {
+                setLandmarks(false)
+            };
             if (tags.includes("public-art")) {
                 setPublicArt(true)
-            }
+            } else {
+                setPublicArt(false)
+            };
             if (tags.includes("transportation")) {
                 setTransportation(true)
-            }
+            } else {
+                setTransportation(false)
+            };
             if (tags.includes("sporty")) {
                 setSporty(true)
-            }
+            } else {
+                setSporty(false)
+            };
             if (tags.includes("green")) {
                 setGreen(true)
-            }
+            } else {
+                setGreen(false)
+            };
             if (tags.includes("obscure")) {
                 setObscure(true)
-            }
+            } else {
+                setObscure(false)
+            };
             if (tags.includes("locals-only")) {
                 setLocalsOnly(true)
-            }
+            } else {
+                setLocalsOnly(false)
+            };
             if (tags.includes("tourist-traps")) {
                 setTouristTraps(true)
-            }
+            } else {
+                setTouristTraps(false)
+            };
         }
-    }, [dispatch, id, questErrors])
+    }, [dispatch, id, questErrors, tags])
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -139,7 +160,7 @@ export default function UpdateForm() {
         formData.append('zipcode', zipcode);
         formData.append('radius', radius);
         formData.append('tags', [tags]);
-        
+        console.log(tags)
         if (allCheckPoints.includes("")) {
             setErrors({cp: "There should be a minimum of 5 checkpoints"})
         } else if (tags.length < 1) {
@@ -162,8 +183,13 @@ export default function UpdateForm() {
 
     const handleCheck = (e) => {
         if (tags.includes(e.target.value)) {
-            const newArray = tags.filter(tag => tag !== e.target.value);
-            setTags(newArray)
+            const newArray = []
+            tags.forEach(tag => {
+                if (tag !== e.target.value) {
+                    newArray.push(e.target.value)
+                };
+            });
+            setTags([...newArray])
         } else {
             setTags([...tags, e.target.value])
         };
