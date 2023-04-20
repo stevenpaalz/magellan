@@ -33,11 +33,11 @@ const QuestShowPage = () => {
   
   let editButton;
   if (sessionUser && sessionUser._id === quest.creator._id) {
-      editButton = <button onClick={updateClick} className="show-page-button show-page-button-blue-button">Update Quest</button>
+      editButton = <button onClick={updateClick} className="show-page-button show-page-button-blue-button">Update</button>
   }
   let deleteButton;
   if (sessionUser && sessionUser._id === quest.creator._id) {
-      deleteButton = <button onClick={deleteClick} className="show-page-button show-page-button-red-button">Delete Quest</button>
+      deleteButton = <button onClick={deleteClick} className="show-page-button show-page-button-red-button">Delete</button>
   }
 
   const startEvent = async (e) => {
@@ -107,10 +107,16 @@ const QuestShowPage = () => {
 
 
                         <div className="quest-show-buttons-holder">
-                            {editButton}
-                            {deleteButton}
-                            <button onClick={startEvent} className="show-page-button show-page-button-orange-button">Start Quest</button>
-                            <button onClick={openModal} className="show-page-button">Schedule for Later</button>
+                          <div className="quest-show-creator-bar">
+                              <div className="quest-show-bar-left">
+                                <button onClick={startEvent} className="show-page-button show-page-button-orange-button">Start Now</button>
+                                <button onClick={openModal} className="show-page-button">Schedule for Later</button>
+                              </div>
+                              <div className="quest-show-bar-right">
+                                {editButton}
+                                {deleteButton}
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>

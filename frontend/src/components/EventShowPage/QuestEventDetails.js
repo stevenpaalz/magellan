@@ -42,6 +42,9 @@ const QuestEventDetails = ( {quest} ) => {
   return (
     <>
         <div>
+        <div className="event-details-header-holder">
+            <div className="event-details-header">The Quest</div>
+        </div>
             <div className="quest-show-text"><span className="show-label">What to expect:</span> {quest.description}</div>
             <div className="quest-show-text"><span className="show-label">Radius:</span> {quest.radius} {miles}</div>
             <div className="quest-show-text"><span className="show-label">Duration:</span> {quest.duration} {hours}</div>

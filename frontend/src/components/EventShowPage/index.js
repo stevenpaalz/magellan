@@ -41,7 +41,7 @@ const EventShowPage = () => {
     }
 
     const startTime = new Date(event.startTime);
-    const formattedStartTime = startTime.toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    const formattedStartTime = startTime.toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 
     const currentTime = new Date();
     const formattedCurrentTime = currentTime.toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
@@ -65,12 +65,6 @@ const EventShowPage = () => {
                             <QuestEventDetails quest={event.quest} startTime={formattedStartTime} />
                         </div>
 
-                        {currentTime < startTime && 
-                        <div className="event-show-buttons-holder">
-                            <button onClick={openModal} className="show-page-button show-page-button-blue-button">Edit Event</button>
-                            <button onClick={deleteThisEvent} className="show-page-button show-page-button-red-button">Delete Event</button>
-                        </div>
-                        }
 
 
 
@@ -90,6 +84,14 @@ const EventShowPage = () => {
                                 }
                             </div>
                         </div>
+
+                                                {/* {currentTime < startTime &&  */}
+                                                <div className="event-show-buttons-holder">
+                            <button onClick={openModal} className="show-page-button show-page-button-blue-button">Edit Event</button>
+                            <button onClick={deleteThisEvent} className="show-page-button show-page-button-red-button">Delete Event</button>
+                        </div>
+                        {/* } */}
+
     
 
                     </div>

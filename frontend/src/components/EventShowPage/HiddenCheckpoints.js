@@ -1,7 +1,7 @@
 const HiddenCheckpoints = ({checkpoints}) => {
     return (
         <>
-            <div className="event-details-header">Your Checkpoints</div>
+            <div className="event-details-header">The Checkpoints</div>
             <div className="checkpoints-box">
               {checkpoints.map((checkpoint) => (
                 <div className="checkpoint-holder">
