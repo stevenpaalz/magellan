@@ -20,7 +20,6 @@ const QuestShowPage = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
-
   const quest = useSelector(state => {
     return state.quests ? state.quests[id] : null
   });
