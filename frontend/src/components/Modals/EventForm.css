@@ -1,35 +1,47 @@
 .modal-content {
     background: white;
-    width: 40%;
-    height: 60%;
+    width: 35%;
+    height: 600px;
     border-radius: 5px;
     border: 1px solid #31AFAC;
     background-color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .modal-content form {
     height: 100%;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 }
 
 .modal-content form h1 {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px;
+    width: 300px;
 }
 
 .modal-content form h3 {
     font-size: 20px;
-    padding-bottom: 16px;
+    padding-bottom: 8px;
+}
+
+.modal-content form h3 span{
+    font-weight: bold;
 }
 
 .attendees {
     align-items: left;
+    height: 40%;
 }
 
 .custom-datetime-picker {
@@ -43,8 +55,13 @@
     z-index: 1; /* Make sure the calendar is above other elements */
 }
 
+.MuiFormControl-root {
+    width: 100%;
+}
+
 .modal-content-button button {
     background-color: var(--turquoise);
+    width: 100%;
     color: white;
     border-radius: 5px;
     font-size: var(--font-size-400);
@@ -69,4 +86,65 @@ p.error::before{
 }
 p.error::after{
     content:" 🚨";
+}
+
+#add-guest-button {
+    float: right;
+    background-color: var(--orange);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+#add-guest-input {
+    width: 180px;
+}
+
+#add-guest-button, #add-guest-input {
+    line-height: 30px;
+    padding: 2px 8px;
+}
+
+.upper-x {
+    position: absolute;
+    right: 31.5%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upper-x:hover {
+    background-color: rgb(235, 235, 235);
+    border-radius: 100%;
+}
+
+.attendees-list-create {
+    height: calc(100% - 70px);
+    display: flex;
+    margin-top: 10px;
+    background-color: #e1f4f2b5;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding: 6px;
+    width: 100%;
+}
+
+.attendees-list-create li {
+    background-color: white;
+    margin: 3px 0;
+    padding: 6px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.attendees-list-create li i{
+    margin-left: 4px;
 }

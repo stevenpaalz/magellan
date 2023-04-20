@@ -1,20 +1,22 @@
 import { setModal } from "../../store/modal";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./EventForm.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { createEvent } from "../../store/events";
+import { createEvent, getEvent, updateEvent } from "../../store/events";
 import { useHistory } from "react-router-dom";
 import { getAllUsers } from "../../store/users";
+import { useParams } from "react-router-dom";
 
 function EventForm({quest, host}) {
+    const { id } = useParams();
     const history = useHistory();
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
     const [date, setDate] = useState(null);
-    const [attendees, setAttendees] = useState([]);
+    const [attendees, setAttendees] = useState({});
     const [guest, setGuest] = useState("");
     const users = useSelector(state => state.users);
     const [invalidUser, setInvalidUser] = useState(false);
@@ -24,11 +26,26 @@ function EventForm({quest, host}) {
         dispatch(getAllUsers())
     }, [dispatch, modalState])
 
+    useEffect(()=>{
+        const fillAttendees = async () => {
+            const event = await dispatch(getEvent(id));
+            let newAttendees = {};
+            event.attendees.forEach((attendee) => {
+                newAttendees[attendee.email] = attendee.email;
+            })
+            setAttendees(newAttendees)
+        }
+
+        if (id) {
+            fillAttendees();
+        }
+    }, [])
+
     useEffect(() => {
         if (modalState !== "createEvent") return;
         const closeModals = (e) => {
             let modalContent = document.getElementById("modal-content");
-            if (e.target.classList.contains("modal-content") || modalContent.contains(e.target) || e.target.nodeName !== "DIV") return;
+            if (modalContent.contains(e.target) || e.target === modalContent|| e.target.nodeName !== "DIV") return;
             dispatch(setModal(false));
         };
         document.addEventListener('click', closeModals);
@@ -40,8 +57,12 @@ function EventForm({quest, host}) {
         e.preventDefault();
         if (guest) {
             setInvalidUser(false);
+            if (attendees[guest]) {
+                setInvalidUser(true)
+                return;
+            }
             if (Object.values(users).some((user) => user.email === guest)) {
-                attendees.push(guest);
+                attendees[guest] = guest;
                 setAttendees(attendees);
                 setGuest("");
             }
@@ -51,11 +72,17 @@ function EventForm({quest, host}) {
         }
     }
 
-    const removeAttendee = (e) => {
+    const closeModal = (e) => {
+        e.preventDefault();
         e.stopPropagation();
-        let newAttendees = attendees.splice(attendees.indexOf(e.target.id), 1);
-        setAttendees(newAttendees);
-        document.getElementById(`${e.target.id}-li`).remove();
+        dispatch(setModal(false));
+    }
+
+    const removeAttendee = async (e) => {
+        let newAttendees = {...attendees}
+        await delete newAttendees[e.target.id];
+        await setAttendees(newAttendees);
+        return;
     }
 
     const handleSubmit = async (e) => {
@@ -70,10 +97,16 @@ function EventForm({quest, host}) {
             host: host._id,
             quest: quest._id,
             startTime: formattedDate,
-            attendees: attendees
+            attendees: Object.values(attendees)
         }
-        const id = await dispatch(createEvent(event));
-        history.replace(`/events/${id}`);
+        if (!id) {
+            const id = await dispatch(createEvent(event));
+            history.replace(`/events/${id}`);
+        } else {
+            event["_id"] = id;
+            dispatch(updateEvent(event));
+            dispatch(setModal(false));
+        }
     }
 
     if (modalState && modalState === "createEvent") {
@@ -81,23 +114,27 @@ function EventForm({quest, host}) {
             <div id='page-overlay' className="page-overlay">
                 <div className="modal-content" id="modal-content">
                     <form onSubmit={handleSubmit}>
-                        <h1>Schedule your event for {quest.title} quest</h1>
+                        <h1>Schedule your event!</h1>
+                        <h3><span>Host: </span>{host.firstName} {host.lastName}</h3>
                         <div className="attendees">
-                            <h3>Host: {host.firstName} {host.lastName}</h3>
                             <div>
-                                <p>Add guests:</p>
-                                <input type="text" placeholder="Email" value={guest} onChange={(e)=>{setGuest(e.target.value)}}/>
-                                <button onClick={addGuest}>Add Guest</button>
+                                <h3><span>Your Party:</span></h3>
+
+                                <input id="add-guest-input" type="text" placeholder="Email" value={guest} onChange={(e)=>{setGuest(e.target.value)}}/>
+                                <button id="add-guest-button" onClick={addGuest}>Add Guest</button>
                                 {invalidUser && <p className="error">Not a valid user</p>}
                             </div>
 
-                            <h3>Your Party:</h3>
-                            <ul>
-                                {attendees.map((attendee)=> (<li id={attendee + "-li"} key={attendee}>{attendee} <i onClick={removeAttendee} id={attendee} className="fa-solid fa-x"></i></li>))}
+                            <ul className="attendees-list-create">
+                                {
+                                    Object.values(attendees).map((attendee) => {
+                                        return(<li id={attendee + "-li"} key={attendee}>{attendee} <i onClick={removeAttendee} id={attendee} className="fa-solid fa-x"></i></li>)
+                                    })
+                                }
                             </ul>
                         </div>
                         <div onClick={()=>setInvalidDate(false)} className="calendar">
-                            <h3>Please select a date for your event</h3>
+                            <h3><span>Date & Time:</span></h3>
         
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DateTimePicker 
@@ -110,11 +147,14 @@ function EventForm({quest, host}) {
                             {invalidDate && <p className="error">Please enter a valid date</p>}
                         </div>
                         <div className="modal-content-button">
-                            <button type="submit">Schedule</button>
+                            {!id && <button type="submit">Schedule</button>}
+                            {id && <button type="submit">Update</button>}
                         </div>
                     </form>
+                    <div onClick={closeModal} className="upper-x">
+                        <i className="fa-solid fa-x"></i>
+                    </div>
                 </div>
-
             </div>
         )
     } else {
