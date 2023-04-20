@@ -1,14 +1,19 @@
 import { setModal } from "../../store/modal";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createQuest } from "../../store/quests";
+import { useParams } from 'react-router-dom';
+import { getQuest, updateQuest, createQuest } from "../../store/quests";
 import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
+import { useEffect } from "react";
+import './slider.css'
 
-export default function QuestForm() {
+export default function UpdateForm() {
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
+    const { id } = useParams(); 
+    let quest = useSelector(state => state.quests[id]);
     const fileRef = useRef(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -24,11 +29,85 @@ export default function QuestForm() {
     const [zipcode, setZipcode] = useState("")
     const [radius, setRadius] = useState("");
     const [tags, setTags] = useState("");
+    const [foodNDrink, setFoodNDrink] = useState(false);
+    const [familyFriendly, setFamilyFriendly] = useState(false);
+    const [landmarks, setLandmarks] = useState(false);
+    const [publicArt, setPublicArt] = useState(false);
+    const [transportation, setTransportation] = useState(false);
+    const [sporty, setSporty] = useState(false);
+    const [green, setGreen] = useState(false);
+    const [obscure, setObscure] = useState(false);
+    const [localsOnly, setLocalsOnly] = useState(false);
+    const [touristTraps, setTouristTraps] = useState(false);
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
 
-    let submitButton = <button className="form-button-create" type="submit">Create Quest</button>
-    let formHeading =<h1 className='form-heading'>Create a New Quest</h1>
+    let submitButton = <button className="form-button-create" type="submit">Save</button>
+    let formHeading = <h1 className='form-heading'>Edit Quest</h1>
+
+    const tagNames = {
+        "food-and-drink": setFoodNDrink,
+        "family-friendly": setFamilyFriendly,
+        "landmarks": setLandmarks,
+        "public-art": setPublicArt,
+        "transportation": setTransportation,
+        "sporty": setSporty,
+        "green": setGreen,
+        "obscure": setObscure,
+        "locals-only": setLocalsOnly,
+        "tourist-traps": setTouristTraps
+    }
+
+    useEffect(() => {
+        if (id) {
+            dispatch(getQuest(id));
+            setTitle(quest.title);
+            setDescription(quest.description);
+            setCpOne(quest.checkpoints[0]);
+            setCpTwo(quest.checkpoints[1]);
+            setCpThree(quest.checkpoints[2]);
+            setCpFour(quest.checkpoints[3]);
+            setCpFive(quest.checkpoints[4]);
+            const address = quest.formattedAddress.split(",");
+            setStreetAddress(address[0]);
+            setCity(address[1]);
+            setState(address[2].split(" ")[1])
+            setZipcode(address[2].split(" ")[2]);
+            setDuration(quest.duration);
+            setRadius(quest.radius);
+            setTags(quest.tags);
+            if (tags.includes("food-and-drinks")){
+                setFoodNDrink(true)
+            }
+            if (tags.includes("family-friendly")){
+                setFamilyFriendly(true)
+            }
+            if (tags.includes("landmarks")) {
+                setLandmarks(true)
+            }
+            if (tags.includes("public-art")) {
+                setPublicArt(true)
+            }
+            if (tags.includes("transportation")) {
+                setTransportation(true)
+            }
+            if (tags.includes("sporty")) {
+                setSporty(true)
+            }
+            if (tags.includes("green")) {
+                setGreen(true)
+            }
+            if (tags.includes("obscure")) {
+                setObscure(true)
+            }
+            if (tags.includes("locals-only")) {
+                setLocalsOnly(true)
+            }
+            if (tags.includes("tourist-traps")) {
+                setTouristTraps(true)
+            }
+        }
+    }, [dispatch, id])
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -65,9 +144,14 @@ export default function QuestForm() {
         formData.append('zipcode', zipcode);
         formData.append('radius', radius);
         formData.append('tags', [tags]);
+        
+        // for (const pair of formData.entries()) {
+        //     console.log(`${pair[0]}, ${pair[1]}`)
+        // }
 
-        dispatch(createQuest(formData));
+        dispatch(updateQuest(formData, id));
         closeForm();
+
     };
 
     const handleCheck = (e) => {
@@ -83,7 +167,7 @@ export default function QuestForm() {
         dispatch(setModal(""))
     }
 
-    if (modalState && modalState === "questForm"){
+    if (tags !== "" && modalState && modalState === "updateForm"){
         return(
             <div className="page-overlay">
                 <div className="create-page">
@@ -94,6 +178,7 @@ export default function QuestForm() {
                             Title 
                             <input className="form-input-field-td"
                                 type="text"
+                                value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             /> 
                         </label>
@@ -101,6 +186,7 @@ export default function QuestForm() {
                             Description 
                             <input className="form-input-field-td"
                                 type="text"
+                                value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                             /> 
                         </label>
@@ -108,18 +194,23 @@ export default function QuestForm() {
                     <label className="form-label">
                         Checkpoints
                         <textarea className="form-input-field-c"
+                            value={cpOne}
                             onChange={(e) => setCpOne(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            value={cpTwo}
                             onChange={(e) => setCpTwo(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            value={cpThree}
                             onChange={(e) => setCpThree(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            value={cpFour}
                             onChange={(e) => setCpFour(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            value={cpFive}
                             onChange={(e) => setCpFive(e.target.value)}
                         /> 
                     </label>
@@ -128,6 +219,7 @@ export default function QuestForm() {
                             Street Address
                             <input className="form-input-field"
                                 type="text"
+                                value={streetAddress}
                                 onChange={(e) => setStreetAddress(e.target.value)}
                             /> 
                         </label>
@@ -135,12 +227,14 @@ export default function QuestForm() {
                             City
                             <input className="form-input-field"
                                 type="text"
+                                value={city}
                                 onChange={(e) => setCity(e.target.value)}
                             /> 
                         </label>
                         <label className="form-label">
                             State
                             <select onChange={(e) => setState(e.target.value)}>
+                                <option value="NY" default>NY</option>
                                 {states.map((state) => (
                                     <option value={state}>{state}</option>
                                 ))}
@@ -150,6 +244,7 @@ export default function QuestForm() {
                             Zip Code
                             <input className="form-input-field"
                                 type="text"
+                                value={zipcode}
                                 onChange={(e) => setZipcode(e.target.value)}
                             /> 
                         </label>
@@ -160,6 +255,7 @@ export default function QuestForm() {
                             <input className="form-input-field"
                                 type="number"
                                 min="0"
+                                value={duration}
                                 onChange={(e) => setDuration(e.target.value)}
                             /> 
                         </label>
@@ -168,6 +264,7 @@ export default function QuestForm() {
                             <input className="form-input-field"
                                 type="number"
                                 min="0"
+                                value={radius}
                                 onChange={(e) => setRadius(e.target.value)}
                             /> 
                         </label>
@@ -181,6 +278,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="food-and-drink"
                                 onChange={handleCheck}
+                                defaultChecked={foodNDrink}
                             />
                             <span className="slider"></span>
                         </label> 
@@ -189,6 +287,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="family-friendly"
                                 onChange={handleCheck}
+                                defaultChecked={familyFriendly}
                             />
                             <span className="slider"></span>
                         </label> 
@@ -197,6 +296,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="landmarks"
                                 onChange={handleCheck}
+                                defaultChecked={landmarks}
                             />
                             <span className="slider"></span>
                         </label> 
@@ -205,6 +305,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="public-art"
                                 onChange={handleCheck}
+                                defaultChecked={publicArt}
                             />
                             <span className="slider"></span>
                         </label> 
@@ -213,6 +314,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="transportation"
                                 onChange={handleCheck}
+                                defaultChecked={transportation}
                             />
                             <span className="slider"></span>
                         </label> 
@@ -223,6 +325,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="sporty"
                                 onChange={handleCheck}
+                                defaultChecked={sporty}
                             />
                             <span className="slider"></span>
                         </label>  
@@ -231,6 +334,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="green"
                                 onChange={handleCheck}
+                                defaultChecked={green}
                             />
                             <span className="slider"></span>
                         </label>  
@@ -239,6 +343,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="obscure"
                                 onChange={handleCheck}
+                                defaultChecked={obscure}
                             />
                             <span className="slider"></span>
                         </label>  
@@ -247,6 +352,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="locals-only"
                                 onChange={handleCheck}
+                                defaultChecked={localsOnly}
                             />
                             <span className="slider"></span>
                         </label>                
@@ -255,6 +361,7 @@ export default function QuestForm() {
                             <input type="checkbox"
                                 value="tourist-traps"
                                 onChange={handleCheck}
+                                defaultChecked={touristTraps}
                             />
                             <span class="slider"></span>
                         </label>
