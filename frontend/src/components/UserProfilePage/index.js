@@ -14,9 +14,9 @@ function UserProfilePage(){
                 <SideBar />
                 <div className="profile-right">
                 {(wildcard==="userInfo" || wildcard===undefined) &&<UserInfo />}
-                {(wildcard==="yourQuests")&&<YourQuests />}
                 {(wildcard==="openEvents")&&<PastEvents />}
                 {(wildcard==="upcomingEvents")&&<UpcomingEvents />}
+                {(wildcard==="yourQuests")&&<YourQuests />}
                 </div>
                 </div>
             )
