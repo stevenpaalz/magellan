@@ -30,11 +30,11 @@ const QuestShowPage = () => {
   }, [dispatch, id]);
 
   let editButton;
-  if (sessionUser && sessionUser._id === quest.creator._id) {
+  if (sessionUser && sessionUser._id === quest?.creator._id) {
       editButton = <button onClick={updateClick} className="quest-show-start-quest">Update Quest</button>
   }
   let deleteButton;
-  if (sessionUser && sessionUser._id === quest.creator._id) {
+  if (sessionUser && sessionUser._id === quest?.creator._id) {
       deleteButton = <button onClick={deleteClick} className="quest-show-start-quest">Delete Quest</button>
   }
 
