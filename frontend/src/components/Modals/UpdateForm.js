@@ -2,19 +2,22 @@ import { setModal } from "../../store/modal";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { getQuest, updateQuest, createQuest } from "../../store/quests";
+import { getQuest, updateQuest } from "../../store/quests";
 import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
 import { useEffect } from "react";
 import './slider.css'
+import { useHistory } from "react-router-dom";
 
 export default function UpdateForm() {
+    const history = useHistory();
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
     const { id } = useParams(); 
     let quest = useSelector(state => state.quests[id]);
     const fileRef = useRef(null);
+    const questErrors = useSelector(state => state.errors?.quest)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [cpOne, setCpOne] = useState("");
@@ -39,26 +42,17 @@ export default function UpdateForm() {
     const [obscure, setObscure] = useState(false);
     const [localsOnly, setLocalsOnly] = useState(false);
     const [touristTraps, setTouristTraps] = useState(false);
+    const [errors, setErrors] = useState({})
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
 
     let submitButton = <button className="form-button-create" type="submit">Save</button>
     let formHeading = <h1 className='form-heading'>Edit Quest</h1>
 
-    const tagNames = {
-        "food-and-drink": setFoodNDrink,
-        "family-friendly": setFamilyFriendly,
-        "landmarks": setLandmarks,
-        "public-art": setPublicArt,
-        "transportation": setTransportation,
-        "sporty": setSporty,
-        "green": setGreen,
-        "obscure": setObscure,
-        "locals-only": setLocalsOnly,
-        "tourist-traps": setTouristTraps
-    }
-
     useEffect(() => {
+        if (questErrors){
+            setErrors(questErrors)
+        }
         if (id) {
             dispatch(getQuest(id));
             setTitle(quest.title);
@@ -107,7 +101,7 @@ export default function UpdateForm() {
                 setTouristTraps(true)
             }
         }
-    }, [dispatch, id])
+    }, [dispatch, id, questErrors])
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -129,14 +123,15 @@ export default function UpdateForm() {
         else setImageUrls([]);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(); 
         Array.from(images).forEach(image => formData.append("images", image));
         fileRef.current.value = null;
+        const allCheckPoints = [cpOne, cpTwo, cpThree, cpFour, cpFive]
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('checkpoints', [cpOne, cpTwo, cpThree, cpFour, cpFive]);
+        formData.append('checkpoints', allCheckPoints);
         formData.append('duration', duration);
         formData.append('streetAddress', streetAddress);
         formData.append('city', city);
@@ -145,12 +140,23 @@ export default function UpdateForm() {
         formData.append('radius', radius);
         formData.append('tags', [tags]);
         
+        if (allCheckPoints.includes("")) {
+            setErrors({cp: "There should be a minimum of 5 checkpoints"})
+        } else if (tags.length < 1) {
+            setErrors({tagz: "Please select at least one tag"})
+        } else {
+            const questId = await dispatch(updateQuest(formData, id));
+            if (questId) {
+                closeForm();
+                history.go(0)
+            };
+        };
+
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`)
         // }
 
-        dispatch(updateQuest(formData, id));
-        closeForm();
+
 
     };
 
@@ -167,14 +173,25 @@ export default function UpdateForm() {
         dispatch(setModal(""))
     }
 
-    if (tags !== "" && modalState && modalState === "updateForm"){
+    if (modalState && modalState === "updateForm"){
         return(
             <div className="page-overlay">
                 <div className="create-page">
                 {formHeading}
                 <form className="quest-form" onSubmit={handleSubmit}>
                     <div>
-                        <label className="form-label">
+                        <div className="form-error-div">
+                            {errors.title && <p className="form-error">{errors.title}</p>}
+                            {errors.description && <p className="form-error">{errors.description}</p>}
+                            {errors.cp && <p className="form-error">{errors.cp}</p>}
+                            {errors.streetAddress && <p className="form-error">{errors.streetAddress}</p>}
+                            {errors.city && <p className="form-error">{errors.city}</p>}
+                            {errors.zipcode && <p className="form-error">{errors.zipcode}</p>}
+                            {errors.duration && <p className="form-error">{errors.duration}</p>}
+                            {errors.radius && <p className="form-error">{errors.radius}</p>}
+                            {errors.tagz && <p className="form-error">{errors.tagz}</p>}
+                        </div>
+                        <label className="form-label-td">
                             Title 
                             <input className="form-input-field-td"
                                 type="text"
@@ -195,22 +212,27 @@ export default function UpdateForm() {
                         Checkpoints
                         <textarea className="form-input-field-c"
                             value={cpOne}
+                            placeholder="Required"
                             onChange={(e) => setCpOne(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
                             value={cpTwo}
+                            placeholder="Required"
                             onChange={(e) => setCpTwo(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
                             value={cpThree}
+                            placeholder="Required"
                             onChange={(e) => setCpThree(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
                             value={cpFour}
+                            placeholder="Required"
                             onChange={(e) => setCpFour(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
                             value={cpFive}
+                            placeholder="Required"
                             onChange={(e) => setCpFive(e.target.value)}
                         /> 
                     </label>
@@ -236,7 +258,7 @@ export default function UpdateForm() {
                             <select onChange={(e) => setState(e.target.value)}>
                                 <option value="NY" default>NY</option>
                                 {states.map((state) => (
-                                    <option value={state}>{state}</option>
+                                    <option key={state} value={state}>{state}</option>
                                 ))}
                             </select>
                         </label>
@@ -356,14 +378,14 @@ export default function UpdateForm() {
                             />
                             <span className="slider"></span>
                         </label>                
-                        <label class="switch">
+                        <label className="switch">
                             Tourist-Traps
                             <input type="checkbox"
                                 value="tourist-traps"
                                 onChange={handleCheck}
                                 defaultChecked={touristTraps}
                             />
-                            <span class="slider"></span>
+                            <span className="slider"></span>
                         </label>
                     </label>
                     <label className="form-label">
