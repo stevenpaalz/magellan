@@ -1,7 +1,9 @@
+const secretKey = process.env.AWS_SECRET_ACCESS_KEY;
+const accessKey = process.env.AWS_ACCESS_KEY_ID;
 const AWS = require("aws-sdk");
 const multer = require("multer");
-const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
-const NAME_OF_BUCKET = "magellan-seeds";
+const s3 = new AWS.S3({ apiVersion: "2006-03-01", accessKeyId: accessKey, secretAccessKey: secretKey});
+const NAME_OF_BUCKET = "magellan-dev";
 
 const singleFileUpload = async ({ file, public = false }) => {
     const { originalname, buffer } = file;

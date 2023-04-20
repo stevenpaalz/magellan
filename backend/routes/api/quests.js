@@ -64,25 +64,24 @@ router.get('/', async (req, res) => {
         return res.json([]);
     }
 })
-multipleMulterUpload("images")
-router.post('/', requireUser, validateQuestInput, async (req, res, next) => {
+
+router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput, async (req, res, next) => {
     const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
         const latlng = await getLatLng(formattedAddressInput);
         const latInput = latlng[0];
         const lngInput = latlng[1];
-
         const newQuest = new Quest({
             title: req.body.title,
             description: req.body.description,
-            checkpoints: req.body.checkpoints,
+            checkpoints: req.body.checkpoints.split(","),
             duration: req.body.duration,
             formattedAddress: formattedAddressInput,
             lat: latInput,
             lng: lngInput,
             radius: req.body.radius,
-            tags: req.body.tags,
+            tags: req.body.tags.split(","),
             creator: req.user._id,
             imageUrls
         })
@@ -106,19 +105,18 @@ router.patch('/:id', multipleMulterUpload("images"), requireUser, validateQuestU
         }
 
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
-        const latlng = getLatLng(formattedAddressInput);
+        const latlng = await getLatLng(formattedAddressInput);
         const latInput = latlng[0];
         const lngInput = latlng[1];
-
         updateQuest.title = req.body.title;
         updateQuest.description = req.body.description;
-        updateQuest.checkpoints = req.body.checkpoints;
+        updateQuest.checkpoints = req.body.checkpoints.split(",");
         updateQuest.duration = req.body.duration;
         updateQuest.formattedAddress = formattedAddressInput;
         updateQuest.lat = latInput;
         updateQuest.lng = lngInput;
         updateQuest.radius = req.body.radius;
-        updateQuest.tags = req.body.tags;
+        updateQuest.tags = req.body.tags.split(",");
         updateQuest.creator = req.user._id;
         updateQuest.imageUrls = imageUrls;
         let quest = await updateQuest.save();
