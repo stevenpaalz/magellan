@@ -33,11 +33,11 @@ const QuestShowPage = () => {
   
   let editButton;
   if (sessionUser && sessionUser._id === quest.creator._id) {
-      editButton = <button onClick={updateClick} className="show-page-button show-page-button-orange-button">Update Quest</button>
+      editButton = <button onClick={updateClick} className="show-page-button show-page-button-blue-button">Update Quest</button>
   }
   let deleteButton;
   if (sessionUser && sessionUser._id === quest.creator._id) {
-      deleteButton = <button onClick={deleteClick} className="show-page-button show-page-button-orange-button">Delete Quest</button>
+      deleteButton = <button onClick={deleteClick} className="show-page-button show-page-button-red-button">Delete Quest</button>
   }
 
   const startEvent = async (e) => {
@@ -76,6 +76,7 @@ const QuestShowPage = () => {
         <div className="quest-show-full-page">
             <div>
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${quest.imageUrls[0]})`} }>
+
                     <div className="quest-show-title">{quest.title}</div>
                     <QuestShowTags tags={quest.tags} />
 
