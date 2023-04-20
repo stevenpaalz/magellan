@@ -19,12 +19,13 @@ export default function UpcomingEvents(){
             setFilter("attend")
         }
     }
-    const allEvents = useSelector(state=> state.events)
-    let pastEvents = Object.values(allEvents).filter((event)=> Date.parse(event.startTime) > Date.now())
-    let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     useEffect(()=>{
         events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     },[filter])
+    const allEvents = useSelector(state=> state.events)
+    if (!allEvents){return null} 
+    let pastEvents = Object.values(allEvents).filter((event)=> Date.parse(event.startTime) > Date.now())
+    let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     return(
         <>
             <h1>{sessionUser.firstName}'s upcoming events:</h1>
