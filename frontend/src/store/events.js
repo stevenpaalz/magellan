@@ -68,7 +68,8 @@ export const getEvent = (eventId) => async dispatch => {
     try{
         const res = await jwtFetch(`/api/events/${eventId}`);
         const event = await res.json();
-        return dispatch(receiveEvent(event));
+        dispatch(receiveEvent(event));
+        return event;
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -101,6 +102,23 @@ export const createEvent = (event) => async dispatch => {
           return dispatch(receiveErrors(resBody.errors));
         }
     }
+}
+
+export const updateEvent = (event) => async dispatch => {
+    // try{
+        const res = await jwtFetch(`/api/events/${event._id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(event)
+        });
+        const data = await res.json();
+        dispatch(receiveEvent(data));
+        return data._id
+    // } catch (err) {
+    //     const resBody = await err.json();
+    //     if (resBody.statusCode === 400) {
+    //       return dispatch(receiveErrors(resBody.errors));
+    //     }
+    // }
 }
 
 function eventsReducer(state = {}, action) {

@@ -70,15 +70,20 @@ router.patch('/:id', requireUser, validateEventInput, async (req, res, next) => 
             throw new Error("Cannot update this event");
         }
 
+        let attendeeIds = [];
+        for (let i = 0; i < req.body.attendees.length; i++) {
+            let user = await User.findOne({email: req.body.attendees[i]});
+            attendeeIds.push(user._id)
+        }
         updateEvent.quest = req.body.quest;
         updateEvent.host = req.user._id;
-        updateEvent.attendees = req.body.attendees;
+        updateEvent.attendees = attendeeIds;
         updateEvent.startTime = req.body.startTime;
 
         let event = await updateEvent.save();
         event = await event.populate("host", "_id email firstName lastName");
         event = await event.populate("attendees", "_id email firstName lastName");
-        event = await event.populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator")
+        event = await event.populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
         return res.json(event);
     }
     catch(err) {
