@@ -14,6 +14,13 @@ const HomePage = () => {
   const mapstyle={ height: 'calc(100vh - 80px)', width: '100%' }
   const dispatch= useDispatch()
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "visible";
+    }
+  }, [])
+
   const [tags, setTags] = useState({})
   const [filterDropdownSelected, setFilterDropdownSelected] = useState(false)
   useEffect(()=>{
@@ -57,10 +64,12 @@ const modalstate = useSelector(state=>state.modals.modalState)
           <QuestMap quests={questsFiltered} style={mapstyle}/>
         </div>
         <div className="width50">
-          <button className="filter-dropdown" onClick={filterDropdownClick}>{modalstate==="filters"?"close filters ⌃":"select filters ⌵"}</button>
-          {(modalstate==="filters") && <div className="dropdown-options"> 
-                            {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><p className="dropdown-option">{tag}</p></label>)}
-                            </div>}
+          <div className="quests-button-index-headers">
+            <button className="filter-dropdown" onClick={filterDropdownClick}>{modalstate==="filters"?"close filters ⌃":"select filters ⌵"}</button>
+            {(modalstate==="filters") && <div className="dropdown-options"> 
+                              {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><p className="dropdown-option">{tag}</p></label>)}
+                              </div>}
+          </div>
 
           <QuestIndex quests={questsFiltered}/>
           </div>
