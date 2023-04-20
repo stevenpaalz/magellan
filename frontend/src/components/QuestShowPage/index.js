@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./QuestShowPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteQuest, getQuest } from "../../store/quests";
 import QuestShowTags from "./QuestShowTags";
@@ -76,6 +76,13 @@ const QuestShowPage = () => {
         <div className="quest-show-full-page">
             <div>
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${quest.imageUrls[0]})`} }>
+                    <div className="back-holder">
+                      <NavLink exact to="/quests">
+                        <div className="back-text">
+                          <i className="fa-solid fa-arrow-left"></i>
+                        </div>
+                      </NavLink> 
+                    </div>
 
                     <div className="quest-show-title">{quest.title}</div>
                     <QuestShowTags tags={quest.tags} />

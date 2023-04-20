@@ -11,6 +11,7 @@ import HiddenCheckpoints from "./HiddenCheckpoints";
 import RevealedCheckpoints from "./RevealedCheckpoints";
 import { setModal } from "../../store/modal";
 import EventForm from "../Modals/EventForm";
+import QuestEventDetails from "./QuestEventDetails";
 
 const EventShowPage = () => {
     const history = useHistory();
@@ -48,7 +49,7 @@ const EventShowPage = () => {
     return(
         <>
             <div className="quest-show-full-page">
-            <div className="quest-show-holder">
+            <div>
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${event.quest.imageUrls[0]})`} }>
                     <div className="quest-show-title">{event.quest.title}</div>
                     <QuestShowTags tags={event.quest.tags} />
@@ -66,7 +67,7 @@ const EventShowPage = () => {
                     </div>
                 
                     <div className="quest-show-right">
-                        <div className="quest-show-body-holder">
+                        <div className="event-show-body-holder">
                             <div className="event-show-details-holder">
                                 <EventDetails event={event} startTime={formattedStartTime} />
                             </div>
@@ -78,13 +79,11 @@ const EventShowPage = () => {
                                     <HiddenCheckpoints checkpoints={event.quest.checkpoints} />
                                 }
                             </div>
-
-                            
                         </div>
 
-                        <div className="quest-show-buttons-holder">
-                            <button onClick={openModal} className="quest-show-start-quest">Edit Event</button>
-                            <button onClick={deleteThisEvent} className="quest-show-schedule-quest">Delete Event</button>
+                        <div className="event-show-buttons-holder">
+                            <button onClick={openModal} className="show-page-button show-page-button-blue-button">Edit Event</button>
+                            <button onClick={deleteThisEvent} className="show-page-button show-page-button-red-button">Delete Event</button>
                         </div>
                     </div>
                     </div>
@@ -100,8 +99,5 @@ const EventShowPage = () => {
 }
 
 export default EventShowPage
-
-
-
 
 
