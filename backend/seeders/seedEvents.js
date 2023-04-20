@@ -46,9 +46,9 @@ events.push(
 
 for (let i = 1; i <= 3; i++) {
     let attendees = [];
-    while (attendees.length < 4) {
+    while (attendees.length < 3) {
         let user = users[faker.datatype.number({'min': 0, 'max': users.length - 1 })]
-        if (demo._id !== user._id) {
+        if (demo._id !== user._id && !attendees.includes(user._id)) {
             attendees.push(user._id);
         }
     }
@@ -62,11 +62,11 @@ for (let i = 1; i <= 3; i++) {
     )
 }
 
-for (let i = 1; i <= 3; i++) {
+for (let i = 1; i <= 5; i++) {
     let attendees = [];
-    while (attendees.length < 5) {
+    while (attendees.length < 4) {
         let user = users[faker.datatype.number({'min': 0, 'max': users.length - 1 })]
-        if (dan._id !== user._id) {
+        if (dan._id !== user._id && !attendees.includes(user._id)) {
             attendees.push(user._id);
         }
     }

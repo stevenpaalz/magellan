@@ -32,7 +32,7 @@ users.push(
       homeState: "NY",
       lat: 40.74343509394614,
       lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
+      profileImageUrl: "https://magellan-dev.s3.amazonaws.com/mag_green_small.png"
     })
 )
 
@@ -46,7 +46,7 @@ users.push(
       homeState: "NY",
       lat: 40.74343509394614,
       lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
+      profileImageUrl: "https://magellan-dev.s3.amazonaws.com/mag_white_small.png"
     })
 )
 
@@ -60,7 +60,7 @@ users.push(
       homeState: "NY",
       lat: 40.74343509394614,
       lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
+      profileImageUrl: "https://magellan-dev.s3.amazonaws.com/mag_purple_small.png"
     })
 )
 
@@ -74,7 +74,7 @@ users.push(
       homeState: "NY",
       lat: 40.74343509394614,
       lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
+      profileImageUrl: "https://magellan-dev.s3.amazonaws.com/mag_yellow_small.png"
     })
 )
 
@@ -91,7 +91,7 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
         homeState: "NY",
         lat: 40.74343509394614,
         lng: -73.98816281069031,
-        profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
+        profileImageUrl: "https://magellan-dev.s3.amazonaws.com/mag_red_small.png"
       })
     )
 }

@@ -92,8 +92,7 @@ quests.push(
     radius: 1,
     tags: [
         "tourist-traps",
-        "landmarks",
-        "family-friendly"
+        "landmarks"
     ],
     creator: jamie._id,
     imageUrls: ["https://magellan-dev.s3.amazonaws.com/GettyImages-660180168-1024x683.jpg"],
@@ -281,30 +280,30 @@ quests.push(
   })
 )
 
-// quests.push(
-//   new Quest({
-//     title: "Speaking Easy in New York City",
-//     description: "Shhh! Don't tell anyone about these secretive suppliers of cocktail goodness. Enjoy the best of the hidden bars of NYC in this quest.",
-//     checkpoints: [
-//         "Have a drink in the subway at Nothing Really Matters, at the 50th St subway station, down the stairs on the downtown 1 line. Enter next to Duane Reade.",
-//         "Say hi to Mikey at Patent Pending, a bar hidden in the back of Patent Coffee on 27th",
-//         "Have a stiff drink at a speakeasy that really began during phohibition, The Back Bar at 102 Norfolk St - look for the Lower East Side Toy Company sign, then head through the gate, down the alley, and up the steps. ",
-//         "Enjoy whimsical decor, (but no photos please!) at Peachy's in Chinatown, at 5 Doyers St, find the glowing neon-pink sign next to Chinese Tuxedo, then head down the stairs.",
-//         "Do your bodega shopping and cocktail drinking at the same time at Seaport, 252 Front St, Enter the store and head towards the back. Enter what looks like a back-of-the-store storage room. You'll see a sliding door that leads you to the speakeasy."
-//     ],
-//     duration: 3,
-//     formattedAddress: "306 E 50th St",
-//     lat: 40.76235676562176, 
-//     lng: -73.98630570303742,
-//     radius: 3,
-//     tags: [
-//         "locals-only",
-//         "food-and-drink"
-//     ],
-//     creator: demo._id,
-//     imageUrls: ["https://magellan-dev.s3.amazonaws.com/cocktails.jpeg"]
-//   })
-// )
+quests.push(
+  new Quest({
+    title: "Speaking Easy in New York City",
+    description: "Shhh! Don't tell anyone about these secretive suppliers of cocktail goodness. Enjoy the best of the hidden bars of NYC in this quest.",
+    checkpoints: [
+        "Have a drink in the subway at Nothing Really Matters, at the 50th St subway station, down the stairs on the downtown 1 line. Enter next to Duane Reade.",
+        "Say hi to Mikey at Patent Pending, a bar hidden in the back of Patent Coffee on 27th",
+        "Have a stiff drink at The Back Bar at 102 Norfolk St - look for the Lower East Side Toy Company sign, then head through the gate, down the alley, and up the steps. ",
+        "Enjoy whimsical decor, (but no photos please!) at Peachy's in Chinatown, at 5 Doyers St, find the glowing neon-pink sign next to Chinese Tuxedo, then head down the stairs.",
+        "Checkout 252 Front St in Seaport. Enter the store and head towards the back. Enter what looks like a back-of-the-store storage room. You'll see a sliding door to enter."
+    ],
+    duration: 3,
+    formattedAddress: "306 E 50th St, New York, NY 10017",
+    lat: 40.76235676562176, 
+    lng: -73.98630570303742,
+    radius: 3,
+    tags: [
+        "locals-only",
+        "food-and-drink"
+    ],
+    creator: demo._id,
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/cocktails.jpeg"]
+  })
+)
 
 const insertSeeds = () => {
     console.log("Resetting db and seeding quests...");
