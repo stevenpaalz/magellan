@@ -72,7 +72,7 @@ const QuestShowPage = () => {
   return (
     <>
         <div className="quest-show-full-page">
-            <div className="quest-show-holder">
+            <div>
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${quest.imageUrls[0]})`} }>
                     <div className="quest-show-title">{quest.title}</div>
                     <QuestShowTags tags={quest.tags} />
