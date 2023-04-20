@@ -45,9 +45,6 @@ export default function UpdateForm() {
     let submitButton = <button className="form-button-create" type="submit">Save</button>
     let formHeading = <h1 className='form-heading'>Edit Quest</h1>
 
-    // const address = quest.formattedAddress.split(",");
-    // console.log(address)
-
     const tagNames = {
         "food-and-drink": setFoodNDrink,
         "family-friendly": setFamilyFriendly,
@@ -111,8 +108,6 @@ export default function UpdateForm() {
             }
         }
     }, [dispatch, id])
-    console.log(tags)
-    console.log(landmarks)
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -150,9 +145,9 @@ export default function UpdateForm() {
         formData.append('radius', radius);
         formData.append('tags', [tags]);
         
-        for (const pair of formData.entries()) {
-            console.log(`${pair[0]}, ${pair[1]}`)
-        }
+        // for (const pair of formData.entries()) {
+        //     console.log(`${pair[0]}, ${pair[1]}`)
+        // }
 
         dispatch(updateQuest(formData, id));
         closeForm();
@@ -166,7 +161,6 @@ export default function UpdateForm() {
         } else {
             setTags([...tags, e.target.value])
         };
-        console.log(tags)
     };
 
     function closeForm(){

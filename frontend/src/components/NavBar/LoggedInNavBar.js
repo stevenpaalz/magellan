@@ -3,23 +3,16 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
-import { setModal } from '../../store/modal';
-import { useSelector } from 'react-redux';
-import QuestForm from '../Modals/QuestForm';
+import ProfileMenu from './ProfileMenu';
 
 const LoggedInNavBar = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const modalState = useSelector(state => state.modals?.modalState)
-
-    function createClick(){
-        dispatch(setModal("questForm"))
-    }
-
-    const logoutUser = e => {
-        e.preventDefault();
-        dispatch(logout());
-    }
+  const dispatch = useDispatch();
+  const history = useHistory();
+  
+  const logoutUser = e => {
+      e.preventDefault();
+      dispatch(logout());
+  }
 
     return (
         <nav>
@@ -29,17 +22,23 @@ const LoggedInNavBar = () => {
                 </NavLink>
             </div>
             <div className="nav-right">   
-                <button>
-                    <div className="create-quest-nav-button" onClick={createClick}>create quest</div>
-                </button>
-                <QuestForm />
-                <NavLink exact to="/">
+                {/* <NavLink exact to="/">
+                    <div className="create-quest-nav-button">create quest</div>
+                </NavLink>  */}
+
+                <NavLink exact to="/about">
+                    <div className="create-quest-nav-button">about</div>
+                </NavLink> 
+
+                {/* <NavLink exact to="/">
                     <div className="user-icon-holder">
                         <i className="fa-solid fa-user"></i>                    
                     </div>                
-                </NavLink>
+                </NavLink> */}
 
-                <button className="logout-button" onClick={logoutUser}>log out</button>
+                {/* <button className="logout-button" onClick={logoutUser}>log out</button> */}
+
+                <ProfileMenu />
             </div>
         </nav>
     );

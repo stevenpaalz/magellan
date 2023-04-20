@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getQuest } from "../../store/quests";
+import { deleteQuest, getQuest } from "../../store/quests";
 import QuestShowTags from "./QuestShowTags";
 import QuestShowReviews from "./QuestShowReviews";
 import QuestMap from "../Map";
@@ -29,6 +29,15 @@ const QuestShowPage = () => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
 
+  let editButton;
+  if (sessionUser && sessionUser._id === quest.creator._id) {
+      editButton = <button onClick={updateClick} className="quest-show-start-quest">Update Quest</button>
+  }
+  let deleteButton;
+  if (sessionUser && sessionUser._id === quest.creator._id) {
+      deleteButton = <button onClick={deleteClick} className="quest-show-start-quest">Delete Quest</button>
+  }
+
   const startEvent = async (e) => {
     e.preventDefault();
     let event = {
@@ -47,8 +56,15 @@ const QuestShowPage = () => {
     dispatch(setModal("createEvent"))
   }
 
-  function updateClick(){
+  function updateClick(e){
+    e.preventDefault();
     dispatch(setModal("updateForm"))
+  }
+
+  function deleteClick(e){
+    e.preventDefault(); 
+    dispatch(deleteQuest(id))
+    history.replace(`/quests`);
   }
 
   if (!quest) return null;
@@ -82,7 +98,8 @@ const QuestShowPage = () => {
 
 
                         <div className="quest-show-buttons-holder">
-                            <button onClick={updateClick} className="quest-show-start-quest">Update Quest</button>
+                            {editButton}
+                            {deleteButton}
                             <button onClick={startEvent} className="quest-show-start-quest">Start Quest</button>
                             <button onClick={openModal} className="quest-show-schedule-quest">Schedule for Later</button>
                         </div>

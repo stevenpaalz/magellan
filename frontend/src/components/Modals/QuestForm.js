@@ -77,7 +77,6 @@ export default function QuestForm() {
         } else {
             setTags([...tags, e.target.value])
         };
-        console.log(tags)
     };
 
     function closeForm(){

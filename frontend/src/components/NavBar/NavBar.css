@@ -128,10 +128,82 @@ font-size: var(--font-size-400);
     display: flex;
     align-items: center;
     text-decoration: none;
+    margin-right: 24px;
+    transition: transform 250ms;
 }
 
 .create-quest-nav-button:hover {
-    color: var(--red);
+    /* color: var(--red); */
+    transform: translateY(-5px);
 }
+
+
+  /* transition: transform 250ms; */
+
+  /* transform: translateY(-5px); */
+
+  
+  .profile-dropdown {
+    border: 1px solid;
+    min-height: 40px;
+    min-width: 180px;
+    max-height: 849.6px;
+    max-width: 360px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+    border-radius: 16px;
+    position: absolute;
+    display: flex;
+    background-color: white;
+    color: #fff; 
+    margin: 8px;
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+    z-index: 3;
+    top: 70px;
+    right: 0.5px;
+  }
+  
+  .drop-down-option{
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px 8px 8px 8px;
+    display: flex;
+    margin: 0 0 0 0;
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-semibold);
+    text-align: 11;
+  }
+  
+  .drop-down-option:hover {
+    color: var(--orange);
+    background-color: var(--offwhite);
+  }
+
+  .drop-down-line{
+    border-radius: 8px;
+    padding: 0px 8px 0px 8px;
+    display: flex;
+    margin: 0 0 0 0;
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-semibold);
+    color: rgb(206, 206, 206);
+    text-align: 11;
+  }
+  
+
+  .nav-avatar {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: url("https://magellan-seeds.s3.amazonaws.com/mag_white_small.png") no-repeat;
+    /* transition: transform 250ms; */
+  }
+
+  .nav-avatar:hover {
+    cursor: pointer;
+    content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png');
+    /* transform: translateY(-5px); */
+  }
 
 
