@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getQuest } from "../../store/quests";
+import { deleteQuest, getQuest } from "../../store/quests";
 import QuestShowTags from "./QuestShowTags";
 import QuestShowReviews from "./QuestShowReviews";
 import QuestMap from "../Map";
@@ -11,6 +11,7 @@ import { setModal } from "../../store/modal";
 import EventForm from "../Modals/EventForm";
 import { createEvent } from "../../store/events";
 import { useHistory } from "react-router-dom";
+import UpdateForm from "../Modals/UpdateForm";
 
 const QuestShowPage = () => {
     const history = useHistory();
@@ -27,6 +28,15 @@ const QuestShowPage = () => {
   useEffect(() => {
     dispatch(getQuest(id));
   }, [dispatch, id]);
+
+  let editButton;
+  if (sessionUser && sessionUser._id === quest.creator._id) {
+      editButton = <button onClick={updateClick} className="quest-show-start-quest">Update Quest</button>
+  }
+  let deleteButton;
+  if (sessionUser && sessionUser._id === quest.creator._id) {
+      deleteButton = <button onClick={deleteClick} className="quest-show-start-quest">Delete Quest</button>
+  }
 
   const startEvent = async (e) => {
     e.preventDefault();
@@ -46,6 +56,17 @@ const QuestShowPage = () => {
     dispatch(setModal("createEvent"))
   }
 
+  function updateClick(e){
+    e.preventDefault();
+    dispatch(setModal("updateForm"))
+  }
+
+  function deleteClick(e){
+    e.preventDefault(); 
+    dispatch(deleteQuest(id))
+    history.replace(`/quests`);
+  }
+
   if (!quest) return null;
 
   return (
@@ -57,7 +78,7 @@ const QuestShowPage = () => {
                     <QuestShowTags tags={quest.tags} />
 
                 </div>
-
+                <UpdateForm />
                 <div className="quest-show-full-bottom">
                     <div className="quest-show-left">
                         <div className="quest-show-map-holder">
@@ -77,6 +98,8 @@ const QuestShowPage = () => {
 
 
                         <div className="quest-show-buttons-holder">
+                            {editButton}
+                            {deleteButton}
                             <button onClick={startEvent} className="quest-show-start-quest">Start Quest</button>
                             <button onClick={openModal} className="quest-show-schedule-quest">Schedule for Later</button>
                         </div>

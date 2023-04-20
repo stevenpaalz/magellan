@@ -16,9 +16,9 @@ exports.validateQuestInput = [
         .custom(uniqueTitle),
     check('description')
         .exists({checkFalsy: true}).withMessage('Quest must have a description'),
-    check('checkpoints')
-        .isArray({min: 5})
-        .withMessage('Quest must have at least 5 checkpoints'),
+    // check('checkpoints')
+    //     .isArray({min: 5})
+    //     .withMessage('Quest must have at least 5 checkpoints'),
     check('duration')
         .exists({checkFalsy: true}).withMessage('Quest must have a duration')
         .isFloat({min: 0}).withMessage('Duration must be greater than 0 hours'),
@@ -33,9 +33,9 @@ exports.validateQuestInput = [
         .exists({checkFalsy: true}).withMessage("Missing state field"),
     check('zipcode')
         .exists({checkFalsy: true}).withMessage("Missing zipcde field"),
-    check('tags')
-        .isArray({min: 1})
-        .withMessage('Quest must have at least 1 tag'),
+    // check('tags')
+    //     .isArray({min: 1})
+    //     .withMessage('Quest must have at least 1 tag'),
     handleValidationErrors
 ];
   
@@ -44,9 +44,9 @@ exports.validateQuestUpdate = [
         .exists({ checkFalsy: true }).withMessage('Quest must have a title'),
     check('description')
         .exists({checkFalsy: true}).withMessage('Quest must have a description'),
-    check('checkpoints')
-        .isArray({min: 5})
-        .withMessage('Quest must have at least 5 checkpoints'),
+    // check('checkpoints')
+    //     .isArray({min: 5})
+    //     .withMessage('Quest must have at least 5 checkpoints'),
     check('duration')
         .exists({checkFalsy: true}).withMessage('Quest must have a duration')
         .isFloat({min: 0}).withMessage('Duration must be greater than 0 hours'),
@@ -61,8 +61,8 @@ exports.validateQuestUpdate = [
         .exists({checkFalsy: true}).withMessage("Missing state field"),
     check('zipcode')
         .exists({checkFalsy: true}).withMessage("Missing zipcde field"),
-    check('tags')
-        .isArray({min: 1})
-        .withMessage('Quest must have at least 1 tag'),
+    // check('tags')
+    //     .isArray({min: 1})
+    //     .withMessage('Quest must have at least 1 tag'),
     handleValidationErrors
 ];
