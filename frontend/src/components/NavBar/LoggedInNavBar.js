@@ -24,17 +24,20 @@ const LoggedInNavBar = () => {
             <div className="nav-right">   
                 {/* <NavLink exact to="/">
                     <div className="create-quest-nav-button">create quest</div>
-                </NavLink>
+                </NavLink>  */}
 
-                <NavLink exact to="/">
+                <NavLink exact to="/about">
+                    <div className="create-quest-nav-button">about</div>
+                </NavLink> 
+
+                {/* <NavLink exact to="/">
                     <div className="user-icon-holder">
                         <i className="fa-solid fa-user"></i>                    
                     </div>                
-                </NavLink>
+                </NavLink> */}
 
-                <button className="logout-button" onClick={logoutUser}>log out</button> */}
+                {/* <button className="logout-button" onClick={logoutUser}>log out</button> */}
 
-                
                 <ProfileMenu />
             </div>
         </nav>

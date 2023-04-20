@@ -128,11 +128,20 @@ font-size: var(--font-size-400);
     display: flex;
     align-items: center;
     text-decoration: none;
+    margin-right: 24px;
+    transition: transform 250ms;
 }
 
 .create-quest-nav-button:hover {
-    color: var(--red);
+    /* color: var(--red); */
+    transform: translateY(-5px);
 }
+
+
+  /* transition: transform 250ms; */
+
+  /* transform: translateY(-5px); */
+
   
   .profile-dropdown {
     border: 1px solid;
@@ -191,8 +200,7 @@ font-size: var(--font-size-400);
     /* transition: transform 250ms; */
   }
 
-  .nav-avatar:hover,
-  .nav-avatar:focus {
+  .nav-avatar:hover {
     cursor: pointer;
     content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png');
     /* transform: translateY(-5px); */

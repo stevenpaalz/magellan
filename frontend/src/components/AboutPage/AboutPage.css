@@ -101,6 +101,8 @@
     width: 20px;
     height: 20px;
     font-size: var(--font-size-400);
+    transition: transform 250ms;
+
 }
 
 .teammate-github-icon {
@@ -114,16 +116,23 @@
     width: 20px;
     height: 20px;
     font-size: var(--font-size-400);
+    transition: transform 250ms;
+
 }
 
 .teammate-linkedin-icon:hover {
     cursor: pointer;
-    color: var(--orange);
+    /* color: var(--red); */
+    transform: translateY(-5px);
+
+    
 }
 
 .teammate-github-icon:hover {
     cursor: pointer;
-    color: var(--orange);
+    /* color: var(--red); */
+    transform: translateY(-5px);
+
 }
 
 
