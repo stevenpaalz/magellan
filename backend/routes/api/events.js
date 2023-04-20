@@ -40,10 +40,15 @@ router.get('/', async (req, res) => {
 
 router.post('/', requireUser, validateEventInput, async (req, res, next) => {
     try {
+        let attendeeIds = [];
+        for (let i = 0; i < req.body.attendees.length; i++) {
+            let user = await User.findOne({email: req.body.attendees[i]});
+            attendeeIds.push(user._id)
+        }
         const newEvent = new Event({
             quest: req.body.quest,
             host: req.user._id,
-            attendees: req.body.attendees,
+            attendees: attendeeIds,
             startTime: req.body.startTime
         })
         let event = await newEvent.save();
