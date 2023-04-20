@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./QuestShowPage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +8,8 @@ import StarRating from "../QuestIndex/StarRating";
 
 const QuestDetails = ( {quest} ) => {
   const dispatch = useDispatch();
+  const [hours, setHours] = useState("hour")
+  const [miles, setMiles] = useState("mile")
 
   const reviews = useSelector(state => {
     return state.reviews ? state.reviews : null;
@@ -15,11 +17,26 @@ const QuestDetails = ( {quest} ) => {
 
   useEffect(() => {
     dispatch(getAllReviews());
+    if (quest.duration > 1) {
+      setHours("hours")
+    }
+    else {
+      setHours("hour")
+    }
+    if (quest.radius > 1) {
+      setMiles("miles")
+    }
+    else {
+      setMiles("mile")
+    }
   }, [dispatch]);
 
   const filteredReviews = Object.values(reviews).filter((review) => {
     return review.quest === quest._id;
   });
+
+
+
 
   if (!filteredReviews) return null;
 
@@ -27,8 +44,8 @@ const QuestDetails = ( {quest} ) => {
     <>
         <div>
             <div className="quest-show-description"><span className="show-label">What to expect:</span> {quest.description}</div>
-            <div className="quest-show-text"><span className="show-label">Radius:</span> {quest.radius}  miles</div>
-            <div className="quest-show-text"><span className="show-label">Duration:</span> {quest.duration} hours</div>
+            <div className="quest-show-text"><span className="show-label">Radius:</span> {quest.radius} {miles}</div>
+            <div className="quest-show-text"><span className="show-label">Duration:</span> {quest.duration} {hours}</div>
                         
             <div className="quest-show-text star-rating"><span className="show-rating-label">Rating:</span> 
                 <StarRating questReviews={filteredReviews} />
