@@ -130,9 +130,13 @@ font-size: var(--font-size-400);
     text-decoration: none;
     margin-right: 24px;
     transition: transform 250ms;
+    margin-right: 24px;
+    transition: transform 250ms;
 }
 
 .create-quest-nav-button:hover {
+    /* color: var(--red); */
+    transform: translateY(-5px);
     /* color: var(--red); */
     transform: translateY(-5px);
 }

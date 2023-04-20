@@ -11,7 +11,8 @@ import { getAllUsers } from "../../store/users";
 import { useParams } from "react-router-dom";
 
 function EventForm({quest, host}) {
-    const { id } = useParams();
+    const { id }= useParams();
+    const onEvents = window.location.href.includes("events");
     const history = useHistory();
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
@@ -36,7 +37,7 @@ function EventForm({quest, host}) {
             setAttendees(newAttendees)
         }
 
-        if (id) {
+        if (onEvents) {
             fillAttendees();
         }
     }, [])
@@ -99,8 +100,9 @@ function EventForm({quest, host}) {
             startTime: formattedDate,
             attendees: Object.values(attendees)
         }
-        if (!id) {
+        if (!onEvents) {
             const id = await dispatch(createEvent(event));
+            dispatch(setModal(false));
             history.replace(`/events/${id}`);
         } else {
             event["_id"] = id;
@@ -147,8 +149,8 @@ function EventForm({quest, host}) {
                             {invalidDate && <p className="error">Please enter a valid date</p>}
                         </div>
                         <div className="modal-content-button">
-                            {!id && <button type="submit">Schedule</button>}
-                            {id && <button type="submit">Update</button>}
+                            {!onEvents && <button type="submit">Schedule</button>}
+                            {onEvents && <button type="submit">Update</button>}
                         </div>
                     </form>
                     <div onClick={closeModal} className="upper-x">

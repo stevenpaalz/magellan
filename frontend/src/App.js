@@ -29,7 +29,6 @@ const App = () => {
       <ProtectedRoute exact path="/user-profile/:wildcard" component={UserProfilePage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
       <Route exact path="/about" component={AboutPage}></Route>
-     {/* <ProtectedRoute exact path="/home" component={HomePage} /> */}
     </Switch>
     </>
   );
