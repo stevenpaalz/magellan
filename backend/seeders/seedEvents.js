@@ -30,7 +30,7 @@ events.push(
     new Event({
         host: demo._id,
         attendees: [steve._id, yong._id],
-        quests: quests[5],
+        quest: quests[5],
         startTime: '2023-04-19T10:00:00Z'
     })
 )
@@ -39,7 +39,7 @@ events.push(
     new Event({
         host: dan._id,
         attendees: [demo._id, jamie._id, yong._id],
-        quests: quests[5],
+        quest: quests[5],
         startTime: '2023-04-18T10:00:00Z'
     })
 )
