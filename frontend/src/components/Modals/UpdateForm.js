@@ -7,6 +7,7 @@ import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
 import { useEffect } from "react";
+import './slider.css'
 
 export default function UpdateForm() {
     const modalState = useSelector(state => state.modals?.modalState);
@@ -16,7 +17,11 @@ export default function UpdateForm() {
     const fileRef = useRef(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [checkpoints, setCheckpoints] = useState({});
+    const [cpOne, setCpOne] = useState("");
+    const [cpTwo, setCpTwo] = useState("");
+    const [cpThree, setCpThree] = useState("");
+    const [cpFour, setCpFour] = useState("");
+    const [cpFive, setCpFive] = useState("");
     const [duration, setDuration] = useState("");
     const [streetAddress, setStreetAddress] = useState("");
     const [city, setCity] = useState("");
@@ -24,23 +29,49 @@ export default function UpdateForm() {
     const [zipcode, setZipcode] = useState("")
     const [radius, setRadius] = useState("");
     const [tags, setTags] = useState("");
+    const [foodNDrink, setFoodNDrink] = useState(false);
+    const [familyFriendly, setFamilyFriendly] = useState(false);
+    const [landmarks, setLandmarks] = useState(false);
+    const [publicArt, setPublicArt] = useState(false);
+    const [transportation, setTransportation] = useState(false);
+    const [sporty, setSporty] = useState(false);
+    const [green, setGreen] = useState(false);
+    const [obscure, setObscure] = useState(false);
+    const [localsOnly, setLocalsOnly] = useState(false);
+    const [touristTraps, setTouristTraps] = useState(false);
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
 
     let submitButton = <button className="form-button-create" type="submit">Save</button>
     let formHeading = <h1 className='form-heading'>Edit Quest</h1>
 
-    const address = quest.formattedAddress.split(",");
-    console.log(address)
+    // const address = quest.formattedAddress.split(",");
+    // console.log(address)
+
+    const tagNames = {
+        "food-and-drink": setFoodNDrink,
+        "family-friendly": setFamilyFriendly,
+        "landmarks": setLandmarks,
+        "public-art": setPublicArt,
+        "transportation": setTransportation,
+        "sporty": setSporty,
+        "green": setGreen,
+        "obscure": setObscure,
+        "locals-only": setLocalsOnly,
+        "tourist-traps": setTouristTraps
+    }
 
     useEffect(() => {
         if (id) {
             dispatch(getQuest(id));
             setTitle(quest.title);
             setDescription(quest.description);
-            setCheckpoints(quest.checkpoints);
+            setCpOne(quest.checkpoints[0]);
+            setCpTwo(quest.checkpoints[1]);
+            setCpThree(quest.checkpoints[2]);
+            setCpFour(quest.checkpoints[3]);
+            setCpFive(quest.checkpoints[4]);
             const address = quest.formattedAddress.split(",");
-            console.log(address)
             setStreetAddress(address[0]);
             setCity(address[1]);
             setState(address[2].split(" ")[1])
@@ -48,8 +79,40 @@ export default function UpdateForm() {
             setDuration(quest.duration);
             setRadius(quest.radius);
             setTags(quest.tags);
+            if (tags.includes("food-and-drinks")){
+                setFoodNDrink(true)
+            }
+            if (tags.includes("family-friendly")){
+                setFamilyFriendly(true)
+            }
+            if (tags.includes("landmarks")) {
+                setLandmarks(true)
+            }
+            if (tags.includes("public-art")) {
+                setPublicArt(true)
+            }
+            if (tags.includes("transportation")) {
+                setTransportation(true)
+            }
+            if (tags.includes("sporty")) {
+                setSporty(true)
+            }
+            if (tags.includes("green")) {
+                setGreen(true)
+            }
+            if (tags.includes("obscure")) {
+                setObscure(true)
+            }
+            if (tags.includes("locals-only")) {
+                setLocalsOnly(true)
+            }
+            if (tags.includes("tourist-traps")) {
+                setTouristTraps(true)
+            }
         }
     }, [dispatch, id])
+    console.log(tags)
+    console.log(landmarks)
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -75,14 +138,10 @@ export default function UpdateForm() {
         e.preventDefault();
         const formData = new FormData(); 
         Array.from(images).forEach(image => formData.append("images", image));
-        let formCheckPoints = [];
-        for (let key in checkpoints) {
-            formCheckPoints.push(checkpoints[key])
-        }
         fileRef.current.value = null;
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('checkpoints', [formCheckPoints]);
+        formData.append('checkpoints', [cpOne, cpTwo, cpThree, cpFour, cpFive]);
         formData.append('duration', duration);
         formData.append('streetAddress', streetAddress);
         formData.append('city', city);
@@ -100,11 +159,21 @@ export default function UpdateForm() {
 
     };
 
+    const handleCheck = (e) => {
+        if (tags.includes(e.target.value)) {
+            const newArray = tags.filter(tag => tag !== e.target.value);
+            setTags(newArray)
+        } else {
+            setTags([...tags, e.target.value])
+        };
+        console.log(tags)
+    };
+
     function closeForm(){
         dispatch(setModal(""))
     }
 
-    if (modalState && modalState === "updateForm"){
+    if (tags !== "" && modalState && modalState === "updateForm"){
         return(
             <div className="page-overlay">
                 <div className="create-page">
@@ -130,30 +199,25 @@ export default function UpdateForm() {
                     </div>
                     <label className="form-label">
                         Checkpoints
-                        <input className="form-input-field-c"
-                            type="text"
-                            value={checkpoints[0]}
-                            onChange={(e) => setCheckpoints({...checkpoints, "check1":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            value={cpOne}
+                            onChange={(e) => setCpOne(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            value={checkpoints[1]}
-                            onChange={(e) => setCheckpoints({...checkpoints, "check2":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            value={cpTwo}
+                            onChange={(e) => setCpTwo(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            value={checkpoints[2]}
-                            onChange={(e) => setCheckpoints({...checkpoints, "check3":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            value={cpThree}
+                            onChange={(e) => setCpThree(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            value={checkpoints[3]}
-                            onChange={(e) => setCheckpoints({...checkpoints, "check4":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            value={cpFour}
+                            onChange={(e) => setCpFour(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            value={checkpoints[4]}
-                            onChange={(e) => setCheckpoints({...checkpoints, "check5":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            value={cpFive}
+                            onChange={(e) => setCpFive(e.target.value)}
                         /> 
                     </label>
                     <div className="form-address">
@@ -215,88 +279,97 @@ export default function UpdateForm() {
                         Tags:
                     </label>
                     <label className="form-label-tags">
-                        <label>
-                            Food And Drink
-                            <input className="form-input-cb"
-                                type="checkbox"
+                    <label className="switch">
+                            Food and Drink
+                            <input type="checkbox"
                                 value="food-and-drink"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={foodNDrink}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
                             Family-Friendly
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="family-friendly"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={familyFriendly}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
                             Landmarks
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="landmarks"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={landmarks}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
                             Public-Art
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="public-art"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={publicArt}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
                             Transportation
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="transportation"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={transportation}
                             />
-                        </label>
+                            <span className="slider"></span>
+                        </label> 
                     </label>
                     <label className="form-label-tags">
-                        <label>
+                        <label className="switch">
                             Sporty
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="sporty"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={sporty}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label>  
+                        <label className="switch">
                             Green
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="green"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={green}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label>  
+                        <label className="switch">
                             Obscure
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="obscure"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={obscure}
                             />
-                            <span className="slider-round"></span>
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label>  
+                        <label className="switch">
                             Locals-Only
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="locals-only"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={localsOnly}
                             />
-                        </label>
-                        <label>
+                            <span className="slider"></span>
+                        </label>                
+                        <label class="switch">
                             Tourist-Traps
-                            <input className="form-input-cb"
-                                type="checkbox"
+                            <input type="checkbox"
                                 value="tourist-traps"
-                                onChange={(e)=> setTags([...tags, e.target.value])}
+                                onChange={handleCheck}
+                                defaultChecked={touristTraps}
                             />
+                            <span class="slider"></span>
                         </label>
                     </label>
                     <label className="form-label">

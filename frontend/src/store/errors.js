@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { eventErrorsReducer } from './events';
 import { sessionErrorsReducer } from './session';
-import { questErrorsReducer } from './quests';
+import { userErrorsReducer } from './users';
 
 export default combineReducers({
   session: sessionErrorsReducer,
-  quests: questErrorsReducer,
-  event: eventErrorsReducer
+  event: eventErrorsReducer,
+  user: userErrorsReducer
 });

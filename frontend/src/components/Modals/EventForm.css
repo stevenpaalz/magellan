@@ -1,6 +1,6 @@
 .modal-content {
     background: white;
-    width: 60%;
+    width: 40%;
     height: 60%;
     border-radius: 5px;
     border: 1px solid #31AFAC;
@@ -8,17 +8,65 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.modal-content form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 10%;
+}
+
+.modal-content form h1 {
     text-align: center;
+    font-size: 24px;
+}
+
+.modal-content form h3 {
+    font-size: 20px;
+    padding-bottom: 16px;
+}
+
+.attendees {
+    align-items: left;
 }
 
 .custom-datetime-picker {
     position: relative; /* Make the input field a positioned element */
-  }
+}
   
-  .custom-datetime-picker .react-datetime-picker__wrapper {
+.custom-datetime-picker .react-datetime-picker__wrapper {
     position: absolute; /* Position the calendar absolutely */
     top: 100%; /* Position the calendar below the input field */
     left: 0; /* Align the calendar with the left edge of the input field */
     z-index: 1; /* Make sure the calendar is above other elements */
-  }
+}
+
+.modal-content-button button {
+    background-color: var(--turquoise);
+    color: white;
+    border-radius: 5px;
+    font-size: var(--font-size-400);
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 4px solid transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 0px;
+}
+
+
+.modal-content-button button:hover {
+    background-color: #238C83;
+}
+
+p.error{
+    color: #F23005;
+    font-size: 12px;
+}
+p.error::before{
+    content:"🚨 ";
+}
+p.error::after{
+    content:" 🚨";
+}

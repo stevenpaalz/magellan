@@ -1,12 +1,10 @@
 import { setModal } from "../../store/modal";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
-import { getQuest, updateQuest, createQuest } from "../../store/quests";
+import { createQuest } from "../../store/quests";
 import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
-import { useEffect } from "react";
 
 export default function QuestForm() {
     const modalState = useSelector(state => state.modals?.modalState);
@@ -14,7 +12,11 @@ export default function QuestForm() {
     const fileRef = useRef(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [checkpoints, setCheckpoints] = useState({});
+    const [cpOne, setCpOne] = useState("");
+    const [cpTwo, setCpTwo] = useState("");
+    const [cpThree, setCpThree] = useState("");
+    const [cpFour, setCpFour] = useState("");
+    const [cpFive, setCpFive] = useState("");
     const [duration, setDuration] = useState("");
     const [streetAddress, setStreetAddress] = useState("");
     const [city, setCity] = useState("");
@@ -52,14 +54,10 @@ export default function QuestForm() {
         e.preventDefault();
         const formData = new FormData(); 
         Array.from(images).forEach(image => formData.append("images", image));
-        let formCheckPoints = [];
-        for (let key in checkpoints) {
-            formCheckPoints.push(checkpoints[key])
-        }
         fileRef.current.value = null;
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('checkpoints', [formCheckPoints]);
+        formData.append('checkpoints', [cpOne, cpTwo, cpThree, cpFour, cpFive]);
         formData.append('duration', duration);
         formData.append('streetAddress', streetAddress);
         formData.append('city', city);
@@ -70,6 +68,16 @@ export default function QuestForm() {
 
         dispatch(createQuest(formData));
         closeForm();
+    };
+
+    const handleCheck = (e) => {
+        if (tags.includes(e.target.value)) {
+            const newArray = tags.filter(tag => tag !== e.target.value);
+            setTags(newArray)
+        } else {
+            setTags([...tags, e.target.value])
+        };
+        console.log(tags)
     };
 
     function closeForm(){
@@ -100,25 +108,20 @@ export default function QuestForm() {
                     </div>
                     <label className="form-label">
                         Checkpoints
-                        <input className="form-input-field-c"
-                            type="text"
-                            onChange={(e) => setCheckpoints({...checkpoints, "check1":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            onChange={(e) => setCpOne(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            onChange={(e) => setCheckpoints({...checkpoints, "check2":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            onChange={(e) => setCpTwo(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            onChange={(e) => setCheckpoints({...checkpoints, "check3":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            onChange={(e) => setCpThree(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            onChange={(e) => setCheckpoints({...checkpoints, "check4":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            onChange={(e) => setCpFour(e.target.value)}
                         /> 
-                        <input className="form-input-field-c"
-                            type="text"
-                            onChange={(e) => setCheckpoints({...checkpoints, "check5":e.target.value})}
+                        <textarea className="form-input-field-c"
+                            onChange={(e) => setCpFive(e.target.value)}
                         /> 
                     </label>
                     <div className="form-address">
@@ -170,97 +173,93 @@ export default function QuestForm() {
                             /> 
                         </label>
                     </div>
-                    <div>
-
-                        <label className="form-label-tag-header">
-                            Tags:
+                    <label className="form-label">
+                        Tags:
+                    </label>
+                    <label className="form-label-tags">
+                    <label className="switch">
+                            Food and Drink
+                            <input type="checkbox"
+                                value="food-and-drink"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
+                            Family-Friendly
+                            <input type="checkbox"
+                                value="family-friendly"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
+                            Landmarks
+                            <input type="checkbox"
+                                value="landmarks"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
+                            Public-Art
+                            <input type="checkbox"
+                                value="public-art"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label> 
+                        <label className="switch">
+                            Transportation
+                            <input type="checkbox"
+                                value="transportation"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label> 
+                    </label>
+                    <label className="form-label-tags">
+                        <label className="switch">
+                            Sporty
+                            <input type="checkbox"
+                                value="sporty"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label>  
+                        <label className="switch">
+                            Green
+                            <input type="checkbox"
+                                value="green"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label>  
+                        <label className="switch">
+                            Obscure
+                            <input type="checkbox"
+                                value="obscure"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label>  
+                        <label className="switch">
+                            Locals-Only
+                            <input type="checkbox"
+                                value="locals-only"
+                                onChange={handleCheck}
+                            />
+                            <span className="slider"></span>
+                        </label>                
+                        <label class="switch">
+                            Tourist-Traps
+                            <input type="checkbox"
+                                value="tourist-traps"
+                                onChange={handleCheck}
+                            />
+                            <span class="slider"></span>
                         </label>
-                        <label className="form-label-tags">
-                            <label>
-                                Food And Drink
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="food-and-drink"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Family-Friendly
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="family-friendly"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Landmarks
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="landmarks"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Public-Art
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="public-art"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Transportation
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="transportation"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                        </label>
-                        <label className="form-label-tags">
-                            <label>
-                                Sporty
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="sporty"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Green
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="green"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Obscure
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="obscure"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                                <span className="slider-round"></span>
-                            </label>
-                            <label>
-                                Locals-Only
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="locals-only"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                            <label>
-                                Tourist-Traps
-                                <input className="form-input-cb"
-                                    type="checkbox"
-                                    value="tourist-traps"
-                                    onChange={(e)=> setTags([...tags, e.target.value])}
-                                />
-                            </label>
-                        </label>
-                    </div>
+                    </label>
                     <label className="form-label">
                         Pictures
                     <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
