@@ -23,7 +23,6 @@ const HomePage = () => {
   }, [])
 
   const [tags, setTags] = useState({})
-  const [filterDropdownSelected, setFilterDropdownSelected] = useState(false)
   useEffect(()=>{
     dispatch(getAllQuests())
 },[])
