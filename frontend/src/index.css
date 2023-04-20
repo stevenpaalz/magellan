@@ -77,3 +77,8 @@ table {
     --font-size-200: 14px;
     --font-size-100: 12px;
 }
+
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+ }
