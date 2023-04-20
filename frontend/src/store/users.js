@@ -1,6 +1,6 @@
 import jwtFetch from "./jwt";
 
-export const RECEIVE_ALL_USERS = "userss/RECEIVE_ALL_USERS";
+export const RECEIVE_ALL_USERS = "users/RECEIVE_ALL_USERS";
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const REMOVE_USER = "users/REMOVE_USER";
 const RECEIVE_USER_ERRORS = "users/RECEIVE_USER_ERRORS";
