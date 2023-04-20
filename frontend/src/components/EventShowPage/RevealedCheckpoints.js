@@ -4,9 +4,9 @@ const RevealedCheckpoints = ({checkpoints}) => {
             <div className="event-details-header">Your Checkpoints</div>
             <div className="checkpoints-box">
               {checkpoints.map((checkpoint) => (
-                <div className="checkpoint-holder">
-                    <i className="fa-regular fa-square"></i>
-                    <div className="checkpoint-text" key={checkpoint}>{checkpoint}</div>
+                <div key={checkpoint} className="checkpoint-holder">
+                    <input type="checkbox" className="checkpoint-text" id={checkpoint} />
+                    <label className="checkpoint-label" htmlFor={checkpoint}>{checkpoint}</label>
                 </div>
               ))}
             </div>
