@@ -29,7 +29,7 @@
 .quest-show-title {
     font-size: 50px;
     font-weight: var(--font-weight-semibold);
-    margin-right: 24px;
+    margin-bottom: 6px;
     color: white;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
