@@ -210,7 +210,7 @@ font-size: var(--font-size-400);
     /* transition: transform 250ms; */
   }
 
-  .nav-avatar:hover {
+  .nav-avatar:hover, .nav-avatar.active {
     cursor: pointer;
     /* content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png'); */
     box-shadow: 0 0px 10px rgba(255, 255, 255, 0.787);
