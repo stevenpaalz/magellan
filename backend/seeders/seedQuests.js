@@ -44,14 +44,14 @@ quests.push(
       "locals-only"
     ],
     creator: demo._id,
-    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/unionsqnyc-jpg.jpg"]
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/unionsqnyc-jpg.jpg"]
   })
 );
 
 quests.push(
   new Quest({
     title: "Get lost in Chinatown",
-      description: "Discover Chinatown like you're from there or else...",
+      description: "Discover Chinatown like you're from there...",
       checkpoints: [
           "Find a BAO, ask around if you aren't sure",
           "Find a buddha statue and take a selfie with it",
@@ -70,14 +70,14 @@ quests.push(
           "obscure"
       ],
       creator: demo._id,
-      imageUrls: ["https://magellan-seeds.s3.amazonaws.com/njgcailbq4761.jpg"],
+      imageUrls: ["https://magellan-dev.s3.amazonaws.com/njgcailbq4761.jpg"],
   })
 );
 
 quests.push(
   new Quest({
     title: "Financial District is Dead",
-    description: "Find the bull, find the bear, find dead people everywhere - I mean money, MONEY EVERYWHERE!!!",
+    description: "Find the bull, find the bear, find dead people everywhere - I mean money, MONEY EVERYWHERE!!! This quest will take you around FiDi and to see the sites from the John Wick movie franchise.",
     checkpoints: [
         "Find the Charging Bull and take a selfie with the rear of the bull statue, NOT THE FRONT",
         "Find George Washington",
@@ -96,14 +96,14 @@ quests.push(
         "family-friendly"
     ],
     creator: jamie._id,
-    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/GettyImages-660180168-1024x683.jpg"],
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/GettyImages-660180168-1024x683.jpg"],
   })
 );
 
 quests.push(
   new Quest({
     title: "Where's the square at Time Square?",
-    description: "Find out what's at Time Square",
+    description: "Find out what's at Time Square. Check out the (in)famous NYC landmark and be the first in your group to find the typical New York sites. Just don't expect to have the 'local' experience!",
     checkpoints: [
         "Find a cart vendor",
         "Find a street performer and take a selfie with them, make sure to tip them",
@@ -121,7 +121,7 @@ quests.push(
         "tourist-traps"
     ],
     creator: demo._id,
-    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Times-Square-New-York-City.jpeg"],
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/Times-Square-New-York-City.jpeg"],
   })
 );
 
@@ -147,14 +147,14 @@ quests.push(
         "green"
     ],
     creator: steve._id,
-    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Domino-Park-Williamsburg-waterfront-Brooklyn-NYC.jpg"]
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/Domino-Park-Williamsburg-waterfront-Brooklyn-NYC.jpg"]
   })
 );
 
 quests.push(
   new Quest({
     title: "Flushing, the real Chinatown",
-    description: "We are going to find great food",
+    description: "We are going to find great food and an authentic Chinatown experience",
     checkpoints: [
         "Find a bubble tea store",
         "Find a dim sum restaurant",
@@ -173,9 +173,138 @@ quests.push(
         "obscure"
     ],
     creator: yong._id,
-    imageUrls: ["https://magellan-seeds.s3.amazonaws.com/Flushing.jpg"]
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/Flushing.jpg"]
   })
 );
+
+quests.push(
+  new Quest({
+    title: "Central Park Sculpture Scavenge",
+    description: "Spend your day, finding little bits of history preserved in 3 dimensions, in Central Park. This quest is an excellent way to spend a sunny day in the park.",
+    checkpoints: [
+        "Find The Obelisk, or 'Cleopatra's Needle', the oldest manmade object in Central Park",
+        "Find a statue depicting William Shakespeare or one of his works",
+        "Find a statue depicting an animal, bonus points for Balto the dog",
+        "Throw a penny into one of the park's fountains",
+        "Find the Women's Rights Pioneers Monument the first sculpture in central park to depict actual women, unveiled in 2020 🤦‍♂️."
+    ],
+    duration: 2,
+    formattedAddress:"848 Columbus Cir, New York, NY 10019",
+    lat: 40.768426341481465,  
+    lng: -73.98186262004357,
+    radius: 5,
+    tags: [
+        "public-art",
+        "family-friendly",
+        "green"
+    ],
+    creator: dan._id,
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/central-park-new-york-city-WHEREYOU0118-fb2c3b1bf36d40258ec2788145fa5581.jpg"]
+  })
+);
+
+quests.push(
+  new Quest({
+    title: "The Bushwick Bohemian",
+    description: "Explore the vibrant, up-and-coming neighborhood of Bushwick, NYC! Check out some of the best coffee shops, shopping, and restaurants that Brooklyn has to offer.",
+    checkpoints: [
+        "Grab a coffee at a brightly-painted coffee shop",
+        "Leaf through a new-to-you book in a used book store",
+        "Get some pizza at a wood-fired pizza restaurant",
+        "Ride a citi-bike or a Revel scooter",
+        "Take a selfie with a mural that fills up the entire wall of a multi-story building."
+    ],
+    duration: 4,
+    formattedAddress: "92 Irving Ave, Brooklyn, NY 11237",
+    lat: 40.70406607254139,  
+    lng: -73.92309052983279,
+    radius: 4,
+    tags: [
+        "food-and-drink",
+        "locals-only",
+        "public-art"
+    ],
+    creator: dan._id,
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/wall-of-several-colorful-murals-in-Bushwick.jpg"]
+  })
+)
+
+quests.push(
+  new Quest({
+    title: "Metro Mosaic Madness",
+    description: "Find some of New York's best underground art (because it's in the subway)! We recommend picking up all-day subway passes for this one. Time to hit the underground.",
+    checkpoints: [
+        "See some incredibly realistic mosaic portraits at 72nd and 86th street stations.",
+        "Enjoy some fun animals at the natural history museum stop.",
+        "Smile at a Greyhound in human clothing at 23rd street.",
+        "Get your mind blown by Funktional Vibrations at Hudson Yards",
+        "Experience some nyc history with the black and white murals of 63rd and Lexington."
+    ],
+    duration: 5,
+    formattedAddress: "100 W 23rd St, New York, NY 10011",
+    lat: 40.74291102488633,  
+    lng:  -73.99322654026659,
+    radius: 6,
+    tags: [
+        "family-friendly",
+        "transportation",
+        "public-art"
+    ],
+    creator: demo._id,
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/shutterstock_722484637.jpg"]
+  })
+)
+
+quests.push(
+  new Quest({
+    title: "Manhattan Squared",
+    description: "Sometimes it's cool to be square! NY has squares everywhere! Check out some of the main attractions in NYC. Great for those visiting New York for the first time.",
+    checkpoints: [
+        "Hangout with some NYU students in Washington Square, ask someone what they're majoring in.",
+        "Go to a farmer's market tent or watch someone play chess at Union Square.",
+        "Find your new favorite billboard at Times Square.",
+        "Get a Shake Shack shake and listen to some street performers play in Madison Square.",
+        "Think about how many sides a square has at Greeley square and Herald square."
+    ],
+    duration: 2,
+    formattedAddress: "40 Washington Square S, New York, NY 10012",
+    lat: 40.730597316430085, 
+    lng:  -73.9995980924278,
+    radius: 4,
+    tags: [
+        "green",
+        "family-friendly",
+        "tourist-traps"
+    ],
+    creator: demo._id,
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/Washington-Square-Park.jpeg"]
+  })
+)
+
+// quests.push(
+//   new Quest({
+//     title: "Speaking Easy in New York City",
+//     description: "Shhh! Don't tell anyone about these secretive suppliers of cocktail goodness. Enjoy the best of the hidden bars of NYC in this quest.",
+//     checkpoints: [
+//         "Have a drink in the subway at Nothing Really Matters, at the 50th St subway station, down the stairs on the downtown 1 line. Enter next to Duane Reade.",
+//         "Say hi to Mikey at Patent Pending, a bar hidden in the back of Patent Coffee on 27th",
+//         "Have a stiff drink at a speakeasy that really began during phohibition, The Back Bar at 102 Norfolk St - look for the Lower East Side Toy Company sign, then head through the gate, down the alley, and up the steps. ",
+//         "Enjoy whimsical decor, (but no photos please!) at Peachy's in Chinatown, at 5 Doyers St, find the glowing neon-pink sign next to Chinese Tuxedo, then head down the stairs.",
+//         "Do your bodega shopping and cocktail drinking at the same time at Seaport, 252 Front St, Enter the store and head towards the back. Enter what looks like a back-of-the-store storage room. You'll see a sliding door that leads you to the speakeasy."
+//     ],
+//     duration: 3,
+//     formattedAddress: "306 E 50th St",
+//     lat: 40.76235676562176, 
+//     lng: -73.98630570303742,
+//     radius: 3,
+//     tags: [
+//         "locals-only",
+//         "food-and-drink"
+//     ],
+//     creator: demo._id,
+//     imageUrls: ["https://magellan-dev.s3.amazonaws.com/cocktails.jpeg"]
+//   })
+// )
 
 const insertSeeds = () => {
     console.log("Resetting db and seeding quests...");

@@ -18,7 +18,7 @@ users.push(
       homeState: "NY",
       lat: 40.74343509394614,
       lng: -73.98816281069031,
-      profileImageUrl: "https://magellan-seeds.s3.amazonaws.com/blank-profile-picture-973460.svg"
+      profileImageUrl: "https://magellan-dev.s3.amazonaws.com/mag_orange_small.png"
     })
 )
 
