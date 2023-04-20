@@ -1,21 +1,29 @@
 import "./EventShowPage.css";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getEvent } from "../../store/events";
+import { getEvent, deleteEvent } from "../../store/events";
 import QuestMap from "../Map";
 import QuestDetails from "../QuestShowPage/QuestDetails";
 import QuestShowTags from "../QuestShowPage/QuestShowTags";
 import EventDetails from "./EventDetails";
 import HiddenCheckpoints from "./HiddenCheckpoints";
 import RevealedCheckpoints from "./RevealedCheckpoints";
-
-
+import { setModal } from "../../store/modal";
+import EventForm from "../Modals/EventForm";
 
 const EventShowPage = () => {
+    const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user)
     const { id } = useParams();
     const dispatch = useDispatch();
     const event = useSelector(state => state.events[id]);
+
+    const deleteThisEvent = (e) => {
+        e.preventDefault();
+        dispatch(deleteEvent(id));
+        history.replace("/quests");
+    }
 
     useEffect(() => {
         dispatch(getEvent(id));
@@ -25,6 +33,12 @@ const EventShowPage = () => {
         <h1>Loading...</h1>
     );
     
+    const openModal = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dispatch(setModal("createEvent"))
+    }
+
     const startTime = new Date(event.startTime);
     const formattedStartTime = startTime.toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 
@@ -69,13 +83,16 @@ const EventShowPage = () => {
                         </div>
 
                         <div className="quest-show-buttons-holder">
-                            <button className="quest-show-start-quest">Edit Event</button>
-                            <button className="quest-show-schedule-quest">Delete Event</button>
+                            <button onClick={openModal} className="quest-show-start-quest">Edit Event</button>
+                            <button onClick={deleteThisEvent} className="quest-show-schedule-quest">Delete Event</button>
                         </div>
                     </div>
                     </div>
                 </div>
-            
+
+        </div>
+        <div>
+            <EventForm quest={event.quest} host={sessionUser} />
         </div>
         </>
 
