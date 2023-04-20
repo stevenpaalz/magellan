@@ -58,7 +58,7 @@ function EventForm({quest, host}) {
         e.preventDefault();
         if (guest) {
             setInvalidUser(false);
-            if (attendees[guest]) {
+            if (attendees[guest] || guest === host.email) {
                 setInvalidUser(true)
                 return;
             }
@@ -111,6 +111,11 @@ function EventForm({quest, host}) {
         }
     }
 
+    const changeGuest = (e) => {
+        setGuest(e.target.value);
+        setInvalidUser(false);
+    }
+
     if (modalState && modalState === "createEvent") {
         return(
             <div id='page-overlay' className="page-overlay">
@@ -122,9 +127,9 @@ function EventForm({quest, host}) {
                             <div>
                                 <h3><span>Your Party:</span></h3>
 
-                                <input id="add-guest-input" type="text" placeholder="Email" value={guest} onChange={(e)=>{setGuest(e.target.value)}}/>
+                                <input id="add-guest-input" type="text" placeholder="Email" value={guest} onChange={changeGuest}/>
                                 <button id="add-guest-button" onClick={addGuest}>Add Guest</button>
-                                {invalidUser && <p className="error">Not a valid user</p>}
+                                {invalidUser && <p className="formError">Not a valid user</p>}
                             </div>
 
                             <ul className="attendees-list-create">
@@ -146,7 +151,7 @@ function EventForm({quest, host}) {
                                     onChange={setDate}
                                 />
                             </LocalizationProvider>
-                            {invalidDate && <p className="error">Please enter a valid date</p>}
+                            {invalidDate && <p className="formError">Please enter a valid date</p>}
                         </div>
                         <div className="modal-content-button">
                             {!onEvents && <button type="submit">Schedule</button>}
