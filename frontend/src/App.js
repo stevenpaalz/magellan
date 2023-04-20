@@ -26,6 +26,7 @@ const App = () => {
       <ProtectedRoute exact path="/quests" component={HomePage} />
       <ProtectedRoute exact path="/quests/:id" component={QuestShowPage} />
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
+      <ProtectedRoute exact path="/user-profile/:wildcard" component={UserProfilePage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
       <Route exact path="/about" component={AboutPage}></Route>
     </Switch>
