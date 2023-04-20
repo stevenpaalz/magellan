@@ -81,7 +81,9 @@ router.get('/current', restoreUser, (req, res) => {
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     profileImageUrl: req.user.profileImageUrl,
-    email: req.user.email
+    email: req.user.email,
+    homeCity: req.user.homeCity,
+    homeState: req.user.homeState
   });
 });
 
@@ -109,7 +111,9 @@ router.get('/:userId', async (req, res) => {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
-    profileImageUrl: user.profileImageUrl
+    profileImageUrl: user.profileImageUrl,
+    homeCity: user.homeCity,
+    homeState: user.homeState
   };
   return res.json(userInfo);
 });
