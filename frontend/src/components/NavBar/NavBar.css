@@ -177,6 +177,11 @@ font-size: var(--font-size-400);
     font-weight: var(--font-weight-semibold);
     text-align: 11;
   }
+  .bottom-section{
+    border-top: 2px dashed var(--red);
+    padding-top: 5px;
+    margin-top: 5px;
+  }
   
   .drop-down-option:hover {
     color: var(--orange);
@@ -200,12 +205,14 @@ font-size: var(--font-size-400);
     width: 55px;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background: url("https://magellan-seeds.s3.amazonaws.com/mag_white_small.png") no-repeat;
+    /* background: url("https://magellan-seeds.s3.amazonaws.com/mag_white_small.png") cover ; */
+    object-fit: cover;
     /* transition: transform 250ms; */
   }
 
   .nav-avatar:hover {
     cursor: pointer;
-    content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png');
+    /* content: url('https://magellan-seeds.s3.amazonaws.com/mag_orange_small.png'); */
+    box-shadow: 0 0px 10px rgba(255, 255, 255, 0.787);
     /* transform: translateY(-5px); */
   }
