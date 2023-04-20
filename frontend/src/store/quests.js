@@ -115,12 +115,12 @@ export const createQuest = (formData) => async dispatch => {
         if (res.ok) {
             const quest = await res.json();
             dispatch(receiveQuest(quest));
+            return quest._id;
         };
     } catch(err) {
-        console.log(err)
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-            return dispatch(receiveQuestError(resBody.errors));
+            dispatch(receiveQuestError(resBody.errors));
         };
     };
 };
@@ -134,11 +134,12 @@ export const updateQuest = (formData, questId) => async dispatch => {
         if (res.ok) {
             const quest = await res.json();
             dispatch(receiveQuest(quest));
+            return quest._id; 
         };
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-            return dispatch(receiveQuestError(resBody.errors));
+            dispatch(receiveQuestError(resBody.errors));
         };
     };
 };

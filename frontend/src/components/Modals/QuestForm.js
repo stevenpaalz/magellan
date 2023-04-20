@@ -5,11 +5,15 @@ import { createQuest } from "../../store/quests";
 import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function QuestForm() {
+    const history = useHistory();
     const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
     const fileRef = useRef(null);
+    const questErrors = useSelector(state => state.errors?.quest)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [cpOne, setCpOne] = useState("");
@@ -24,8 +28,15 @@ export default function QuestForm() {
     const [zipcode, setZipcode] = useState("")
     const [radius, setRadius] = useState("");
     const [tags, setTags] = useState("");
+    const [errors, setErrors] = useState({});
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
+
+    useEffect(() => {
+        if (questErrors) {
+            setErrors(questErrors)
+        };
+    }, [questErrors]);
 
     let submitButton = <button className="form-button-create" type="submit">Create Quest</button>
     let formHeading =<h1 className='form-heading'>Create a New Quest</h1>
@@ -50,14 +61,15 @@ export default function QuestForm() {
         else setImageUrls([]);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(); 
         Array.from(images).forEach(image => formData.append("images", image));
         fileRef.current.value = null;
+        const allCheckPoints = [cpOne, cpTwo, cpThree, cpFour, cpFive]
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('checkpoints', [cpOne, cpTwo, cpThree, cpFour, cpFive]);
+        formData.append('checkpoints', allCheckPoints);
         formData.append('duration', duration);
         formData.append('streetAddress', streetAddress);
         formData.append('city', city);
@@ -66,8 +78,38 @@ export default function QuestForm() {
         formData.append('radius', radius);
         formData.append('tags', [tags]);
 
-        dispatch(createQuest(formData));
-        closeForm();
+        if (allCheckPoints.includes("")) {
+            setErrors({cp: "There should be a minimum of 5 checkpoints"})
+        } else if (tags.length < 1) {
+            setErrors({tagz: "Please select at least one tag"})
+        } else {
+            const questId = await dispatch(createQuest(formData));
+            console.log(questId)
+            if (questId) {
+                closeForm();
+                setTitle("");
+                setDescription("");
+                setCpOne("");
+                setCpTwo("");
+                setCpThree("");
+                setCpFour("");
+                setCpFive("");
+                setDuration("");
+                setStreetAddress("");
+                setCity("");
+                setState("");
+                setZipcode("");
+                setRadius("");
+                setTags("");
+                setErrors({});
+                history.replace(`/quests/${questId}`)
+            } else {
+                setErrors(questErrors)
+            }
+            
+            // else {
+                // };
+        };
     };
 
     const handleCheck = (e) => {
@@ -90,10 +132,22 @@ export default function QuestForm() {
                 {formHeading}
                 <form className="quest-form" onSubmit={handleSubmit}>
                     <div>
+                        <div className="form-error-div">
+                            {errors.title && <p className="form-error">{errors.title}</p>}
+                            {errors.description && <p className="form-error">{errors.description}</p>}
+                            {errors.cp && <p className="form-error">{errors.cp}</p>}
+                            {errors.streetAddress && <p className="form-error">{errors.streetAddress}</p>}
+                            {errors.city && <p className="form-error">{errors.city}</p>}
+                            {errors.zipcode && <p className="form-error">{errors.zipcode}</p>}
+                            {errors.duration && <p className="form-error">{errors.duration}</p>}
+                            {errors.radius && <p className="form-error">{errors.radius}</p>}
+                            {errors.tagz && <p className="form-error">{errors.tagz}</p>}
+                        </div>
                         <label className="form-label">
                             Title 
                             <input className="form-input-field-td"
                                 type="text"
+                                value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             /> 
                         </label>
@@ -101,6 +155,7 @@ export default function QuestForm() {
                             Description 
                             <input className="form-input-field-td"
                                 type="text"
+                                value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                             /> 
                         </label>
@@ -108,18 +163,28 @@ export default function QuestForm() {
                     <label className="form-label">
                         Checkpoints
                         <textarea className="form-input-field-c"
+                            placeholder="Required"
+                            value={cpOne}
                             onChange={(e) => setCpOne(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            placeholder="Required"
+                            value={cpTwo}
                             onChange={(e) => setCpTwo(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            placeholder="Required"
+                            value={cpThree}
                             onChange={(e) => setCpThree(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            placeholder="Required"
+                            value={cpFour}
                             onChange={(e) => setCpFour(e.target.value)}
                         /> 
                         <textarea className="form-input-field-c"
+                            placeholder="Required"
+                            value={cpFive}
                             onChange={(e) => setCpFive(e.target.value)}
                         /> 
                     </label>
@@ -128,6 +193,7 @@ export default function QuestForm() {
                             Street Address
                             <input className="form-input-field"
                                 type="text"
+                                value={streetAddress}
                                 onChange={(e) => setStreetAddress(e.target.value)}
                             /> 
                         </label>
@@ -135,6 +201,7 @@ export default function QuestForm() {
                             City
                             <input className="form-input-field"
                                 type="text"
+                                value={city}
                                 onChange={(e) => setCity(e.target.value)}
                             /> 
                         </label>
@@ -150,6 +217,7 @@ export default function QuestForm() {
                             Zip Code
                             <input className="form-input-field"
                                 type="text"
+                                value={zipcode}
                                 onChange={(e) => setZipcode(e.target.value)}
                             /> 
                         </label>
@@ -160,6 +228,7 @@ export default function QuestForm() {
                             <input className="form-input-field"
                                 type="number"
                                 min="0"
+                                value={duration}
                                 onChange={(e) => setDuration(e.target.value)}
                             /> 
                         </label>
@@ -168,6 +237,7 @@ export default function QuestForm() {
                             <input className="form-input-field"
                                 type="number"
                                 min="0"
+                                value={radius}
                                 onChange={(e) => setRadius(e.target.value)}
                             /> 
                         </label>
