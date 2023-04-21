@@ -241,6 +241,10 @@ export default function QuestForm() {
                                 onChange={(e) => setRadius(e.target.value)}
                             /> 
                         </label>
+                        <label className="form-label">
+                            Pictures
+                            <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
+                        </label>
                     </div>
                     <label className="form-label">
                         Tags:
@@ -328,10 +332,6 @@ export default function QuestForm() {
                             />
                             <span className="slider"></span>
                         </label>
-                    </label>
-                    <label className="form-label">
-                        Pictures
-                    <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
                     </label>
                     <div className="form-button-div">
                         {submitButton}
