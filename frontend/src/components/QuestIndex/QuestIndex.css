@@ -1,7 +1,9 @@
 button.filter-dropdown{
     background-color: var(--orange);
-    font-size: 18px;
-    font-weight: bold;
+    /* font-size: 18px;
+    font-weight: bold; */
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
     color: white;
     padding: 8px;
     border-radius: 4px;
@@ -63,8 +65,8 @@ h1.quest-title{
 
 button.create-quest-button{
     background-color: var(--turquoise);
-    font-size: 18px;
-    font-weight: bold;
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
     color: white;
     padding: 8px;
     border-radius: 4px;
@@ -84,6 +86,8 @@ button.create-quest-button{
 }
 
 button.create-quest-button:hover{
-    background-color: #4edad8;
+    /* background-color: #4edad8; */
     cursor: pointer;
+    background-color: #238C83;
+
 }
