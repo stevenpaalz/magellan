@@ -18,12 +18,14 @@ div.page-overlay{
     flex-direction: column;
     border: solid 1px #31AFAC;
     border-radius: 10px;
-    justify-content: center
+    padding: 10px;
 }
 
 .quest-form {
     display: flex; 
     flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .form-heading {
@@ -102,17 +104,18 @@ div.page-overlay{
 
 .form-button-create {
     width: 300px; 
-    background-color: #31AFAC;
-    font-size: 18px;
+    background-color: var(--turquoise);
+    font-size: 24px;
     font-weight: bold;
     color: white;
     padding: 8px;
     border-radius: 4px;
     border: none;
+    cursor: pointer;
 }
 
 .form-button-create:hover {
-    color: var(--red);
+    background-color: #4edad8;
 }
 
 .form-button-close {
@@ -144,7 +147,7 @@ div.page-overlay{
 
 p.form-error{
     color: #F23005;
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 20px; 
     text-align: center;
     padding-bottom: 2px;
@@ -154,4 +157,27 @@ p.form-error{
     display: flex; 
     padding: 5px; 
     justify-content: center;
+}
+
+.create-upper-x-container {
+    position: relative;
+}
+
+.create-upper-x {
+    position: absolute;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-upper-x:hover {
+    background-color: rgb(235, 235, 235);
+    border-radius: 100%;
+}
+
+.quest-form input[type="text"], .quest-form input[type="number"]{
+    line-height: 20px;
 }
