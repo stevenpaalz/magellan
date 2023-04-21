@@ -26,6 +26,7 @@
     height: 50px;
     overflow: wrap;
     resize: none;
+    margin-top: 4px;
 }
 
 .create-new-review-form button {

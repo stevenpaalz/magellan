@@ -29,7 +29,7 @@ export default function CurrentEvents(){
     let events = filter === "host" ? currentEvents.filter(event=> event.host._id === sessionUser._id) : currentEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     return(
         <>
-            <h1>{sessionUser.firstName}'s open events:</h1>
+            <h1>{sessionUser.firstName}'s Current Events</h1>
             <div className="host-attend-buttons">
             <button className="host-button"onClick={handleClick}>You're Hosting</button>
             <button className="attend-button" onClick={handleClick}>You're Attending</button>

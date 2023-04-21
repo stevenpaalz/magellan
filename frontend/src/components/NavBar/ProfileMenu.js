@@ -55,7 +55,7 @@ const ProfileMenu = () => {
           <div className="bottom-section"><a onClick={createClick} className="drop-down-option"><div>Create Quest</div></a>
           <a href="/user-profile/yourQuests" className="drop-down-option"><div>Designed Quests</div></a></div>
           {/* <div className="drop-down-line">------------------------------</div> */}
-          <div className="bottom-section"><div className="drop-down-option" onClick={logout}><div>Log out</div></div></div>
+          <div className="bottom-section"><div className="drop-down-option" onClick={logout}><div>Log Out</div></div></div>
         </div>
       )}
     </>

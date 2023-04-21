@@ -36,7 +36,7 @@ const SplashPage = () => {
               <SplashPageText />
             </div>
             <div>
-                <button className="splash-right-cta" onClick={openSignup}><img src="../../../../assets/compass.png" className="icon"/> <p>Get Questing!</p></button>
+                <button className="splash-right-cta" onClick={openSignup}><img src="../../../../assets/compass.png" className="icon"/>Get Questing!</button>
             </div>
           </div>
         </div>

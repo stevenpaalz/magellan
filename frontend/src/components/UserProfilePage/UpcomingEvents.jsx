@@ -28,7 +28,7 @@ export default function UpcomingEvents(){
     let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     return(
         <>
-            <h1>{sessionUser.firstName}'s upcoming events:</h1>
+            <h1>{sessionUser.firstName}'s Upcoming Events</h1>
             <div className="host-attend-buttons">
             <button className="host-button"onClick={handleClick}>You're Hosting</button>
             <button className="attend-button" onClick={handleClick}>You're Attending</button>

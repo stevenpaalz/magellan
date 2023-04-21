@@ -13,7 +13,7 @@ export default function YourQuests(){
     const quests = allquests?.filter((quest)=>quest.creator._id === sessionUser._id)
     return(
         <>
-        <h1>Designed Quests by {sessionUser.firstName}:</h1>
+        <h1>Quests Designed by {sessionUser.firstName}</h1>
         <QuestIndex quests={quests}/>
         </>
     )

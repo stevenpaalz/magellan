@@ -29,7 +29,7 @@ export default function PastEvents(){
     let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     return(
         <>
-            <h1>{sessionUser.firstName}'s open events:</h1>
+            <h1>{sessionUser.firstName}'s Past Events</h1>
             <div className="host-attend-buttons">
             <button className="host-button"onClick={handleClick}>You Hosted</button>
             <button className="attend-button" onClick={handleClick}>You Attended</button>
