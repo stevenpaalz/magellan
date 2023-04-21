@@ -40,7 +40,16 @@ const goodReviews = ["This was by far the best scavenger hunt I've ever been on!
 "The scavenger hunt was so much fun and the clues were challenging enough to keep us engaged. We had a great time exploring NYC and solving the puzzles.",
 "This scavenger hunt was a great way to spend a day in the city with my friends. We had a lot of laughs and learned so much about different neighborhoods.",
 "The scavenger hunt was a fantastic way to see different parts of the city and learn about NYC's history. Highly recommended!",
-"The scavenger hunt was a great way to bond with my colleagues outside of work. The challenges were well-designed and kept us entertained all day."
+"The scavenger hunt was a great way to bond with my colleagues outside of work. The challenges were well-designed and kept us entertained all day.",
+"The scavenger hunt was a blast! The clues were challenging and the locations we visited were incredible. I can't wait to do it again!",
+"I had so much fun on this scavenger hunt! It was a great way to explore NYC and see some amazing sights.",
+"The scavenger hunt was the perfect way to spend a weekend day in the city. The clues were clever and the team-building activities were a lot of fun.",
+"I highly recommend this scavenger hunt to anyone visiting NYC. It's a great way to see different neighborhoods and learn about the city's history.",
+"The scavenger hunt was a great way to explore the city with my kids. They loved solving the puzzles and discovering new things about the city.",
+"I had a fantastic time on this scavenger hunt! The clues were challenging and the locations we visited were stunning.", 
+"The scavenger hunt was a great way to spend a day in the city with my partner. We had so much fun solving the puzzles and discovering hidden gems.", "This scavenger hunt was so much fun! The clues were cleverly designed and the team-building activities were a great way to bond with my friends.",
+"I loved this scavenger hunt! It was a great way to explore the city and see some amazing sights with my family.",
+"The scavenger hunt was a great way to explore different neighborhoods in the city and learn about NYC's history. I highly recommend it!"
 ]
 
 badReviews.forEach((review, idx) => {
