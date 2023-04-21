@@ -202,20 +202,14 @@ export default function UpdateForm() {
         return(
             <div className="page-overlay">
                 <div className="create-page">
+                <div className="create-upper-x-container">
+                    <div onClick={closeForm} className="create-upper-x">
+                        <i className="fa-solid fa-x"></i>
+                    </div>
+                </div>
                 {formHeading}
                 <form className="quest-form" onSubmit={handleSubmit}>
                     <div>
-                        <div className="form-error-div">
-                            {errors.title && <p className="form-error">{errors.title}</p>}
-                            {errors.description && <p className="form-error">{errors.description}</p>}
-                            {errors.cp && <p className="form-error">{errors.cp}</p>}
-                            {errors.streetAddress && <p className="form-error">{errors.streetAddress}</p>}
-                            {errors.city && <p className="form-error">{errors.city}</p>}
-                            {errors.zipcode && <p className="form-error">{errors.zipcode}</p>}
-                            {errors.duration && <p className="form-error">{errors.duration}</p>}
-                            {errors.radius && <p className="form-error">{errors.radius}</p>}
-                            {errors.tagz && <p className="form-error">{errors.tagz}</p>}
-                        </div>
                         <label className="form-label-td">
                             Title 
                             <input className="form-input-field-td"
@@ -298,7 +292,7 @@ export default function UpdateForm() {
                     </div>
                     <div className="form-dur-rad">
                         <label className="form-label">
-                            Duration
+                            Duration (hours)
                             <input className="form-input-field"
                                 type="number"
                                 min="0"
@@ -307,7 +301,7 @@ export default function UpdateForm() {
                             /> 
                         </label>
                         <label className="form-label">
-                            Radius
+                            Radius (miles)
                             <input className="form-input-field"
                                 type="number"
                                 min="0"
@@ -419,9 +413,17 @@ export default function UpdateForm() {
                     </label>
                     <div className="form-button-div">
                         {submitButton}
-                        <button className="form-button-close" onClick={closeForm}>
-                            Close
-                        </button>
+                    </div>
+                    <div className="form-error-div">
+                        {errors.title && <p className="form-error">{errors.title}</p>}
+                        {errors.description && <p className="form-error">{errors.description}</p>}
+                        {errors.cp && <p className="form-error">{errors.cp}</p>}
+                        {errors.streetAddress && <p className="form-error">{errors.streetAddress}</p>}
+                        {errors.city && <p className="form-error">{errors.city}</p>}
+                        {errors.zipcode && <p className="form-error">{errors.zipcode}</p>}
+                        {errors.duration && <p className="form-error">{errors.duration}</p>}
+                        {errors.radius && <p className="form-error">{errors.radius}</p>}
+                        {errors.tagz && <p className="form-error">{errors.tagz}</p>}
                     </div>
                 </form>
                 </div>

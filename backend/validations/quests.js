@@ -32,7 +32,7 @@ exports.validateQuestInput = [
     check('state')
         .exists({checkFalsy: true}).withMessage("Missing state field"),
     check('zipcode')
-        .exists({checkFalsy: true}).withMessage("Missing zipcde field"),
+        .exists({checkFalsy: true}).withMessage("Missing zipcode field"),
     // check('tags')
     //     .isArray({min: 1})
     //     .withMessage('Quest must have at least 1 tag'),
@@ -60,7 +60,7 @@ exports.validateQuestUpdate = [
     check('state')
         .exists({checkFalsy: true}).withMessage("Missing state field"),
     check('zipcode')
-        .exists({checkFalsy: true}).withMessage("Missing zipcde field"),
+        .exists({checkFalsy: true}).withMessage("Missing zipcode field"),
     // check('tags')
     //     .isArray({min: 1})
     //     .withMessage('Quest must have at least 1 tag'),
