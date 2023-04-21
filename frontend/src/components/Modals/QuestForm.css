@@ -12,7 +12,7 @@ div.page-overlay{
 }
 
 .create-page {
-    height: 85vh;
+    height: 75vh;
     display: flex; 
     background-color: rgb(246, 246, 250);
     flex-direction: column;
@@ -133,6 +133,7 @@ div.page-overlay{
 .form-button-div {
     display: flex; 
     justify-content: space-around;
+    padding-top: 20px;
 }
   
 .form-label-tag-header {
@@ -152,4 +153,5 @@ p.form-error{
 .form-error-div {
     display: flex; 
     padding: 5px; 
+    justify-content: center;
 }
