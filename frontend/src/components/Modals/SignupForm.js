@@ -60,13 +60,13 @@ export default function SignUpForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>sign up for magellan!</h1> 
+                    <h1>sign up for magellan</h1> 
                     <label><p>first name:</p>
-                        <input type="text" name="firstName" value={firstName} onChange={e => setFirstName(e.target.value)}/>
+                        <input className="login-input-text" type="text" name="firstName" value={firstName} onChange={e => setFirstName(e.target.value)}/>
                     </label>
                     {errors.firstName && <p className="error">{errors.firstName}</p>}
                     <label><p>last name:</p>
-                        <input type="text" name="lastName" value={lastName} onChange={e => setLastName(e.target.value)}/>
+                        <input className="login-input-text" type="text" name="lastName" value={lastName} onChange={e => setLastName(e.target.value)}/>
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
                     <div>
@@ -77,29 +77,29 @@ export default function SignUpForm(){
                     </div>
                     {errors.profileImageUrl && <p className="error">{errors.profileImageUrl}</p>}
                     <label><p>email:</p>
-                        <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <input className="login-input-text" type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
                     </label>
                     {errors.email && <p className="error">{errors.email}</p>}
                     <label><p>home city:</p>
-                        <input type="text" name="homeCity" value={homeCity} onChange={e => setHomeCity(e.target.value)}/>
+                        <input className="login-input-text" type="text" name="homeCity" value={homeCity} onChange={e => setHomeCity(e.target.value)}/>
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
-                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState">
-                        <option disabled value={"default"}>State</option>
+                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="state-formatting">
+                        <option disabled value={"default"}>select your state:</option>
                         {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>
                     {errors.homeState && <p className="error">{errors.homeState}</p>}
                     <label><p>password:</p>
-                        <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                        <input className="login-input-text" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
                     <label><p>confirm password:</p>
-                        <input type="password" name="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
+                        <input className="login-input-text" type="password" name="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
                     </label>
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
                     <input type="submit" value="sign up" className="submit-button"/>
     
-                       <p>Already have an account?<button className="form-swap" onClick={swapForm}>log in!</button></p> 
+                       <p className="footer-text">Already have an account?<button className="form-swap" onClick={swapForm}>log in!</button></p> 
                     
                 </form>
             </div>

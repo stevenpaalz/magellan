@@ -36,18 +36,18 @@ export default function LoginForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>log in to magellan!</h1> 
+                    <h1>log in to magellan</h1> 
                     <label><p>email:</p>
-                        <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)} className="login-input-text"/>
                     </label>
                     {errors.email && <p className="error">{errors.email}</p>}
                     <label><p>password:</p>
-                        <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                        <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className="login-input-text"/>
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
                     <input type="submit" value="log in" className="submit-button"/>
-                    <button className="demo-login" onClick={demoLogin}>login with demo user</button>
-                       <p>Don't have an account?<button className="form-swap" onClick={swapForm}>sign up!</button></p> 
+                    <button className="demo-login" onClick={demoLogin}>log in with demo user</button>
+                       <p className="footer-text">Don't have an account?<button className="form-swap" onClick={swapForm}>sign up!</button></p> 
                 </form>
             </div>
         )
