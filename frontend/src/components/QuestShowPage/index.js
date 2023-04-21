@@ -62,10 +62,12 @@ const QuestShowPage = () => {
     dispatch(setModal("updateForm"))
   }
 
-  function deleteClick(e){
+  async function deleteClick(e){
     e.preventDefault(); 
-    dispatch(deleteQuest(id))
-    history.replace(`/quests`);
+    const questId = await dispatch(deleteQuest(id))
+    if (questId) {
+      history.replace(`/quests`)
+    };
   }
 
 

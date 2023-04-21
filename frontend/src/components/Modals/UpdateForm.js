@@ -18,30 +18,48 @@ export default function UpdateForm() {
     let quest = useSelector(state => state.quests[id]);
     const fileRef = useRef(null);
     const questErrors = useSelector(state => state.errors?.quest)
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [cpOne, setCpOne] = useState("");
-    const [cpTwo, setCpTwo] = useState("");
-    const [cpThree, setCpThree] = useState("");
-    const [cpFour, setCpFour] = useState("");
-    const [cpFive, setCpFive] = useState("");
-    const [duration, setDuration] = useState("");
-    const [streetAddress, setStreetAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [zipcode, setZipcode] = useState("")
-    const [radius, setRadius] = useState("");
-    const [tags, setTags] = useState("");
-    const [foodNDrink, setFoodNDrink] = useState(false);
-    const [familyFriendly, setFamilyFriendly] = useState(false);
-    const [landmarks, setLandmarks] = useState(false);
-    const [publicArt, setPublicArt] = useState(false);
-    const [transportation, setTransportation] = useState(false);
-    const [sporty, setSporty] = useState(false);
-    const [green, setGreen] = useState(false);
-    const [obscure, setObscure] = useState(false);
-    const [localsOnly, setLocalsOnly] = useState(false);
-    const [touristTraps, setTouristTraps] = useState(false);
+    const [title, setTitle] = useState(quest.title);
+    const [description, setDescription] = useState(quest.description);
+    const [cpOne, setCpOne] = useState(quest.checkpoints[0]);
+    const [cpTwo, setCpTwo] = useState(quest.checkpoints[1]);
+    const [cpThree, setCpThree] = useState(quest.checkpoints[2]);
+    const [cpFour, setCpFour] = useState(quest.checkpoints[3]);
+    const [cpFive, setCpFive] = useState(quest.checkpoints[4]);
+    const [duration, setDuration] = useState(quest.duration);
+    const address = quest.formattedAddress.split(", ");
+    const [streetAddress, setStreetAddress] = useState(address[0]);
+    const [city, setCity] = useState(address[1]);
+    const [state, setState] = useState(address[2].split(" ")[0]);
+    const [zipcode, setZipcode] = useState(address[2].split(" ")[1])
+    const [radius, setRadius] = useState(quest.radius);
+    const [tags, setTags] = useState(quest.tags);
+    const tagsObject = {
+        "food-and-drink": false,
+        "family-friendly": false, 
+        "landmarks": false,
+        "public-art": false,
+        "transportation": false, 
+        "sporty": false, 
+        "green": false, 
+        "obscure": false, 
+        "locals-only": false, 
+        "tourist-traps": false
+    };
+    for (let key in tagsObject) {
+        if (tags.includes(key)) {
+            tagsObject[key] = true
+        };
+    };
+    const [foodNDrink, setFoodNDrink] = useState(tagsObject["food-and-drink"]);
+    const [familyFriendly, setFamilyFriendly] = useState(tagsObject["family-friendly"]);
+    const [landmarks, setLandmarks] = useState(tagsObject["landmarks"]);
+    const [publicArt, setPublicArt] = useState(tagsObject["public-art"]);
+    const [transportation, setTransportation] = useState(tagsObject["transportation"]);
+    const [sporty, setSporty] = useState(tagsObject["sporty"]);
+    const [green, setGreen] = useState(tagsObject["green"]);
+    const [obscure, setObscure] = useState(tagsObject["obscure"]);
+    const [localsOnly, setLocalsOnly] = useState(tagsObject["locals-only"]);
+    const [touristTraps, setTouristTraps] = useState(tagsObject["tourist-traps"]);
     const [errors, setErrors] = useState({})
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
@@ -53,76 +71,7 @@ export default function UpdateForm() {
         if (questErrors){
             setErrors(questErrors)
         }
-        if (id) {
-            dispatch(getQuest(id));
-            setTitle(quest.title);
-            setDescription(quest.description);
-            setCpOne(quest.checkpoints[0]);
-            setCpTwo(quest.checkpoints[1]);
-            setCpThree(quest.checkpoints[2]);
-            setCpFour(quest.checkpoints[3]);
-            setCpFive(quest.checkpoints[4]);
-            const address = quest.formattedAddress.split(",");
-            setStreetAddress(address[0]);
-            setCity(address[1]);
-            setState(address[2].split(" ")[1])
-            setZipcode(address[2].split(" ")[2]);
-            setDuration(quest.duration);
-            setRadius(quest.radius);
-            setTags(quest.tags);
-            console.log(tags)
-            if (tags.includes("food-and-drink")){
-                setFoodNDrink(true)
-            } else {
-                setFoodNDrink(false)
-            };
-            if (tags.includes("family-friendly")){
-                setFamilyFriendly(true)
-            } else {
-                setFamilyFriendly(false)
-            };
-            if (tags.includes("landmarks")) {
-                setLandmarks(true)
-            } else {
-                setLandmarks(false)
-            };
-            if (tags.includes("public-art")) {
-                setPublicArt(true)
-            } else {
-                setPublicArt(false)
-            };
-            if (tags.includes("transportation")) {
-                setTransportation(true)
-            } else {
-                setTransportation(false)
-            };
-            if (tags.includes("sporty")) {
-                setSporty(true)
-            } else {
-                setSporty(false)
-            };
-            if (tags.includes("green")) {
-                setGreen(true)
-            } else {
-                setGreen(false)
-            };
-            if (tags.includes("obscure")) {
-                setObscure(true)
-            } else {
-                setObscure(false)
-            };
-            if (tags.includes("locals-only")) {
-                setLocalsOnly(true)
-            } else {
-                setLocalsOnly(false)
-            };
-            if (tags.includes("tourist-traps")) {
-                setTouristTraps(true)
-            } else {
-                setTouristTraps(false)
-            };
-        }
-    }, [dispatch, id, questErrors, tags])
+    }, [questErrors]);
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -160,7 +109,7 @@ export default function UpdateForm() {
         formData.append('zipcode', zipcode);
         formData.append('radius', radius);
         formData.append('tags', [tags]);
-        console.log(tags)
+
         if (allCheckPoints.includes("")) {
             setErrors({cp: "There should be a minimum of 5 checkpoints"})
         } else if (tags.length < 1) {
@@ -177,21 +126,71 @@ export default function UpdateForm() {
         //     console.log(`${pair[0]}, ${pair[1]}`)
         // }
 
-
-
     };
+
+
 
     const handleCheck = (e) => {
         if (tags.includes(e.target.value)) {
             const newArray = []
-            tags.forEach(tag => {
+            tags.map(tag => {
                 if (tag !== e.target.value) {
-                    newArray.push(e.target.value)
+                    newArray.push(tag)
                 };
             });
             setTags([...newArray])
         } else {
             setTags([...tags, e.target.value])
+        };
+        if (tags.includes("food-and-drink")){
+            setFoodNDrink(true)
+        } else {
+            setFoodNDrink(false)
+        };
+        if (tags.includes("family-friendly")){
+            setFamilyFriendly(true)
+        } else {
+            setFamilyFriendly(false)
+        };
+        if (tags.includes("landmarks")) {
+            setLandmarks(true)
+        } else {
+            setLandmarks(false)
+        };
+        if (tags.includes("public-art")) {
+            setPublicArt(true)
+        } else {
+            setPublicArt(false)
+        };
+        if (tags.includes("transportation")) {
+            setTransportation(true)
+        } else {
+            setTransportation(false)
+        };
+        if (tags.includes("sporty")) {
+            setSporty(true)
+        } else {
+            setSporty(false)
+        };
+        if (tags.includes("green")) {
+            setGreen(true)
+        } else {
+            setGreen(false)
+        };
+        if (tags.includes("obscure")) {
+            setObscure(true)
+        } else {
+            setObscure(false)
+        };
+        if (tags.includes("locals-only")) {
+            setLocalsOnly(true)
+        } else {
+            setLocalsOnly(false)
+        };
+        if (tags.includes("tourist-traps")) {
+            setTouristTraps(true)
+        } else {
+            setTouristTraps(false)
         };
     };
 
@@ -316,6 +315,10 @@ export default function UpdateForm() {
                                 onChange={(e) => setRadius(e.target.value)}
                             /> 
                         </label>
+                        <label className="form-label">
+                            Pictures
+                            <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
+                        </label>
                     </div>
                     <label className="form-label">
                         Tags:
@@ -413,10 +416,6 @@ export default function UpdateForm() {
                             />
                             <span className="slider"></span>
                         </label>
-                    </label>
-                    <label className="form-label">
-                        Pictures
-                    <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
                     </label>
                     <div className="form-button-div">
                         {submitButton}

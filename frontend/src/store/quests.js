@@ -150,10 +150,11 @@ export const deleteQuest = (questId) => async dispatch => {
             method: 'DELETE'
         });
         dispatch(removeQuest(questId));
+        return questId;
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-            return dispatch(receiveQuestError(resBody.errors));
+            dispatch(receiveQuestError(resBody.errors));
         };
     };
 };
