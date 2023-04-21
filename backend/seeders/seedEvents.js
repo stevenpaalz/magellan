@@ -17,16 +17,38 @@ mongoose
 
 const demo = await User.findOne({email: "demo@email.com"});
 const dan = await User.findOne({email: "dan@email.com"});
+const steve = await User.findOne({email: "steve@email.com"});
+const yong = await User.findOne({email: "yong@email.com"});
+const jamie = await User.findOne({email: "jamie@email.com"});
+
 const quests = await Quest.find();
 const users = await User.find();
 
 const events = [];
 
+events.push(
+    new Event({
+        host: demo._id,
+        attendees: [steve._id, yong._id],
+        quest: quests[5],
+        startTime: '2023-04-19T10:00:00Z'
+    })
+)
+
+events.push(
+    new Event({
+        host: dan._id,
+        attendees: [demo._id, jamie._id, yong._id],
+        quest: quests[5],
+        startTime: '2023-04-18T10:00:00Z'
+    })
+)
+
 for (let i = 1; i <= 3; i++) {
     let attendees = [];
-    while (attendees.length < 4) {
+    while (attendees.length < 3) {
         let user = users[faker.datatype.number({'min': 0, 'max': users.length - 1 })]
-        if (demo._id !== user._id) {
+        if (demo._id !== user._id && !attendees.includes(user._id)) {
             attendees.push(user._id);
         }
     }
@@ -40,11 +62,11 @@ for (let i = 1; i <= 3; i++) {
     )
 }
 
-for (let i = 1; i <= 3; i++) {
+for (let i = 1; i <= 5; i++) {
     let attendees = [];
-    while (attendees.length < 5) {
+    while (attendees.length < 4) {
         let user = users[faker.datatype.number({'min': 0, 'max': users.length - 1 })]
-        if (dan._id !== user._id) {
+        if (dan._id !== user._id && !attendees.includes(user._id)) {
             attendees.push(user._id);
         }
     }
