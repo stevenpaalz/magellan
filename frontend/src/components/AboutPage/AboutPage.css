@@ -23,6 +23,7 @@
 
 .about-logo {
     display: flex;
+    width: 150px; 
 }
 .about-header {
     display: flex;
@@ -60,7 +61,7 @@
 
 .teammate-avatar-holder:hover {
     cursor: pointer;
-    transform: scale(0.95);
+    transform: scale(1.20);
 }
 
 .teammate-avatar{
@@ -122,7 +123,7 @@
 
 .teammate-linkedin-icon:hover {
     cursor: pointer;
-    /* color: var(--red); */
+    color: var(--red);
     transform: translateY(-5px);
 
     
@@ -130,7 +131,7 @@
 
 .teammate-github-icon:hover {
     cursor: pointer;
-    /* color: var(--red); */
+    color: #31AFAC;
     transform: translateY(-5px);
 
 }
