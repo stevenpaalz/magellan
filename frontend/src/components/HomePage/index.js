@@ -10,7 +10,6 @@ import { useState } from 'react';
 import allTags from '../../data/Tags';
 import { setModal } from '../../store/modal';
 import QuestForm from '../Modals/QuestForm';
-import QuestShowTags from '../QuestShowPage/QuestShowTags';
 
 const HomePage = () => {
   const mapstyle={ height: 'calc(100vh - 80px)', width: '100%' }
@@ -77,7 +76,7 @@ const modalstate = useSelector(state=>state.modals.modalState);
             <button onClick={questModal} className="create-quest-button">create quest</button>
           </div>
           {(modalstate==="filters") && <div className="dropdown-options"> 
-                              {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><QuestShowTags tags={[tag]} /></label>)}
+                              {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><p className="dropdown-option">{tag}</p></label>)}
                               </div>}
 
           <QuestIndex quests={questsFiltered}/>
