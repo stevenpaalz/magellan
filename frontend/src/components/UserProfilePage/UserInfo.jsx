@@ -1,15 +1,10 @@
 
 import { useSelector } from "react-redux"
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { getUser } from "../../store/session";
 
 export default function UserInfo(){
-    // const dispatch = useDispatch()
+
     const sessionUser = useSelector(state => state.session.user);
-    // useEffect(()=>{
-    //     dispatch(getUser(sessionUser._id))
-    // }, [sessionUser, dispatch])
+
     return(
         <>
             <div className="profile-card">
