@@ -1,34 +1,43 @@
 # magellan
 
-magellan is a platform for creating, accessing, and partaking in curated scavenger hunts around US cities. 
+magellan is a platform for creating, accessing, and partaking in curated scavenger hunts (quests) around US cities. 
 
-## Background and Overview
+## [Access the Live Link](https://magellan-wpae.onrender.com/)
 
-The best way to discover a new city or explore uncharted pockets of your city is on foot. Enter magellan - a platform for creating, accessing, and partaking in curated scavenger hunts across US cities. Whether your looking for a fun afternoon with your family, a sense of adventure with your friends, or a creative team building activity for your workplace, scavenger hunts provide a memorable experience for all, and magellan takes the effort out of planning one for you.
+## Background and Overview!
 
-Our advanced platform offers a seamless way to browse for and plan scavenger hunts in your city. Whether you’re looking to build your own or leverage an existing hunt from our crowdsourced database, magellan is a one-stop shop for your next adventure. Our forthcoming mobile platform will allow you to access all the information you need on the go, making it easy to complete challenges and track your real-time progress progress. 
+The best way to discover a new city or explore uncharted pockets of your city is on foot. Enter magellan - a platform for creating, accessing, and partaking in curated scavenger hunts (quests) across US cities. Whether your looking for a fun afternoon with your family, a sense of adventure with your friends, or a creative team building activity for your workplace, quests provide a memorable experience for all, and magellan takes the effort out of planning one for you.
+
+Our advanced platform offers a seamless way to browse for and plan quests in your city. Whether you’re looking to build your own or leverage an existing quest from our crowdsourced database, magellan is a one-stop shop for your next adventure. Our forthcoming mobile platform will allow you to access all the information you need on the go, making it easy to complete challenges and track your real-time progress progress. 
 
 magellan is built using the MERN tech stack, supplemented with libraries to support maps and calendar functionality. 
+
+<img width="1790" alt="Screen Shot 2023-04-24 at 12 19 44 AM" src="https://user-images.githubusercontent.com/47993465/233991680-e77b80ee-cb7f-4447-afac-c9a583525b5e.png">
+
+<img width="1790" alt="Screen Shot 2023-04-24 at 12 20 30 AM" src="https://user-images.githubusercontent.com/47993465/233991782-3bb05377-0f5c-49e3-a9c4-b72cca200591.png">
+
+
 
 ## Functionality and MVP
 
 ************************Core Functionality************************
 
 - User authentication
-- CRUD functionality for building scavenger hunts (templates)
-- Map functionality for browsing scavenger hunts
-- Hunt event functionality, including a detailed hunt event page and calendar functionality for planning scavenger hunt events
-- Ability for users to leave reviews of scavenger hunts
+- CRUD functionality for building scavenger hunts (quests)
+- Map functionality for browsing quests
+- Quest event functionality, including a detailed event page and calendar functionality for planning events
+- Ability for users to leave reviews of quests
 - Production README
 
 **Bonus Features**
 
-- Search functionality for browsing scavenger hunts
-- Live mobile-first scavenger hunt functionality, including real-time updates on the progress of the hunt and interactive maps
+- Search functionality for browsing quests
+- Live mobile-first scavenger quest functionality, including real-time updates on the progress of the quest
+
 
 ## Technologies and Technical Challenges
 
-Magellan’s back end will use MongoDB to store user data, hunts constructed by users, events saved by challengers, and reviews of hunts.  Magellan will use the Express web application server  framework. React-Redux and Node.js will be used on the front end to interact with users.  
+Magellan’s back end will use MongoDB to store user data, quests constructed by users, events saved by challengers, and reviews of quests.  Magellan will use the Express web application server framework. React-Redux and Node.js will be used on the front end to interact with users.  Photos will be hosted using AWS, and we will also utilize Google Maps API and React Day Picker API for calendars on the event page.
 
 **Backend: MongoDB/Express** 
 
@@ -36,7 +45,7 @@ Data will be stored using MongoDB in a JSON-like structure. Relationships and sc
 
 Technical Challenges:
 
-- Setting up models/schema/relationships for hunt/events and reviews
+- Setting up models/schema/relationships for quests/events and reviews
 - Setting up necessary routes via Express as needed
 - CSRF validation and JWT login token validations
 - Gathering and seeding adequate data for testing
@@ -45,29 +54,29 @@ Technical Challenges:
 
 **Frontend: React/Node.js** 
 
-Hunt data will be fetched from the backend for display for user to view and select.  Forms will be available to create/edit hunts, events, users, and reviews.  
+Quest data will be fetched from the backend for display for user to view and select.  Forms will be available to create/edit quests, events, users, and reviews.  
 
 Technical Challenges: 
 
 - Fetching and displaying data from MongoDB
-- A filtering system of hunts based on categories and/or tags
+- A filtering system of quests based on categories and/or tags
 - Creating a checkpoint like system during expedition
-- Presenting information of hunts in a way to be descriptive for selection but not to reveal too much to spoil the fun
+- Presenting information of quests in a way to be descriptive for selection but not to reveal too much to spoil the fun
 
 [Here's the code for our Home Page component](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/HomePage/index.js)
 -- [And the Create/Update Quest form](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/QuestForm.js)
 
 **Library for Google Map - [https://www.npmjs.com/package/google-map-react](https://www.npmjs.com/package/google-map-react)**
 
-Hunts submitted by users will be saved in our backend and be rendered onto Google Map to show starting point of each hunt.  Each hunt data point will include latitude and longitude from the backend for use to populate the marker on the frontend.  
+Quests submitted by users will be saved in our backend and be rendered onto Google Map to show starting point of each quest.  Each quest data point will include latitude and longitude from the backend for use to populate the marker on the frontend.  
 
 [Here's some code where the map is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Map/index.js)
 
 Technical Challenges: 
 
-- Highlight the hunt on the list when the corresponding marker is hover
-- Highlight the marker when a hunt is hover from a list
-- Rendering the markers on the map with distinctive marker for different hunt category
+- Highlight the quest on the list when the corresponding marker is hover
+- Highlight the marker when a quest is hover from a list
+- Rendering the markers on the map with distinctive marker for different quest category
 
 **Library for calendar - [https://react-day-picker.js.org/](https://react-day-picker.js.org/)** 
 
@@ -106,12 +115,12 @@ Jamie Burchfield - frontend lead
 - Meet to discuss plan for week
 - Build frontend for user auth
 - Connect React-based web application to backend
-- Build database on MongoDB for hunts and events
+- Build database on MongoDB for quests and events
 
 **Tuesday**
 
 - Connect Redux store to backend routes
-- Build frontend functionality for hunts feature
+- Build frontend functionality for quests feature
 - Build frontend functionality for events feature
 - Add map feature to frontend
 - Add reviews capability to backend
@@ -130,6 +139,8 @@ Jamie Burchfield - frontend lead
 - Complete Production README.md
 
 **Bonus**
+
+Quest Search functionality
 
 Live checklist
 
