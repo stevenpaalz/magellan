@@ -41,6 +41,8 @@ Technical Challenges:
 - CSRF validation and JWT login token validations
 - Gathering and seeding adequate data for testing
 
+[Here's a snippet of how the routing works!](https://github.com/stevenpaalz/magellan/blob/main/backend/routes/api/quests.js)
+
 **Frontend: React/Node.js** 
 
 Hunt data will be fetched from the backend for display for user to view and select.  Forms will be available to create/edit hunts, events, users, and reviews.  
@@ -52,9 +54,14 @@ Technical Challenges:
 - Creating a checkpoint like system during expedition
 - Presenting information of hunts in a way to be descriptive for selection but not to reveal too much to spoil the fun
 
+[Here's the code for our Home Page component](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/HomePage/index.js)
+-- [And the Create/Update Quest form](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/QuestForm.js)
+
 **Library for Google Map - [https://www.npmjs.com/package/google-map-react](https://www.npmjs.com/package/google-map-react)**
 
 Hunts submitted by users will be saved in our backend and be rendered onto Google Map to show starting point of each hunt.  Each hunt data point will include latitude and longitude from the backend for use to populate the marker on the frontend.  
+
+[Here's some code where the map is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Map/index.js)
 
 Technical Challenges: 
 
@@ -64,7 +71,9 @@ Technical Challenges:
 
 **Library for calendar - [https://react-day-picker.js.org/](https://react-day-picker.js.org/)** 
 
-To start the hunt expedition (event) we will utilize a calendar API to allow the user to setup the event.  The event can then be shared with other challengers to allow them to join.  
+To start the hunt expedition (event) we will utilize a calendar API to allow the user to setup the event.  The event can then be shared with other challengers to allow them to join. 
+
+[Here's some code where the callendar is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/EventForm.js)
 
 Technical Challenges: 
 
