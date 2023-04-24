@@ -10,10 +10,12 @@ import { useState } from 'react';
 import allTags from '../../data/Tags';
 import { setModal } from '../../store/modal';
 import QuestForm from '../Modals/QuestForm';
+import { useHistory } from 'react-router-dom';
 
 const HomePage = () => {
   const mapstyle={ height: 'calc(100vh - 80px)', width: '100%' }
-  const dispatch= useDispatch()
+  const dispatch= useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -59,9 +61,14 @@ const quests = useSelector(state=>state.quests);
 const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests, tags) : Object.values(quests);
 const modalstate = useSelector(state=>state.modals.modalState);
 
-  const questModal = (e) => {
-    dispatch(setModal("questForm"));
-    e.stopPropagation();
+  // const questModal = (e) => {
+  //   dispatch(setModal("questForm"));
+  //   e.stopPropagation();
+  // }
+  function createClick(e){
+    e.preventDefault();
+    history.replace("/quests/create");
+    // dispatch(setModal("questForm"))
   }
 
     return (
@@ -73,7 +80,7 @@ const modalstate = useSelector(state=>state.modals.modalState);
           <div className="quests-button-index-headers">
             <button className="filter-dropdown" onClick={filterDropdownClick}>{modalstate==="filters"?"close filters ⌃":"select filters ⌵"}</button>
 
-            <button onClick={questModal} className="create-quest-button">create quest</button>
+            <button onClick={createClick} className="create-quest-button">create quest</button>
           </div>
           {(modalstate==="filters") && <div className="dropdown-options"> 
                               {allTags.map((tag, i)=><label className="dropdown-option" key={i}><input className="dropdown-option" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input><p className="dropdown-option">{tag}</p></label>)}
@@ -81,9 +88,9 @@ const modalstate = useSelector(state=>state.modals.modalState);
 
           <QuestIndex quests={questsFiltered}/>
           </div>
-          <div>
+          {/* <div>
             <QuestForm />
-          </div>
+          </div> */}
       </div>
     );
   }

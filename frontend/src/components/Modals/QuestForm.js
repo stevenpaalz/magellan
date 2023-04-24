@@ -122,230 +122,224 @@ export default function QuestForm() {
     };
 
     function closeForm(){
-        dispatch(setModal(""))
+        history.replace("/quests");
     }
 
-    if (modalState && modalState === "questForm"){
-        return(
-            <div className="page-overlay">
-                <div className="create-page">
-                <div className="create-upper-x-container">
-                    <div onClick={closeForm} className="create-upper-x">
-                        <i className="fa-solid fa-x"></i>
-                    </div>
-                </div>
-                {formHeading}
-                <form className="quest-form" onSubmit={handleSubmit}>
-                    <div>
-                        <label className="form-label">
-                            Title 
-                            <input className="form-input-field-td"
-                                type="text"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            /> 
-                        </label>
-                        <label className="form-label">
-                            Description 
-                            <input className="form-input-field-td"
-                                type="text"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            /> 
-                        </label>
-                    </div>
-                    <label className="form-label">
-                        Checkpoints
-                        <textarea className="form-input-field-c"
-                            placeholder="Required"
-                            value={cpOne}
-                            onChange={(e) => setCpOne(e.target.value)}
-                        /> 
-                        <textarea className="form-input-field-c"
-                            placeholder="Required"
-                            value={cpTwo}
-                            onChange={(e) => setCpTwo(e.target.value)}
-                        /> 
-                        <textarea className="form-input-field-c"
-                            placeholder="Required"
-                            value={cpThree}
-                            onChange={(e) => setCpThree(e.target.value)}
-                        /> 
-                        <textarea className="form-input-field-c"
-                            placeholder="Required"
-                            value={cpFour}
-                            onChange={(e) => setCpFour(e.target.value)}
-                        /> 
-                        <textarea className="form-input-field-c"
-                            placeholder="Required"
-                            value={cpFive}
-                            onChange={(e) => setCpFive(e.target.value)}
-                        /> 
-                    </label>
-                    <div className="form-address">
-                        <label className="form-label">
-                            Street Address
-                            <input className="form-input-field"
-                                type="text"
-                                value={streetAddress}
-                                onChange={(e) => setStreetAddress(e.target.value)}
-                            /> 
-                        </label>
-                        <label className="form-label">
-                            City
-                            <input className="form-input-field"
-                                type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                            /> 
-                        </label>
-                        <label className="form-label">
-                            State
-                            <select onChange={(e) => setState(e.target.value)}>
-                                {states.map((state) => (
-                                    <option key={state} value={state}>{state}</option>
-                                ))}
-                            </select>
-                        </label>
-                        <label className="form-label">
-                            Zip Code
-                            <input className="form-input-field"
-                                type="text"
-                                value={zipcode}
-                                onChange={(e) => setZipcode(e.target.value)}
-                            /> 
-                        </label>
-                    </div>
-                    <div className="form-dur-rad">
-                        <label className="form-label">
-                            Duration (hours)
-                            <input className="form-input-field"
-                                type="number"
-                                min="0"
-                                value={duration}
-                                onChange={(e) => setDuration(e.target.value)}
-                            /> 
-                        </label>
-                        <label className="form-label">
-                            Radius (miles)
-                            <input className="form-input-field"
-                                type="number"
-                                min="0"
-                                value={radius}
-                                onChange={(e) => setRadius(e.target.value)}
-                            /> 
-                        </label>
-                        <label className="form-label">
-                            Pictures
-                            <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
-                        </label>
-                    </div>
-                    <label className="form-label">
-                        Tags:
-                    </label>
-                    <label className="form-label-tags">
-                    <label className="switch">
-                            Food and Drink
-                            <input type="checkbox"
-                                value="food-and-drink"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label> 
-                        <label className="switch">
-                            Family-Friendly
-                            <input type="checkbox"
-                                value="family-friendly"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label> 
-                        <label className="switch">
-                            Landmarks
-                            <input type="checkbox"
-                                value="landmarks"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label> 
-                        <label className="switch">
-                            Public-Art
-                            <input type="checkbox"
-                                value="public-art"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label> 
-                        <label className="switch">
-                            Transportation
-                            <input type="checkbox"
-                                value="transportation"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label> 
-                    </label>
-                    <label className="form-label-tags">
-                        <label className="switch">
-                            Sporty
-                            <input type="checkbox"
-                                value="sporty"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label>  
-                        <label className="switch">
-                            Green
-                            <input type="checkbox"
-                                value="green"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label>  
-                        <label className="switch">
-                            Obscure
-                            <input type="checkbox"
-                                value="obscure"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label>  
-                        <label className="switch">
-                            Locals-Only
-                            <input type="checkbox"
-                                value="locals-only"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label>                
-                        <label className="switch">
-                            Tourist-Traps
-                            <input type="checkbox"
-                                value="tourist-traps"
-                                onChange={handleCheck}
-                            />
-                            <span className="slider"></span>
-                        </label>
-                    </label>
-                    <div className="form-button-div">
-                        {submitButton}
-                    </div>
-                    <div className="form-error-div">
-                        {errors.title && <p className="form-error">{errors.title}</p>}
-                        {errors.description && <p className="form-error">{errors.description}</p>}
-                        {errors.cp && <p className="form-error">{errors.cp}</p>}
-                        {errors.streetAddress && <p className="form-error">{errors.streetAddress}</p>}
-                        {errors.city && <p className="form-error">{errors.city}</p>}
-                        {errors.zipcode && <p className="form-error">{errors.zipcode}</p>}
-                        {errors.duration && <p className="form-error">{errors.duration}</p>}
-                        {errors.radius && <p className="form-error">{errors.radius}</p>}
-                        {errors.tagz && <p className="form-error">{errors.tagz}</p>}
-                    </div>
-                </form>
+    return(
+        <div className="create-page">
+            <div className="create-upper-x-container">
+                <div onClick={closeForm} className="create-upper-x">
+                    <i className="fa-solid fa-arrow-left"></i>
                 </div>
             </div>
-        )
-    }else{
-        return null
-    }
+            {formHeading}
+            <form className="quest-form" onSubmit={handleSubmit}>
+                <div>
+                    <label className="form-label">
+                        Title 
+                        <input className="form-input-field-td"
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        /> 
+                    </label>
+                    <label className="form-label">
+                        Description 
+                        <input className="form-input-field-td"
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        /> 
+                    </label>
+                </div>
+                <label className="form-label">
+                    Checkpoints
+                    <textarea className="form-input-field-c"
+                        placeholder="Required"
+                        value={cpOne}
+                        onChange={(e) => setCpOne(e.target.value)}
+                    /> 
+                    <textarea className="form-input-field-c"
+                        placeholder="Required"
+                        value={cpTwo}
+                        onChange={(e) => setCpTwo(e.target.value)}
+                    /> 
+                    <textarea className="form-input-field-c"
+                        placeholder="Required"
+                        value={cpThree}
+                        onChange={(e) => setCpThree(e.target.value)}
+                    /> 
+                    <textarea className="form-input-field-c"
+                        placeholder="Required"
+                        value={cpFour}
+                        onChange={(e) => setCpFour(e.target.value)}
+                    /> 
+                    <textarea className="form-input-field-c"
+                        placeholder="Required"
+                        value={cpFive}
+                        onChange={(e) => setCpFive(e.target.value)}
+                    /> 
+                </label>
+                <div className="form-address">
+                    <label className="form-label">
+                        Street Address
+                        <input className="form-input-field"
+                            type="text"
+                            value={streetAddress}
+                            onChange={(e) => setStreetAddress(e.target.value)}
+                        /> 
+                    </label>
+                    <label className="form-label">
+                        City
+                        <input className="form-input-field"
+                            type="text"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                        /> 
+                    </label>
+                    <label className="form-label">
+                        State
+                        <select onChange={(e) => setState(e.target.value)}>
+                            {states.map((state) => (
+                                <option key={state} value={state}>{state}</option>
+                            ))}
+                        </select>
+                    </label>
+                    <label className="form-label">
+                        Zip Code
+                        <input className="form-input-field"
+                            type="text"
+                            value={zipcode}
+                            onChange={(e) => setZipcode(e.target.value)}
+                        /> 
+                    </label>
+                </div>
+                <div className="form-dur-rad">
+                    <label className="form-label">
+                        Duration (hours)
+                        <input className="form-input-field"
+                            type="number"
+                            min="0"
+                            value={duration}
+                            onChange={(e) => setDuration(e.target.value)}
+                        /> 
+                    </label>
+                    <label className="form-label">
+                        Radius (miles)
+                        <input className="form-input-field"
+                            type="number"
+                            min="0"
+                            value={radius}
+                            onChange={(e) => setRadius(e.target.value)}
+                        /> 
+                    </label>
+                    <label className="form-label">
+                        Pictures
+                        <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
+                    </label>
+                </div>
+                <label className="form-label">
+                    Tags:
+                </label>
+                <label className="form-label-tags">
+                <label className="switch">
+                        Food and Drink
+                        <input type="checkbox"
+                            value="food-and-drink"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label> 
+                    <label className="switch">
+                        Family-Friendly
+                        <input type="checkbox"
+                            value="family-friendly"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label> 
+                    <label className="switch">
+                        Landmarks
+                        <input type="checkbox"
+                            value="landmarks"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label> 
+                    <label className="switch">
+                        Public-Art
+                        <input type="checkbox"
+                            value="public-art"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label> 
+                    <label className="switch">
+                        Transportation
+                        <input type="checkbox"
+                            value="transportation"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label> 
+                </label>
+                <label className="form-label-tags">
+                    <label className="switch">
+                        Sporty
+                        <input type="checkbox"
+                            value="sporty"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label>  
+                    <label className="switch">
+                        Green
+                        <input type="checkbox"
+                            value="green"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label>  
+                    <label className="switch">
+                        Obscure
+                        <input type="checkbox"
+                            value="obscure"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label>  
+                    <label className="switch">
+                        Locals-Only
+                        <input type="checkbox"
+                            value="locals-only"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label>                
+                    <label className="switch">
+                        Tourist-Traps
+                        <input type="checkbox"
+                            value="tourist-traps"
+                            onChange={handleCheck}
+                        />
+                        <span className="slider"></span>
+                    </label>
+                </label>
+                <div className="form-button-div">
+                    {submitButton}
+                </div>
+                <div className="form-error-div">
+                    {errors.title && <p className="form-error">{errors.title}</p>}
+                    {errors.description && <p className="form-error">{errors.description}</p>}
+                    {errors.cp && <p className="form-error">{errors.cp}</p>}
+                    {errors.streetAddress && <p className="form-error">{errors.streetAddress}</p>}
+                    {errors.city && <p className="form-error">{errors.city}</p>}
+                    {errors.zipcode && <p className="form-error">{errors.zipcode}</p>}
+                    {errors.duration && <p className="form-error">{errors.duration}</p>}
+                    {errors.radius && <p className="form-error">{errors.radius}</p>}
+                    {errors.tagz && <p className="form-error">{errors.tagz}</p>}
+                </div>
+            </form>
+        </div>
+    )
 }

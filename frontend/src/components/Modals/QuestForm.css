@@ -17,7 +17,7 @@ div.page-overlay{
     background-color: rgb(246, 246, 250);
     flex-direction: column;
     border: solid 1px #31AFAC;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 10px;
 }
 
@@ -171,11 +171,13 @@ p.form-error{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 25px;
 }
 
 .create-upper-x:hover {
-    background-color: rgb(235, 235, 235);
     border-radius: 100%;
+    background-color: #31AFAC;
+    cursor: pointer;
 }
 
 .quest-form input[type="text"], .quest-form input[type="number"]{
