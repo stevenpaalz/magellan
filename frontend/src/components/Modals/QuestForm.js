@@ -1,4 +1,3 @@
-import { setModal } from "../../store/modal";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createQuest } from "../../store/quests";
@@ -10,7 +9,6 @@ import { useEffect } from "react";
 
 export default function QuestForm() {
     const history = useHistory();
-    const modalState = useSelector(state => state.modals?.modalState);
     const dispatch = useDispatch(); 
     const fileRef = useRef(null);
     const questErrors = useSelector(state => state.errors?.quest)
