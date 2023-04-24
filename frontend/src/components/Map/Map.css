@@ -18,14 +18,14 @@
 }
 
 .questMarker:hover {
-    background-color: #FF3E00 ;
+    background-color: #D52200;
     height: 33px;
     width: 33px;
     line-height: 33px;
 }
 
 .questMarker:active {
-    background-color: #D52200;
+    background-color: #FF3E00 ;
     height: 27px;
     width: 27px;
     line-height: 27px;

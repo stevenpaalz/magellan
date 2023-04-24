@@ -77,13 +77,13 @@ const QuestShowPage = () => {
         <div className="quest-show-full-page">
             <div>
                 <div className="quest-show-hero" style={{ backgroundImage: `url(${quest.imageUrls[0]})`} }>
-                    <div className="back-holder">
                       <NavLink exact to="/quests">
-                        <div className="back-text">
-                          <i className="fa-solid fa-arrow-left"></i>
-                        </div>
+                          <div className="back-holder">
+                              <div className="back-text">
+                                <i className="fa-solid fa-arrow-left"></i>
+                              </div>
+                          </div>
                       </NavLink> 
-                    </div>
 
                     <div className="quest-show-title">{quest.title}</div>
                     <QuestShowTags tags={quest.tags} />
