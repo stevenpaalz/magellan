@@ -11,6 +11,8 @@ const validateLoginInput = require('../../validations/login');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { getLatLng } = require('../../config/geocode');
 const Event = mongoose.model('Event');
+const { googleAPIKey } = require('../../config/keys');
+const { Client } = require('@googlemaps/google-maps-services-js');
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
@@ -22,6 +24,18 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     if (user.email === req.body.email) {
       errors.email = "A user has already registered with this email";
     }
+    err.errors = errors;
+    return next(err);
+  }
+
+  const client = new Client();
+  const address = `${req.body.homeCity}, ${req.body.homeState}`;
+  const response = await client.geocode({ params: { address, key: googleAPIKey } });
+  if (!response.data.results[0]) {
+    const err = new Error("Validation Error");
+    err.statusCode = 400;
+    const errors = {};
+    errors.homeCity = "Invalid home city and state"
     err.errors = errors;
     return next(err);
   }
