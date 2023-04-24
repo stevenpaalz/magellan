@@ -82,7 +82,7 @@ Technical Challenges:
 
 To start the hunt expedition (event) we will utilize a calendar API to allow the user to setup the event.  The event can then be shared with other challengers to allow them to join. 
 
-[Here's some code where the callendar is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/EventForm.js)
+[Here's some code where the calendar is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/EventForm.js)
 
 Technical Challenges: 
 
