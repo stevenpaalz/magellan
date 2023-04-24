@@ -21,7 +21,6 @@
 }
 
 .splash-page-hero-image {
-    
     width: 100%;
 }
 
@@ -50,19 +49,41 @@
 }
 
 .splash-page-body-text {
-    font-size: var(--font-size-400);
+    font-size: 24px;
+    font-weight: var(--font-weight-normal);
     color: rgb(48, 48, 48);
     text-align: center;
-    margin-top: -12px;
+    margin-top: -24px;
     margin-bottom: 24px;
     text-shadow: 0 0 2px white;
-    
+}
+
+.splash-page-body-text-header {
+    font-weight: var(--font-weight-semibold);
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+.splash-page-body-text-footer {
+    font-weight: var(--font-weight-semibold);
+    font-size: 24px;
+    margin-top: 24px;
+    /* margin-bottom: 24px; */
+}
+
+.splash-page-body-text-link {
+    font-weight: var(--font-weight-semibold);
+}
+
+.splash-page-body-text-link:hover {
+    text-decoration: underline;
+    /* color: var(--orange); */
 }
 
 .splash-right-cta {
     background-color: var(--orange);
     color: white;
-    font-weight: bold;
+    font-weight: var(--font-weight-semibold);
     border-radius: 5px;
     font-size: var(--font-size-400);
     cursor: pointer;
@@ -72,10 +93,10 @@
     display:flex;
     align-items: center;
 }
-.splash-right-cta p{
+/* .splash-right-cta p{
     color: white;
     margin-left: 5px
-}
+} */
 p.intro{
     font-weight: 500;
     line-height: 27px;
@@ -88,13 +109,14 @@ p.intro strong{
 }
 
 .splash-right-cta:hover{
-    background-color: var(--turquoise);
+    background-color: #DC6E02;
 }
 .splash-right-cta:active{
-    background-color: #1f8684;
+    background-color: #b35a01;
 }
 img.icon{
     height: 23px;
     width: 23px;
     object-fit: cover;
+    margin-right: 6px;
 }

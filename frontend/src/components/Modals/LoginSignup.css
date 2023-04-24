@@ -21,23 +21,29 @@ div.page-overlay{
     width: fit-content;
 }
 .login-signup-form button, .submit-button{
-    background-color: #31AFAC;
-    font-size: 18px;
-    font-weight: bold;
+    background-color: var(--turquoise);
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
     color: white;
-    padding: 8px;
-    border-radius: 4px;
-    border: none;
-    margin: 10px
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    margin: 10px;
+    width: 266px;
 }
 .login-signup-form button:hover, .submit-button:hover{
-    background-color: #4edad8;
+    background-color: #238C83;
     cursor: pointer;
 }
 .login-signup-form h1{
     font-size: 25px;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     margin: 10px;
+}
+
+.demo-login {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold)
 }
 
 .selected-image{
@@ -81,7 +87,8 @@ div.page-overlay{
 
 form.login-signup-form{
     border-radius: 5px;
-    border: 1px solid #31AFAC;
+    /* border: 1px solid #31AFAC; */
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
     background-color: white;
     width: 300px;
     padding: 20px;
@@ -112,4 +119,29 @@ button.form-swap:hover{
     background-color: transparent;
     color: #8dd8d7;
     cursor:pointer;
+}
+
+.login-input-text {
+    border: 1px solid #31AFAC;
+    border: 1px solid #111;
+    border-radius: 5px;
+    padding: 8px;
+    /* margin: 5px; */
+    width: 250px;
+    /* height: 24px; */
+}
+
+.footer-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-swap{
+    color: #31AFAC;
+    background-color: transparent;
+    border: none;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    margin-left: 6px;
+    /* font-size: 18px; */
 }
