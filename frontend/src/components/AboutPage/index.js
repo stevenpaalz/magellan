@@ -40,12 +40,12 @@ const AboutPage = () => {
                         <div className="teammate-name">Steve Paalz</div>
                         <div className="teammate-title">Backend</div>
                         <div className="about-socials-holder">
-                                <a href="https://www.linkedin.com/in/steve-paalz/" target="_blank">
+                                <a href="https://github.com/stevenpaalz" target="_blank">
                             <div className="teammate-github-icon">
                                     <i className="fa-brands fa-github"></i>
                             </div>
                                 </a>
-                                <a href="https://github.com/stevenpaalz" target="_blank">
+                                <a href="https://www.linkedin.com/in/steve-paalz/" target="_blank">
                             <div className="teammate-linkedin-icon">
                                     <i className="fa-brands fa-linkedin-in"></i>
                             </div>
@@ -55,7 +55,7 @@ const AboutPage = () => {
 
                     <div className="teammate-holder">
                         <div className="teammate-avatar-holder">
-                            <a href="https://github.com/YLinDev" target="_blank">
+                            <a href="https://www.linkedin.com/in/yong-lin-b7142a40/" target="_blank">
                                 <img src={`../../../../assets/avatar4.png`} className="teammate-avatar"></img>
                             </a>
                         </div>
