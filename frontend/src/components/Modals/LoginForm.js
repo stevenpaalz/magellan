@@ -4,11 +4,13 @@ import { login } from "../../store/session";
 import { setModal } from "../../store/modal";
 import './LoginSignup.css'
 import { useEffect }  from "react";
+import { useHistory } from "react-router-dom";
 
 export default function LoginForm(){
 
     const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
+    const history = useHistory()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({})
@@ -23,10 +25,12 @@ export default function LoginForm(){
         e.preventDefault();
         const newUser = {email: email.toLowerCase(), password}
         dispatch(login(newUser))
+        history.push('/quests')
     }
     function demoLogin(e){
         e.preventDefault()
         dispatch(login({email: "demo@email.com", password: "password"}))
+        history.push('/quests')
     }
     function swapForm(){
         dispatch(setModal("signUp"))

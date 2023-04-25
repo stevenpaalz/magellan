@@ -6,11 +6,13 @@ import USstates from "../../data/States";
 import './LoginSignup.css'
 import profileUrls from "../../data/ProfileImgUrls";
 import { useEffect }  from "react";
+import { useHistory } from "react-router-dom";
 
 export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
     const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
+    const history = useHistory()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -33,8 +35,8 @@ export default function SignUpForm(){
         if (password === confirmPassword){
 
             const newUser = {firstName, lastName, homeCity, homeState, email: email.toLowerCase(), password, profileImageUrl: profileUrls[profImg]}
-            return dispatch(signup(newUser))
-
+            dispatch(signup(newUser))
+            history.push('/quests')
         }else{
             setErrors({confirmPassword: "password and confirm password do not match!"})
         }
