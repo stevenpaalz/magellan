@@ -90,10 +90,10 @@ export default function SignUpForm(){
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
 
-                        <div className="home-state-label">Profile image:</div>
+                        <div className="login-signup-dropdown-label">Profile image:</div>
                     
                     <div>
-                        <select className="home-state" onClick={imgDropdownClick}>
+                        <select className="login-signup-dropdown" onClick={imgDropdownClick}>
                             {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> 
                             : dropdownButtonValue}
                         </select>
@@ -128,8 +128,8 @@ export default function SignUpForm(){
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
                     
-                    <div className="home-state-label">Home state:</div>
-                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="home-state">
+                    <div className="login-signup-dropdown-label">Home state:</div>
+                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="login-signup-dropdown">
                         <option disabled value={"default"}></option>
                         {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>

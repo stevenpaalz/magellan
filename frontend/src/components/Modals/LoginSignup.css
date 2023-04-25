@@ -176,11 +176,7 @@ button.form-swap:hover{
     width: 250px;
 }
 
-.login-input-text:hover {
-    border: 1px solid var(--turquoise);
-}
-
-.home-state-label {
+.login-signup-dropdown-label {
     display: flex;
     align-self: start;
     margin: 10px;
@@ -188,7 +184,7 @@ button.form-swap:hover{
     padding-left: 8px;
 }
 
-.home-state {
+.login-signup-dropdown {
     border: 1px solid #111;
     border-radius: 5px;
     padding: 8px;
@@ -198,7 +194,7 @@ button.form-swap:hover{
     margin-bottom: 5px;
 }
 
-.home-state:hover {
+.login-signup-dropdown:hover {
     border: 1px solid var(--turquoise);
     background-color: var(--turquoise);
     color: white;
@@ -216,5 +212,4 @@ button.form-swap:hover{
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
     margin-left: 6px;
-    /* font-size: 18px; */
 }
