@@ -15,12 +15,6 @@ export default function QuestForm() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [checkPointList, setCheckPointsList] = useState([{checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}]);
-    // console.log(checkPointList)
-    // const [cpOne, setCpOne] = useState("");
-    // const [cpTwo, setCpTwo] = useState("");
-    // const [cpThree, setCpThree] = useState("");
-    // const [cpFour, setCpFour] = useState("");
-    // const [cpFive, setCpFive] = useState("");
     const [duration, setDuration] = useState("");
     const [streetAddress, setStreetAddress] = useState("");
     const [city, setCity] = useState("");
@@ -68,7 +62,6 @@ export default function QuestForm() {
         fileRef.current.value = null;
         const allCheckPoints = [];
         checkPointList.forEach((e) => allCheckPoints.push(e.checkpoint))
-        console.log(allCheckPoints)
         formData.append('title', title);
         formData.append('description', description);
         formData.append('checkpoints', allCheckPoints);
@@ -86,7 +79,6 @@ export default function QuestForm() {
             setErrors({tagz: "Please select at least one tag"})
         } else {
             const questId = await dispatch(createQuest(formData));
-            console.log(questId)
             if (questId) {
                 closeForm();
                 setTitle("");
@@ -320,12 +312,12 @@ export default function QuestForm() {
                 </label>
                 <label className="form-label-checkpoint">
                     {checkPointList.map((singleCP, index) => (
-                        <div className="checkpoint-div">
+                        <div key={`${index}QCheckpoint`} className="checkpoint-div">
                             <div> 
                                 <textarea 
                                     name="checkpoint"
                                     className="form-input-field-c"
-                                    key={index}
+                                    key={`${index}Quest`}
                                     value={singleCP.checkpoint}
                                     onChange={(e) => handleCheckpointChange(e, index)}
                                 />
@@ -334,7 +326,7 @@ export default function QuestForm() {
                                 {checkPointList.length > 5 && 
                                     <button
                                         type="button" 
-                                        key={`${index}Button`} 
+                                        key={`${index}QButton`} 
                                         className="checkpoint-remove-button" 
                                         onClick={() => handleCheckpointRemove(index)}>
                                         <i className="fa-solid fa-minus"></i>
