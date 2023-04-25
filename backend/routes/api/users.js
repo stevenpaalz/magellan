@@ -15,6 +15,7 @@ const { Client } = require('@googlemaps/google-maps-services-js');
 const Quest = mongoose.model('Quest');
 const Event = mongoose.model('Event');
 const Review = require('../../models/Review');
+const { events } = require('../../models/Review');
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
@@ -207,29 +208,49 @@ router.patch('/:userId', async (req, res, next) => {
   }
 });
 
-// router.delete('/:userId', async (req, res, next) => {
-//   const userEvents = await Event.find({host: req.params.userId});
-//   const userReviews = await Review.find({author: req.params.userId});
-//   const userQuests = await Quest.find({creator: req.params.userId});
+router.delete('/:userId', async (req, res, next) => {
+  const user = await User.findById(req.params.userId);
+  const userEvents = await Event.find({host: req.params.userId});
+  const userReviews = await Review.find({author: req.params.userId});
+  const userQuests = await Quest.find({creator: req.params.userId});
+  const userQuestIds = userQuests.map((userQuest) => userQuest._id.toString())
 
-//   const relatedEvents = [];
-//   const relatedReviews = [];
+  let relatedEvents = [];
+  let relatedReviews = [];
+  let allEvents = await Event.find();
+  let allReviews = await Review.find();
+  allEvents.forEach((event)=>{
+    if (userQuestIds.includes(event.quest.toString())) {
+      relatedEvents.push(event);
+    }
+    if (event.attendees.includes(req.params.userId)) {
+      let idx = event.attendees.findIndex(req.params.userId);
+      event.attendees.splice(idx, 1)
+    }
+  })
+  allReviews.forEach((review) => {
+    if (userQuestIds.includes(review.quest.toString())) {
+      relatedReviews.push(review);
+    }
+  })
 
-//   userQuests.forEach((quest) => {
-//     relatedEvents.push(Event.find({quest: quest._id}));
-//     relatedReviews.push(Review.find({quest: quest._id}));
-//   });
-//   return res.json(relatedReviews);
-
-//   const deleteReviews = [...userReviews, ...relatedReviews];
-//   const deleteEvents = [...userEvents, ...relatedEvents];
-
-  // deleteReviews.forEach((review) => {
-  //   Review.findByIdAndDelete(review._id)
-  // })
-  // deleteEvents.forEach((event) => {
-  //   Event.findByIdAndDelete(event._id)
-  // })
-// });
+  const deleteReviews = [...userReviews, ...relatedReviews];
+  const deleteEvents = [...userEvents, ...relatedEvents];
+try {
+  deleteReviews.forEach((review) => {
+    review.deleteOne();
+  })
+  deleteEvents.forEach((event) => {
+    event.deleteOne();
+  })
+  userQuests.forEach((userQuest) => {
+    userQuest.deleteOne();
+  })
+  user.deleteOne();
+  return res.json(req.params.userId)
+} catch(err) {
+  next(err);
+}
+});
 
 module.exports = router;
