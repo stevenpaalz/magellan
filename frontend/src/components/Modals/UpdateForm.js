@@ -16,15 +16,19 @@ export default function UpdateForm() {
     const dispatch = useDispatch(); 
     const { id } = useParams(); 
     let quest = useSelector(state => state.quests[id]);
+    console.log(quest)
     const fileRef = useRef(null);
     const questErrors = useSelector(state => state.errors?.quest)
     const [title, setTitle] = useState(quest.title);
     const [description, setDescription] = useState(quest.description);
-    const [cpOne, setCpOne] = useState(quest.checkpoints[0]);
-    const [cpTwo, setCpTwo] = useState(quest.checkpoints[1]);
-    const [cpThree, setCpThree] = useState(quest.checkpoints[2]);
-    const [cpFour, setCpFour] = useState(quest.checkpoints[3]);
-    const [cpFive, setCpFive] = useState(quest.checkpoints[4]);
+    const questCheckpoints = []
+    quest.checkpoints.forEach((c) => questCheckpoints.push({checkpoint: c}))
+    const [checkPointList, setCheckPointsList] = useState(questCheckpoints)
+    // const [cpOne, setCpOne] = useState(quest.checkpoints[0]);
+    // const [cpTwo, setCpTwo] = useState(quest.checkpoints[1]);
+    // const [cpThree, setCpThree] = useState(quest.checkpoints[2]);
+    // const [cpFour, setCpFour] = useState(quest.checkpoints[3]);
+    // const [cpFive, setCpFive] = useState(quest.checkpoints[4]);
     const [duration, setDuration] = useState(quest.duration);
     const address = quest.formattedAddress.split(", ");
     const [streetAddress, setStreetAddress] = useState(address[0]);
@@ -98,7 +102,8 @@ export default function UpdateForm() {
         const formData = new FormData(); 
         Array.from(images).forEach(image => formData.append("images", image));
         fileRef.current.value = null;
-        const allCheckPoints = [cpOne, cpTwo, cpThree, cpFour, cpFive]
+        const allCheckPoints = []
+        checkPointList.forEach((e) => allCheckPoints.push(e.checkpoint))
         formData.append('title', title);
         formData.append('description', description);
         formData.append('checkpoints', allCheckPoints);
@@ -198,6 +203,22 @@ export default function UpdateForm() {
         history.replace("/quests");
     }
 
+    const handleCheckpointAdd = () => {
+        setCheckPointsList([...checkPointList, {checkpoint: ""}])
+    }
+
+    const handleCheckpointRemove = (index) => {
+        const list = [...checkPointList];
+        list.splice(index, 1)
+        setCheckPointsList(list)
+    };
+
+    const handleCheckpointChange = (e, index) => {
+        const {name, value} = e.target; 
+        const list = [...checkPointList]
+        list[index][name] = value; 
+        setCheckPointsList(list)
+    };
 
     return(
         <div className="create-page">
@@ -208,7 +229,6 @@ export default function UpdateForm() {
             </div>
             {formHeading}
             <form className="quest-form" onSubmit={handleSubmit}>
-                <div>
                     <label className="form-label-td">
                         Title 
                         <input className="form-input-field-td"
@@ -217,7 +237,7 @@ export default function UpdateForm() {
                             onChange={(e) => setTitle(e.target.value)}
                         /> 
                     </label>
-                    <label className="form-label">
+                    <label className="form-label-td">
                         Description 
                         <input className="form-input-field-td"
                             type="text"
@@ -225,35 +245,6 @@ export default function UpdateForm() {
                             onChange={(e) => setDescription(e.target.value)}
                         /> 
                     </label>
-                </div>
-                <label className="form-label">
-                    Checkpoints
-                    <textarea className="form-input-field-c"
-                        value={cpOne}
-                        placeholder="Required"
-                        onChange={(e) => setCpOne(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        value={cpTwo}
-                        placeholder="Required"
-                        onChange={(e) => setCpTwo(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        value={cpThree}
-                        placeholder="Required"
-                        onChange={(e) => setCpThree(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        value={cpFour}
-                        placeholder="Required"
-                        onChange={(e) => setCpFour(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        value={cpFive}
-                        placeholder="Required"
-                        onChange={(e) => setCpFive(e.target.value)}
-                    /> 
-                </label>
                 <div className="form-address">
                     <label className="form-label">
                         Street Address
@@ -273,7 +264,7 @@ export default function UpdateForm() {
                     </label>
                     <label className="form-label">
                         State
-                        <select onChange={(e) => setState(e.target.value)}>
+                        <select className="form-dropdown" onChange={(e) => setState(e.target.value)}>
                             <option value="NY" default>NY</option>
                             {states.map((state) => (
                                 <option key={state} value={state}>{state}</option>
@@ -410,6 +401,38 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label>
                 </label>
+                <label className="form-label-cp-name">
+                    Checkpoints:
+                    {checkPointList.length < 15 &&
+                                <button type="button" className="checkpoint-add-button" onClick={handleCheckpointAdd}>
+                                    <i className="fa-solid fa-plus"></i> Add more Checkpoints
+                                </button>
+                    }
+                </label>
+                    <div className="form-label-checkpoint">
+                    {checkPointList.map((singleCP, index) => (
+                        <div className="checkpoint-div">
+                            <textarea 
+                                name="checkpoint"
+                                className="form-input-field-c"
+                                key={index}
+                                value={singleCP.checkpoint}
+                                onChange={(e) => handleCheckpointChange(e, index)}
+                            />
+                            <div> 
+                                {checkPointList.length > 5 && 
+                                    <button
+                                        type="button"
+                                        key={`${index}Button`} 
+                                        className="checkpoint-remove-button" 
+                                        onClick={() => handleCheckpointRemove(index)}>
+                                        <i className="fa-solid fa-minus"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    ))}
+                    </div>
                 <div className="form-button-div">
                     {submitButton}
                 </div>

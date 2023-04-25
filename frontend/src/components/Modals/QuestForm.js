@@ -14,11 +14,13 @@ export default function QuestForm() {
     const questErrors = useSelector(state => state.errors?.quest)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [cpOne, setCpOne] = useState("");
-    const [cpTwo, setCpTwo] = useState("");
-    const [cpThree, setCpThree] = useState("");
-    const [cpFour, setCpFour] = useState("");
-    const [cpFive, setCpFive] = useState("");
+    const [checkPointList, setCheckPointsList] = useState([{checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}]);
+    // console.log(checkPointList)
+    // const [cpOne, setCpOne] = useState("");
+    // const [cpTwo, setCpTwo] = useState("");
+    // const [cpThree, setCpThree] = useState("");
+    // const [cpFour, setCpFour] = useState("");
+    // const [cpFive, setCpFive] = useState("");
     const [duration, setDuration] = useState("");
     const [streetAddress, setStreetAddress] = useState("");
     const [city, setCity] = useState("");
@@ -64,7 +66,9 @@ export default function QuestForm() {
         const formData = new FormData(); 
         Array.from(images).forEach(image => formData.append("images", image));
         fileRef.current.value = null;
-        const allCheckPoints = [cpOne, cpTwo, cpThree, cpFour, cpFive]
+        const allCheckPoints = [];
+        checkPointList.forEach((e) => allCheckPoints.push(e.checkpoint))
+        console.log(allCheckPoints)
         formData.append('title', title);
         formData.append('description', description);
         formData.append('checkpoints', allCheckPoints);
@@ -77,7 +81,7 @@ export default function QuestForm() {
         formData.append('tags', [tags]);
 
         if (allCheckPoints.includes("")) {
-            setErrors({cp: "There should be a minimum of 5 checkpoints"})
+            setErrors({cp: "There should be a minimum of 5 checkpoints and maximum of 15"})
         } else if (tags.length < 1) {
             setErrors({tagz: "Please select at least one tag"})
         } else {
@@ -87,11 +91,7 @@ export default function QuestForm() {
                 closeForm();
                 setTitle("");
                 setDescription("");
-                setCpOne("");
-                setCpTwo("");
-                setCpThree("");
-                setCpFour("");
-                setCpFive("");
+                setCheckPointsList([{checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}, {checkpoint: ""}]);
                 setDuration("");
                 setStreetAddress("");
                 setCity("");
@@ -123,6 +123,23 @@ export default function QuestForm() {
         history.replace("/quests");
     }
 
+    const handleCheckpointAdd = () => {
+        setCheckPointsList([...checkPointList, {checkpoint: ""}])
+    }
+
+    const handleCheckpointRemove = (index) => {
+        const list = [...checkPointList];
+        list.splice(index, 1)
+        setCheckPointsList(list)
+    };
+
+    const handleCheckpointChange = (e, index) => {
+        const {name, value} = e.target; 
+        const list = [...checkPointList]
+        list[index][name] = value; 
+        setCheckPointsList(list)
+    };
+
     return(
         <div className="create-page">
             <div className="create-upper-x-container">
@@ -132,8 +149,7 @@ export default function QuestForm() {
             </div>
             {formHeading}
             <form className="quest-form" onSubmit={handleSubmit}>
-                <div>
-                    <label className="form-label">
+                <label className="form-label-td">
                         Title 
                         <input className="form-input-field-td"
                             type="text"
@@ -141,42 +157,13 @@ export default function QuestForm() {
                             onChange={(e) => setTitle(e.target.value)}
                         /> 
                     </label>
-                    <label className="form-label">
+                    <label className="form-label-td">
                         Description 
                         <input className="form-input-field-td"
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         /> 
-                    </label>
-                </div>
-                <label className="form-label">
-                    Checkpoints
-                    <textarea className="form-input-field-c"
-                        placeholder="Required"
-                        value={cpOne}
-                        onChange={(e) => setCpOne(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        placeholder="Required"
-                        value={cpTwo}
-                        onChange={(e) => setCpTwo(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        placeholder="Required"
-                        value={cpThree}
-                        onChange={(e) => setCpThree(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        placeholder="Required"
-                        value={cpFour}
-                        onChange={(e) => setCpFour(e.target.value)}
-                    /> 
-                    <textarea className="form-input-field-c"
-                        placeholder="Required"
-                        value={cpFive}
-                        onChange={(e) => setCpFive(e.target.value)}
-                    /> 
                 </label>
                 <div className="form-address">
                     <label className="form-label">
@@ -197,7 +184,7 @@ export default function QuestForm() {
                     </label>
                     <label className="form-label">
                         State
-                        <select onChange={(e) => setState(e.target.value)}>
+                        <select className="form-dropdown" onChange={(e) => setState(e.target.value)}>
                             {states.map((state) => (
                                 <option key={state} value={state}>{state}</option>
                             ))}
@@ -322,6 +309,40 @@ export default function QuestForm() {
                         />
                         <span className="slider"></span>
                     </label>
+                </label>
+                <label className="form-label-cp-name">
+                    Checkpoints:
+                    {checkPointList.length < 15 &&
+                                <button type="button" className="checkpoint-add-button" onClick={handleCheckpointAdd}>
+                                    <i className="fa-solid fa-plus"></i> Add more Checkpoints
+                                </button>
+                    }
+                </label>
+                <label className="form-label-checkpoint">
+                    {checkPointList.map((singleCP, index) => (
+                        <div className="checkpoint-div">
+                            <div> 
+                                <textarea 
+                                    name="checkpoint"
+                                    className="form-input-field-c"
+                                    key={index}
+                                    value={singleCP.checkpoint}
+                                    onChange={(e) => handleCheckpointChange(e, index)}
+                                />
+                            </div>
+                            <div> 
+                                {checkPointList.length > 5 && 
+                                    <button
+                                        type="button" 
+                                        key={`${index}Button`} 
+                                        className="checkpoint-remove-button" 
+                                        onClick={() => handleCheckpointRemove(index)}>
+                                        <i className="fa-solid fa-minus"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    ))}
                 </label>
                 <div className="form-button-div">
                     {submitButton}
