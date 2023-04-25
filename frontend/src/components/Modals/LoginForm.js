@@ -41,7 +41,7 @@ export default function LoginForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>Log in to magellan</h1> 
+                    <h1>log in</h1> 
                     <label>
                         <p>Email:</p>
                         <input 
@@ -66,8 +66,8 @@ export default function LoginForm(){
                         />
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
-                    <input type="submit" value="Log in" className="submit-button"/>
-                    <button className="demo-login" onClick={demoLogin}>Log in as demo user</button>
+                    <input type="submit" value="log in" className="submit-button"/>
+                    <button className="demo-login" onClick={demoLogin}>log in as demo user</button>
                     <div className="footer-text"> 
                         Don't have an account? 
                         <span onClick={swapForm} className="form-swap">Sign up!</span> 

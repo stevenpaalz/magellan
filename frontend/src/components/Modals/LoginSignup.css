@@ -38,7 +38,7 @@ div.page-overlay{
 .login-signup-form h1{
     font-size: 25px;
     font-weight: var(--font-weight-bold);
-    margin: 10px;
+    margin: 5px;
 }
 
 .demo-login {
@@ -122,18 +122,24 @@ button.form-swap:hover{
 }
 
 .login-input-text {
-    border: 1px solid #31AFAC;
+    /* border: 1px solid #31AFAC; */
     border: 1px solid #111;
     border-radius: 5px;
     padding: 8px;
-    /* margin: 5px; */
     width: 250px;
-    /* height: 24px; */
+}
+
+.home-state {
+    border: 1px solid #111;
+    border-radius: 5px;
+    padding: 8px;
+    width: 250px;
+    cursor: pointer;
 }
 
 .footer-text {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .form-swap{

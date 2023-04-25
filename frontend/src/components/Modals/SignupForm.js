@@ -60,7 +60,7 @@ export default function SignUpForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>Sign up for magellan</h1> 
+                    <h1>sign up</h1> 
                     <label><p>First name:</p>
                         <input 
                             type="text" 
@@ -117,7 +117,7 @@ export default function SignUpForm(){
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
                     
-                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState">
+                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="home-state">
                         <option disabled value={"default"}>State</option>
                         {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>
@@ -146,7 +146,7 @@ export default function SignUpForm(){
                         />
                     </label>
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-                    <input type="submit" value="Sign up" className="submit-button"/>
+                    <input type="submit" value="sign up" className="submit-button"/>
     
                     
                        <div className="footer-text"> Already have an account? 
