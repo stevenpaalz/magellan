@@ -1,7 +1,3 @@
-.map {
-
-}
-
 .questMarker {
     line-height: 30px;
     background-color: var(--red);
@@ -15,18 +11,15 @@
     text-align: center;
     font-size: var(--font-size-400);
     font-weight: var(--font-weight-verybold);
+    position: relative;
+    right: -15px;
+    top: -15px;
 }
 
 .questMarker:hover {
-    background-color: #FF3E00 ;
-    height: 33px;
-    width: 33px;
-    line-height: 33px;
+    background-color: var(--turquoise) ;
 }
 
 .questMarker:active {
     background-color: #D52200;
-    height: 27px;
-    width: 27px;
-    line-height: 27px;
 }

@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GoogleMapReact from 'google-map-react';
 import QuestMarker from "./QuestMarker";
 import "./Map.css"
+import { useState } from "react";
 
 const QuestMap = ({ quests, style, quest, lat, lng }) => {
+    const [center, setCenter] = useState({
+        lat: lat || 40.74233116818592, 
+        lng: lng || -73.99140855323562
+    });
+    const defaultZoom = 13;
 
-    const defaultProps = {
-        center: {
-            lat: lat || 40.74233116818592, 
+    useEffect(()=>{
+        let newCenter = {
+            lat: lat || 40.74233116818592,
             lng: lng || -73.99140855323562
-        },
-        zoom: 13
-    };
+        }
+        setCenter(newCenter)
+    }, [lat, lng])
     
     return (
     // Important! Always set the container height explicitly
@@ -20,8 +26,9 @@ const QuestMap = ({ quests, style, quest, lat, lng }) => {
 
         <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={{lat: 40.74233116818592, lng: -73.99140855323562}}
+        center={center}
+        defaultZoom={defaultZoom}
         >
             {quests?.map((quest, i) => (
                 <QuestMarker 

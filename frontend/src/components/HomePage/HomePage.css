@@ -5,3 +5,9 @@
 .homepage-left{
     width:50%;
 }
+
+.no-results {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 50px;
+}

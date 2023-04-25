@@ -85,7 +85,7 @@ function filteredQuests(quests, tags){
       truetags.push(entry[0])
     }
   })
-  // if a quest has all tags labeled true push into quest array
+
   Object.values(quests).forEach(quest=>{
     if (truetags.every((tag)=>{return Object.values(quest.tags).includes(tag)})){
       questarray.push(quest)
@@ -126,7 +126,8 @@ const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests
                                 </label>)}
                               </div>}
 
-          <QuestIndex quests={questsFiltered}/>
+          {questsFiltered.length > 0 && <QuestIndex quests={questsFiltered}/>}
+          {questsFiltered.length < 1 && <h1 className="no-results">No results found...</h1>}
           </div>
       </div>
     );
