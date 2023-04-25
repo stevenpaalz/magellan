@@ -20,7 +20,7 @@ export default function LoginForm(){
 
     function handleSubmit(e){
         e.preventDefault();
-        const newUser = {email, password}
+        const newUser = {email: email.toLowerCase(), password}
         dispatch(login(newUser))
     }
 
