@@ -216,6 +216,16 @@ button.form-swap:hover{
 button.login-signup-dropdown-image {
     background-color: white;
     color: turquoise;
-    border: 1px solid var(--turquoise);
+    border: 1px solid #111;
     margin-top: 1px;
+    color: #606060;
+    font-size: var(--font-size-200);
+    font-weight: var(--font-weight-normal);
+    text-align: left;
+}
+
+button.login-signup-dropdown-image:hover {
+    color: white;
+    background-color: var(--turquoise);
+    border: 1px solid var(--turquoise);
 }
