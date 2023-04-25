@@ -41,9 +41,34 @@ div.page-overlay{
     margin: 5px;
 }
 
-.demo-login {
+button.img-dropdown {
+    background-color: white;
+    border: 1px solid #111;
+    border-radius: 5px;
+    padding: 8px;
+    width: 266px;
+    cursor: pointer;
+    color: rgba(118, 118, 118);
+    font-size: var(--font-size-200);
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 5px;
+}
+
+button.img-dropdown:hover {
+    background-color: white;
+    border: 1px solid var(--turquoise);
+}
+
+button.demo-login {
     font-size: var(--font-size-400);
-    font-weight: var(--font-weight-semibold)
+    font-weight: var(--font-weight-semibold);
+    background-color: #238C83;
+}
+
+button.demo-login:hover {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-semibold);
+    background-color: #1c6a64;
 }
 
 .selected-image{
@@ -65,7 +90,7 @@ div.page-overlay{
 }
 .dropdown-options{
     position: absolute;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     display: flex;
     flex-direction: column;
     background-color: #8dd8d7;
@@ -73,30 +98,27 @@ div.page-overlay{
     height: 30vh;
     overflow-y: scroll;
     border-radius: 5px;
-}
-
-.login-signup-form label{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 10px;
-}
-.login-signup-form p{
-    margin-bottom: 5px;
+    margin-top: -5px;
+    width: 250px;
+    align-items: center;
 }
 
 form.login-signup-form{
     border-radius: 5px;
-    /* border: 1px solid #31AFAC; */
     box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
     background-color: white;
     width: 300px;
+    height: auto;
     padding: 20px;
     display:flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+
 
 p.error{
     color: #F23005;
@@ -110,16 +132,27 @@ p.error::after{
 }
 
 button.form-swap{
-    color: #31AFAC;
+    color: var(--turquoise);
     background-color: transparent;
     border: none;
     font-size: 18px;
 }
 button.form-swap:hover{
     background-color: transparent;
-    color: #8dd8d7;
+    color: #238C83;
     cursor:pointer;
 }
+
+.login-signup-form label{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+}
+.login-signup-form p{
+    margin-bottom: 5px;
+}
+
 
 .login-input-text {
     /* border: 1px solid #31AFAC; */
@@ -129,12 +162,32 @@ button.form-swap:hover{
     width: 250px;
 }
 
+.login-input-text:hover {
+    border: 1px solid var(--turquoise);
+}
+
+.home-state-label {
+    display: flex;
+    align-self: start;
+    margin: 10px;
+    margin-bottom: 5px;
+    padding-left: 8px;
+}
+
 .home-state {
     border: 1px solid #111;
     border-radius: 5px;
     padding: 8px;
-    width: 250px;
+    width: 266px;
     cursor: pointer;
+    color: rgba(118, 118, 118);
+    margin-bottom: 5px;
+}
+
+.home-state:hover {
+    border: 1px solid var(--turquoise);
+    background-color: var(--turquoise);
+    color: white;
 }
 
 .footer-text {

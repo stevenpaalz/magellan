@@ -4,6 +4,8 @@ import { login } from "../../store/session";
 import { setModal } from "../../store/modal";
 import './LoginSignup.css';
 import { useEffect }  from "react";
+import { useHistory } from "react-router-dom";
+
 
 export default function LoginForm(){
     const sessionErrors = useSelector(state=> state.errors?.session);
@@ -11,6 +13,7 @@ export default function LoginForm(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const history = useHistory();
 
     useEffect(() => {
         if (sessionErrors){
@@ -22,6 +25,8 @@ export default function LoginForm(){
         e.preventDefault();
         const newUser = {email: email.toLowerCase(), password}
         dispatch(login(newUser))
+        history.push("/quests")
+        dispatch(setModal(false));
     }
 
     function demoLogin(e){
@@ -30,6 +35,9 @@ export default function LoginForm(){
             email: "demo@email.com",
             password: "password"
         }));
+        history.push("/quests");
+        dispatch(setModal(false));
+
     }
 
     function swapForm(){
@@ -41,7 +49,7 @@ export default function LoginForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>log in</h1> 
+                    <h1>Log In</h1> 
                     <label>
                         <p>Email:</p>
                         <input 

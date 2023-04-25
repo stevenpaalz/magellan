@@ -6,6 +6,7 @@ import USstates from "../../data/States";
 import './LoginSignup.css'
 import profileUrls from "../../data/ProfileImgUrls";
 import { useEffect }  from "react";
+import { useHistory } from "react-router-dom";
 
 export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
@@ -20,8 +21,10 @@ export default function SignUpForm(){
     const [profImg, setProfImg] = useState()
     const [homeState, setHomeState] = useState()
     const [errors, setErrors] = useState({})
-    const [dropdownButtonValue, setDropdownButtonValue] = useState("Select a profile image ⌵")
-    const [imgDropdownSelected, setImgDropdownSelected] = useState(false)
+    const [dropdownButtonValue, setDropdownButtonValue] = useState("Image")
+    const [imgDropdownSelected, setImgDropdownSelected] = useState(false);
+    const history = useHistory();
+    
     useEffect(()=>{
         if (sessionErrors){
             setErrors(sessionErrors)
@@ -33,7 +36,9 @@ export default function SignUpForm(){
         if (password === confirmPassword){
 
             const newUser = {firstName, lastName, homeCity, homeState, email: email.toLowerCase(), password, profileImageUrl: profileUrls[profImg]}
-            return dispatch(signup(newUser))
+            dispatch(signup(newUser))
+            history.push("/quests");
+            dispatch(setModal(false));
 
         }else{
             setErrors({confirmPassword: "password and confirm password do not match!"})
@@ -60,7 +65,7 @@ export default function SignUpForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>sign up</h1> 
+                    <h1>Sign Up</h1> 
                     <label><p>First name:</p>
                         <input 
                             type="text" 
@@ -85,8 +90,14 @@ export default function SignUpForm(){
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
 
+                        <div className="home-state-label">Profile image:</div>
+                    
                     <div>
-                        <button className="img-dropdown" onClick={imgDropdownClick} >{Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
+                        <select className="home-state" onClick={imgDropdownClick}>
+                            {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> 
+                            : dropdownButtonValue}
+                        </select>
+
                             {imgDropdownSelected && <div className="dropdown-options"> 
                             {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
                             </div>}
@@ -117,8 +128,9 @@ export default function SignUpForm(){
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
                     
+                    <div className="home-state-label">Home state:</div>
                     <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="home-state">
-                        <option disabled value={"default"}>State</option>
+                        <option disabled value={"default"}></option>
                         {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>
                     {errors.homeState && <p className="error">{errors.homeState}</p>}
