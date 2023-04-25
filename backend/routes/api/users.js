@@ -10,9 +10,11 @@ const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { getLatLng } = require('../../config/geocode');
-const Event = mongoose.model('Event');
 const { googleAPIKey } = require('../../config/keys');
 const { Client } = require('@googlemaps/google-maps-services-js');
+const Quest = mongoose.model('Quest');
+const Event = mongoose.model('Event');
+const Review = require('../../models/Review');
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({email: req.body.email});
@@ -156,7 +158,78 @@ router.get('/', async (req, res, next) => {
     error.errors = { message: "No event found with that id" };
     return next(error);
   }
-  
 });
+
+router.patch('/:userId', async (req, res, next) => {
+  const user = await User.findById(req.params.userId);
+
+  if (!user) {
+    const err = new Error("Validation Error");
+    err.statusCode = 400;
+    const errors = {};
+    if (user.email === req.body.email) {
+      errors.email = "No user found";
+    }
+    err.errors = errors;
+    return next(err);
+  }
+
+  const client = new Client();
+  const address = `${req.body.homeCity}, ${req.body.homeState}`;
+  const response = await client.geocode({ params: { address, key: googleAPIKey } });
+  if (!response.data.results[0]) {
+    const err = new Error("Validation Error");
+    err.statusCode = 400;
+    const errors = {};
+    errors.homeCity = "Invalid home city and state"
+    err.errors = errors;
+    return next(err);
+  }
+
+  const latlng = await getLatLng(`${req.body.homeCity}, ${req.body.homeState}`);
+  const latInput = latlng[0];
+  const lngInput = latlng[1];
+
+  user.email = req.body.email;
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.homeCity = req.body.homeCity;
+  user.homeState = req.body.homeState;
+  user.lat = latInput;
+  user.lng = lngInput;
+  user.profileImageUrl = req.body.profileImageUrl;
+
+  try {
+    const updatedUser = await user.save()
+    return res.json(await loginUser(updatedUser))
+  } catch(err) {
+    next(err);
+  }
+});
+
+// router.delete('/:userId', async (req, res, next) => {
+//   const userEvents = await Event.find({host: req.params.userId});
+//   const userReviews = await Review.find({author: req.params.userId});
+//   const userQuests = await Quest.find({creator: req.params.userId});
+
+//   const relatedEvents = [];
+//   const relatedReviews = [];
+
+//   userQuests.forEach((quest) => {
+//     relatedEvents.push(Event.find({quest: quest._id}));
+//     relatedReviews.push(Review.find({quest: quest._id}));
+//   });
+//   return res.json(relatedReviews);
+
+//   const deleteReviews = [...userReviews, ...relatedReviews];
+//   const deleteEvents = [...userEvents, ...relatedEvents];
+
+  // deleteReviews.forEach((review) => {
+  //   Review.findByIdAndDelete(review._id)
+  // })
+  // deleteEvents.forEach((event) => {
+  //   Event.findByIdAndDelete(event._id)
+  // })
+// });
 
 module.exports = router;

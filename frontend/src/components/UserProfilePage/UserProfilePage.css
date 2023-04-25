@@ -12,6 +12,28 @@
     font-weight: bold;
     margin: 20px;
 }
+.profile-right .editing{
+    margin: 20px;
+}
+.img-dropdown{
+    background-color: var(--turquoise);
+    margin: 20px;
+    font-size: large;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+.img-dropdown:hover{
+    cursor: pointer;
+    background-color: #4edad8;
+}
+.img-dropdown:active{
+    background-color: #1a8381;
+}
+.img-dropdown p{
+    color: white;
+}
 .profile-card{
     height: calc(80vh - 80px);
     width: 70%;
@@ -96,4 +118,34 @@
 }
 .attend-button{
     background-color: var(--orange);
+}
+.delete-button{
+    margin: 10px;
+}
+
+
+.delete-upper-x {
+    position: relative;
+    cursor: pointer;
+    width: 25px;
+    height: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 5px;
+    left:-150px;
+
+}
+
+.delete-upper-x:hover {
+    background-color: rgb(235, 235, 235);
+    border-radius: 100%;
+}
+.user-info-top{
+    display: flex;
+    align-items: center;
+}
+.user-info-buttons{
+    display: flex;
+    flex-direction: column;
 }

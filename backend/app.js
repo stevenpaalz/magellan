@@ -17,6 +17,7 @@ const usersRouter = require('./routes/api/users');
 const questsRouter = require('./routes/api/quests');
 const reviewsRouter = require('./routes/api/reviews');
 const eventsRouter = require('./routes/api/events');
+const searchRouter = require('./routes/api/search')
 const csrfRouter = require('./routes/api/csrf');
 
 var app = express();
@@ -47,6 +48,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/quests', questsRouter);
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/events', eventsRouter);
+app.use('/api/search', searchRouter)
 app.use('/api/csrf', csrfRouter);
 
 if (isProduction) {

@@ -159,6 +159,23 @@ export const deleteQuest = (questId) => async dispatch => {
     };
 };
 
+export const searchQuests = (searchString) => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/search?s=${searchString}`);
+        const data = await res.json();
+        const quests = {}
+        data.forEach ((e) => {
+            quests[e._id] = e
+        });
+        return dispatch(receiveAllQuests(quests));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            dispatch(receiveQuestError(resBody.errors));
+        };
+    }
+}
+
 const nullErrors = null; 
 
 export const questErrorsReducer = (state = nullErrors, action) => {
