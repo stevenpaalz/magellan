@@ -33,9 +33,12 @@ const ProfileMenu = () => {
     dispatch(sessionActions.logout())
   };
 
-  function createClick(){
-    dispatch(setModal("questForm"))
-    }
+  function createClick(e){
+    e.preventDefault();
+    history.replace("/quests/create");
+    // dispatch(setModal("questForm"))
+  }
+
   const sessionUser = useSelector(state => state.session.user);
   return (
     <>
@@ -45,7 +48,7 @@ const ProfileMenu = () => {
         alt="avatar" 
         onClick={openMenu}
       />
-      <QuestForm />
+      {/* <QuestForm /> */}
       {showMenu && (
         <div className="profile-dropdown">
           <a href="/user-profile" className="drop-down-option"><div>Profile</div></a>

@@ -12,12 +12,10 @@ div.page-overlay{
 }
 
 .create-page {
-    height: 75vh;
     display: flex; 
     background-color: rgb(246, 246, 250);
     flex-direction: column;
-    border: solid 1px #31AFAC;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 10px;
 }
 
@@ -29,31 +27,63 @@ div.page-overlay{
 }
 
 .form-heading {
-    font-size: 25px;
+    font-size: 45px;
     font-weight: bold;
     margin: 10px;
     text-align: center;
     padding-bottom: 10px;
 }
 
+.form-address {
+    margin-top: 10px; 
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-label-checkpoint {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .form-label {
     margin: 10px;
     margin-left: 20px;
     text-align: top;
+    font-size: 25px;
+}
 
+.form-label-cp-name {
+    margin: 10px;
+    margin-left: 20px;
+    text-align: top;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkpoint-div {
+    display: flex; 
+    align-items: center;
+    padding: 10px;
 }
 
 
 .form-label-td {
     margin: 10px;
     margin-left: 20px;
-    width: 50px; 
+    text-align: top;
+    font-size: 25px;
+    display: flex; 
+    justify-content: space-between;
 }
 
 .form-input-field {
     border-radius: 4px;
+    height: 25px; 
     border: 1px solid rgb(209, 209, 213);
     margin-left: 20px;
+    font-size: 20px;
 }
 
 .form-input-field:hover {
@@ -61,10 +91,12 @@ div.page-overlay{
 }
 
 .form-input-field-td {
-    width: 400px; 
+    width: 1000px; 
+    height: 40px;
     border-radius: 4px;
     border: 1px solid rgb(209, 209, 213);
     margin-left: 20px;
+    font-size: 20px;
 }
 
 .form-input-field-td:hover {
@@ -73,12 +105,13 @@ div.page-overlay{
 
 .form-input-field-c {
     width: 150px; 
-    height: 60px; 
+    height: 80px; 
     border-radius: 4px;
     border: 1px solid rgb(209, 209, 213);
     margin-left: 20px;
     overflow-wrap: "break-word";
-    resize: none; 
+    resize: none;
+
 }
 
 .form-input-field-c:hover {
@@ -171,13 +204,52 @@ p.form-error{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 25px;
 }
 
 .create-upper-x:hover {
-    background-color: rgb(235, 235, 235);
     border-radius: 100%;
+    background-color: #31AFAC;
+    cursor: pointer;
 }
 
 .quest-form input[type="text"], .quest-form input[type="number"]{
     line-height: 20px;
+}
+
+.form-dropdown {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* background-image: url('../../../public/assets/magellan_faviconv2.png');
+    background-size: contain; */
+    border-radius: 5px;
+    font-size: 20px;
+    box-shadow: 4px 4px #ccc;
+}
+
+.checkpoint-add-button {
+    color: white; 
+    background-color: #31AFAC;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.checkpoint-add-button:hover {
+    background-color: #4edad8;
+}
+
+.checkpoint-remove-button {
+    color: white; 
+    height: 30px; 
+    background-color: #31AFAC;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    width: 30px; 
+}
+
+.checkpoint-remove-button:hover {
+    background-color: #4edad8;
 }
