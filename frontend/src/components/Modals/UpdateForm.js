@@ -16,7 +16,6 @@ export default function UpdateForm() {
     const dispatch = useDispatch(); 
     const { id } = useParams(); 
     let quest = useSelector(state => state.quests[id]);
-    console.log(quest)
     const fileRef = useRef(null);
     const questErrors = useSelector(state => state.errors?.quest)
     const [title, setTitle] = useState(quest.title);
@@ -24,11 +23,6 @@ export default function UpdateForm() {
     const questCheckpoints = []
     quest.checkpoints.forEach((c) => questCheckpoints.push({checkpoint: c}))
     const [checkPointList, setCheckPointsList] = useState(questCheckpoints)
-    // const [cpOne, setCpOne] = useState(quest.checkpoints[0]);
-    // const [cpTwo, setCpTwo] = useState(quest.checkpoints[1]);
-    // const [cpThree, setCpThree] = useState(quest.checkpoints[2]);
-    // const [cpFour, setCpFour] = useState(quest.checkpoints[3]);
-    // const [cpFive, setCpFive] = useState(quest.checkpoints[4]);
     const [duration, setDuration] = useState(quest.duration);
     const address = quest.formattedAddress.split(", ");
     const [streetAddress, setStreetAddress] = useState(address[0]);
@@ -411,11 +405,11 @@ export default function UpdateForm() {
                 </label>
                     <div className="form-label-checkpoint">
                     {checkPointList.map((singleCP, index) => (
-                        <div className="checkpoint-div">
+                        <div key={`${index}UCheckpoint`} className="checkpoint-div">
                             <textarea 
                                 name="checkpoint"
                                 className="form-input-field-c"
-                                key={index}
+                                key={`${index}Update`}
                                 value={singleCP.checkpoint}
                                 onChange={(e) => handleCheckpointChange(e, index)}
                             />
@@ -423,7 +417,7 @@ export default function UpdateForm() {
                                 {checkPointList.length > 5 && 
                                     <button
                                         type="button"
-                                        key={`${index}Button`} 
+                                        key={`${index}UButton`} 
                                         className="checkpoint-remove-button" 
                                         onClick={() => handleCheckpointRemove(index)}>
                                         <i className="fa-solid fa-minus"></i>

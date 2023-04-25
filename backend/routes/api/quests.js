@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Quest = mongoose.model('Quest');
+const Event = mongoose.model('Event');
 const { requireUser } = require('../../config/passport');
 const { getLatLng } = require('../../config/geocode');
 const Review = require('../../models/Review');
@@ -134,6 +135,26 @@ router.delete('/:id', requireUser, async (req, res, next) => {
         if ((JSON.stringify(req.user._id)) !== (JSON.stringify(deleteQuest.creator))) {
             throw new Error("Cannot delete this quest");
         }
+        let relatedEvents = [];
+        let relatedReviews = [];
+        let allEvents = await Event.find();
+        let allReviews = await Review.find();
+        allEvents.forEach((event)=>{
+            if (req.params.id === event.quest.toString()) {
+                relatedEvents.push(event);
+            }
+        })
+        allReviews.forEach((review) => {
+            if (req.params.id === review.quest.toString()) {
+                relatedReviews.push(review);
+            }
+        })
+        relatedReviews.forEach((review) => {
+            review.deleteOne();
+        })
+        relatedEvents.forEach((event) => {
+            event.deleteOne();
+        })
         deleteQuest.deleteOne();
         return res.json(deleteQuest);
     }
