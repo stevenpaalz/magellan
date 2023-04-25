@@ -20,8 +20,8 @@ export default function LoginForm(){
 
     function handleSubmit(e){
         e.preventDefault();
-        const newUser = {email, password};
-        dispatch(login(newUser));
+        const newUser = {email, password}
+        dispatch(login(newUser))
     }
 
     function demoLogin(e){

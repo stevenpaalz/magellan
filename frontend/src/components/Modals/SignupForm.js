@@ -32,7 +32,7 @@ export default function SignUpForm(){
         e.preventDefault();
         if (password === confirmPassword){
 
-            const newUser = {firstName, lastName, homeCity, homeState, email, password, profileImageUrl: profileUrls[profImg]}
+            const newUser = {firstName, lastName, homeCity, homeState, email: email.toLowerCase(), password, profileImageUrl: profileUrls[profImg]}
             return dispatch(signup(newUser))
 
         }else{
