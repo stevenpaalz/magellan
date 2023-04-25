@@ -12,6 +12,7 @@ export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
     const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
+    const history = useHistory()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -40,6 +41,8 @@ export default function SignUpForm(){
             history.push("/quests");
             dispatch(setModal(false));
 
+            dispatch(signup(newUser))
+            history.push('/quests')
         }else{
             setErrors({confirmPassword: "password and confirm password do not match!"})
         }
