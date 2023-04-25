@@ -12,7 +12,6 @@ export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
     const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
-    const history = useHistory()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -22,7 +21,7 @@ export default function SignUpForm(){
     const [profImg, setProfImg] = useState()
     const [homeState, setHomeState] = useState()
     const [errors, setErrors] = useState({})
-    const [dropdownButtonValue, setDropdownButtonValue] = useState("Image")
+    const [dropdownButtonValue, setDropdownButtonValue] = useState("select image")
     const [imgDropdownSelected, setImgDropdownSelected] = useState(false);
     const history = useHistory();
     
@@ -96,10 +95,10 @@ export default function SignUpForm(){
                         <div className="login-signup-dropdown-label">Profile image:</div>
                     
                     <div>
-                        <select className="login-signup-dropdown" onClick={imgDropdownClick}>
+                        <button className="login-signup-dropdown-image" onClick={imgDropdownClick}>
                             {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> 
                             : dropdownButtonValue}
-                        </select>
+                        </button>
 
                             {imgDropdownSelected && <div className="dropdown-options"> 
                             {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}

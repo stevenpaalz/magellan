@@ -97,7 +97,7 @@ button.demo-login:hover {
 }
 
 .dropdown-options{
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     flex-direction: column;
     background-color: #8dd8d7;
@@ -105,14 +105,13 @@ button.demo-login:hover {
     height: 30vh;
     overflow-y: scroll;
     border-radius: 5px;
+    margin-top: -10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    width: 250px;
+    align-items: center;
 }
 
-.login-signup-form label{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 10px;
-}
 .login-signup-form p{
     margin-bottom: 5px;
 }
@@ -123,6 +122,7 @@ form.login-signup-form, div.delete-form{
     background-color: white;
     width: 300px;
     height: auto;
+    max-height: 80vh;
     padding: 20px;
     display:flex;
     flex-direction: column;
@@ -178,10 +178,9 @@ button.form-swap:hover{
 
 .login-signup-dropdown-label {
     display: flex;
-    align-self: start;
+    align-self: flex-start;
     margin: 10px;
     margin-bottom: 5px;
-    padding-left: 8px;
 }
 
 .login-signup-dropdown {
@@ -212,4 +211,11 @@ button.form-swap:hover{
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
     margin-left: 6px;
+}
+
+button.login-signup-dropdown-image {
+    background-color: white;
+    color: turquoise;
+    border: 1px solid var(--turquoise);
+    margin-top: 1px;
 }

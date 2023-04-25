@@ -16,13 +16,6 @@ export default function LoginForm(){
     const history = useHistory();
 
     useEffect(() => {
-    const sessionErrors = useSelector(state=> state.errors?.session)
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState({})
-    useEffect(()=>{
         if (sessionErrors){
             setErrors(sessionErrors);
         }
@@ -34,7 +27,6 @@ export default function LoginForm(){
         dispatch(login(newUser))
         history.push("/quests")
         dispatch(setModal(false));
-        history.push('/quests')
     }
 
     function demoLogin(e){
@@ -46,9 +38,6 @@ export default function LoginForm(){
         history.push("/quests");
         dispatch(setModal(false));
 
-        e.preventDefault()
-        dispatch(login({email: "demo@email.com", password: "password"}))
-        history.push('/quests')
     }
 
     function swapForm(){
