@@ -62,6 +62,8 @@ export default function UserInfo(){
         if(sessionUser.email!== "demo@email.com"){
             const user={firstName, lastName, email: email.toLowerCase(), homeCity, homeState, _id: sessionUser._id, profileImageUrl: profileUrls[profImg]}
             dispatch(updateUser(user))
+            setEditclicked(false)
+
         }else{
             setFirstName(sessionUser.firstName);
             setLastName(sessionUser.lastName);
@@ -117,17 +119,17 @@ export default function UserInfo(){
         </div>
         <div className="info-box">
             <p>Last Name:</p>
-            {editClicked? <><input className="editing" type="text" value={lastName} onChange={(e)=>setFirstName(e.target.value)}></input>{errors.lastName && <p className="error">{errors.lastName}</p>}</>:<h1>{lastName}</h1>}
+            {editClicked? <><input className="editing" type="text" value={lastName} onChange={(e)=>setLastName(e.target.value)}></input>{errors.lastName && <p className="error">{errors.lastName}</p>}</>:<h1>{lastName}</h1>}
         </div>
         <div className="info-box">
             <p>Email Address:</p>
-            {editClicked? <><input className="editing" type="text" value={email} onChange={(e)=>setFirstName(e.target.value)}></input>{errors.email && <p className="error">{errors.email}</p>}</>:<h1>{email}</h1>}
+            {editClicked? <><input className="editing" type="text" value={email} onChange={(e)=>setEmail(e.target.value)}></input>{errors.email && <p className="error">{errors.email}</p>}</>:<h1>{email}</h1>}
         </div>
         <div className="info-box">
             <p>Home Town:</p>
             {editClicked? 
             <>
-            <input className="editing" type="text" value={homeCity} placeholder="City Name" onChange={(e)=>setFirstName(e.target.value)}></input>
+            <input className="editing" type="text" value={homeCity} placeholder="City Name" onChange={(e)=>setHomeCity(e.target.value)}></input>
             {errors.homeCity && <p className="error">{errors.homeCity}</p>}    
             <select onChange={e=>setHomeState(e.target.value)} defaultValue={homeState} name="homeState">
                         <option disabled value={"default"}>State</option>
