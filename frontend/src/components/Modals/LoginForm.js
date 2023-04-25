@@ -21,13 +21,14 @@ export default function LoginForm(){
         }
     }, [sessionErrors]);
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
         const newUser = {email: email.toLowerCase(), password}
-        dispatch(login(newUser))
+        const user = await dispatch(login(newUser))
+        if (user) {
         history.push("/quests")
         dispatch(setModal(false));
-    }
+    }}
 
     function demoLogin(e){
         e.preventDefault();
