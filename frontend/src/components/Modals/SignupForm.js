@@ -31,21 +31,31 @@ export default function SignUpForm(){
         }
         
     }, [sessionErrors])
-    function handleSubmit(e){
+    
+    
+    async function handleSubmit(e) {
         e.preventDefault();
-        if (password === confirmPassword){
-
-            const newUser = {firstName, lastName, homeCity, homeState, email: email.toLowerCase(), password, profileImageUrl: profileUrls[profImg]}
-            dispatch(signup(newUser))
+        if (password === confirmPassword) {
+          const newUser = {
+            firstName,
+            lastName,
+            homeCity,
+            homeState,
+            email: email.toLowerCase(),
+            password,
+            profileImageUrl: profileUrls[profImg]
+          };
+          const user = await dispatch(signup(newUser));
+          if (user) {
             history.push("/quests");
             dispatch(setModal(false));
-
-            dispatch(signup(newUser))
-            history.push('/quests')
-        }else{
-            setErrors({confirmPassword: "password and confirm password do not match!"})
+          }
+        } else {
+          setErrors({ confirmPassword: "password and confirm password do not match!" });
         }
-    }
+      }
+    
+
     useEffect(() => {
         if (!imgDropdownSelected) return;
         const closeDropdown = () => {
