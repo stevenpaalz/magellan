@@ -12,7 +12,6 @@ export default function SignUpForm(){
     const modalState = useSelector(state => state.modals?.modalState)
     const sessionErrors = useSelector(state=> state.errors?.session)
     const dispatch = useDispatch()
-    const history = useHistory()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -22,8 +21,10 @@ export default function SignUpForm(){
     const [profImg, setProfImg] = useState()
     const [homeState, setHomeState] = useState()
     const [errors, setErrors] = useState({})
-    const [dropdownButtonValue, setDropdownButtonValue] = useState("select a profile image ⌵")
-    const [imgDropdownSelected, setImgDropdownSelected] = useState(false)
+    const [dropdownButtonValue, setDropdownButtonValue] = useState("Select image ⌵")
+    const [imgDropdownSelected, setImgDropdownSelected] = useState(false);
+    const history = useHistory();
+    
     useEffect(()=>{
         if (sessionErrors){
             setErrors(sessionErrors)
@@ -35,6 +36,10 @@ export default function SignUpForm(){
         if (password === confirmPassword){
 
             const newUser = {firstName, lastName, homeCity, homeState, email: email.toLowerCase(), password, profileImageUrl: profileUrls[profImg]}
+            dispatch(signup(newUser))
+            history.push("/quests");
+            dispatch(setModal(false));
+
             dispatch(signup(newUser))
             history.push('/quests')
         }else{
@@ -62,47 +67,106 @@ export default function SignUpForm(){
         return(
             <div className="page-overlay">
                 <form className="login-signup-form" onSubmit={handleSubmit}>
-                    <h1>sign up for magellan!</h1> 
-                    <label><p>first name:</p>
-                        <input type="text" name="firstName" value={firstName} onChange={e => setFirstName(e.target.value)}/>
+                    <h1>Sign Up</h1> 
+                    <label><p>First name:</p>
+                        <input 
+                            type="text" 
+                            name="firstName" 
+                            placeholder="First name"
+                            value={firstName} 
+                            onChange={e => setFirstName(e.target.value)}
+                            className="login-input-text"
+                        />
                     </label>
                     {errors.firstName && <p className="error">{errors.firstName}</p>}
-                    <label><p>last name:</p>
-                        <input type="text" name="lastName" value={lastName} onChange={e => setLastName(e.target.value)}/>
+
+                    <label><p>Last name:</p>
+                        <input 
+                            type="text" 
+                            name="lastName" 
+                            placeholder="Last name"
+                            value={lastName} 
+                            onChange={e => setLastName(e.target.value)}
+                            className="login-input-text"
+                        />
                     </label>
                     {errors.lastName && <p className="error">{errors.lastName}</p>}
+
+                        <div className="login-signup-dropdown-label">Profile image:</div>
+                    
                     <div>
-                        <button className="img-dropdown" onClick={imgDropdownClick} >{Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> : dropdownButtonValue}</button>
+                        <button className="login-signup-dropdown-image" onClick={imgDropdownClick}>
+                            {Number.isInteger(dropdownButtonValue)? <img className="selected-image" src={profileUrls[dropdownButtonValue]} alt=""/> 
+                            : dropdownButtonValue}
+                        </button>
+
                             {imgDropdownSelected && <div className="dropdown-options"> 
                             {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i); setDropdownButtonValue(i)}} className="option-image" src={img} alt=""/>)}
                             </div>}
                     </div>
                     {errors.profileImageUrl && <p className="error">{errors.profileImageUrl}</p>}
-                    <label><p>email:</p>
-                        <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                    
+                    <label><p>Email:</p>
+                        <input 
+                            type="text" 
+                            name="email" 
+                            value={email} 
+                            placeholder="Email"
+                            className="login-input-text"
+                            onChange={e => setEmail(e.target.value)}
+                            />
                     </label>
                     {errors.email && <p className="error">{errors.email}</p>}
-                    <label><p>home city:</p>
-                        <input type="text" name="homeCity" value={homeCity} onChange={e => setHomeCity(e.target.value)}/>
+                    
+                    <label><p>Home city:</p>
+                        <input 
+                            type="text" 
+                            name="homeCity" 
+                            value={homeCity} 
+                            onChange={e => setHomeCity(e.target.value)}
+                            placeholder="Home city"
+                            className="login-input-text"
+                        />
                     </label>
                     {errors.homeCity && <p className="error">{errors.homeCity}</p>}
-                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState">
+                    
+                    <div className="login-signup-dropdown-label">Home state:</div>
+                    <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="login-signup-dropdown">
                         <option disabled value={"default"}>State</option>
                         {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>
                     {errors.homeState && <p className="error">{errors.homeState}</p>}
-                    <label><p>password:</p>
-                        <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    
+                    <label><p>Password:</p>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            value={password} 
+                            onChange={e => setPassword(e.target.value)}
+                            placeholder="Password"
+                            className="login-input-text"
+                        />
                     </label>
                     {errors.password && <p className="error">{errors.password}</p>}
-                    <label><p>confirm password:</p>
-                        <input type="password" name="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
+                    
+                    <label><p>Confirm password:</p>
+                        <input 
+                            type="password" 
+                            name="confirmPassword" 
+                            value={confirmPassword} 
+                            onChange={e => setConfirmPassword(e.target.value)}
+                            placeholder="Confirm password"
+                            className="login-input-text"
+                        />
                     </label>
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
                     <input type="submit" value="sign up" className="submit-button"/>
     
-                       <p>Already have an account?<button className="form-swap" onClick={swapForm}>log in!</button></p> 
                     
+                       <div className="footer-text"> Already have an account? 
+                            <span onClick={swapForm} className="form-swap">Log in!</span> 
+                       </div> 
+
                 </form>
             </div>
         )

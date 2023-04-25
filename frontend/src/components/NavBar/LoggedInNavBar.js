@@ -1,19 +1,9 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import './NavBar.css';
-import { logout } from '../../store/session';
 import ProfileMenu from './ProfileMenu';
 
-const LoggedInNavBar = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  
-  const logoutUser = e => {
-      e.preventDefault();
-      dispatch(logout());
-  }
-
+const LoggedInNavBar = () => {  
     return (
         <nav>
             <div className="nav-left">

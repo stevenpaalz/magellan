@@ -24,7 +24,6 @@ const SplashPage = () => {
         <div className="splash-page-body">
           <div className="splash-left">
             <div className="splash-left-hero-image-holder">
-              {/* <img src="../../../assets/hero-image.png" alt="map-readers" className="splash-page-hero-image"/> */}
               <img src="../../../assets/nomads.png" alt="map-readers" className="splash-page-hero-image"/>
             </div>
           </div>        
@@ -36,7 +35,7 @@ const SplashPage = () => {
               <SplashPageText />
             </div>
             <div>
-                <button className="splash-right-cta" onClick={openSignup}><img src="../../../../assets/compass.png" className="icon"/> <p>Get Questing!</p></button>
+              <button className="splash-right-cta" onClick={openSignup}><img src="../../../../assets/compass.png" className="icon"/>Get Questing!</button>
             </div>
           </div>
         </div>
