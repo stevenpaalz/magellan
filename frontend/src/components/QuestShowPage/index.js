@@ -95,7 +95,7 @@ const QuestShowPage = () => {
                         </div>
                         
                         <div className="quest-show-reviews-holder">
-                            <QuestShowReviews id={id} />
+                            <QuestShowReviews id={id} creatorId={quest.creator._id} />
                         </div>
                     </div>
                     
