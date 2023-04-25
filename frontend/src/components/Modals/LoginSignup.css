@@ -79,7 +79,7 @@ div.page-overlay{
     margin-bottom: 5px;
 }
 
-form.login-signup-form{
+form.login-signup-form, div.delete-form{
     border-radius: 5px;
     border: 1px solid #31AFAC;
     background-color: white;
