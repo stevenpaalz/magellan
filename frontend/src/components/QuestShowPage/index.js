@@ -11,7 +11,6 @@ import { setModal } from "../../store/modal";
 import EventForm from "../Modals/EventForm";
 import { createEvent } from "../../store/events";
 import { useHistory } from "react-router-dom";
-import UpdateForm from "../Modals/UpdateForm";
 
 const QuestShowPage = () => {
     const history = useHistory();
@@ -59,7 +58,7 @@ const QuestShowPage = () => {
 
   function updateClick(e){
     e.preventDefault();
-    dispatch(setModal("updateForm"))
+    history.replace(`/quests/${id}/edit`)
   }
 
   async function deleteClick(e){
@@ -89,7 +88,6 @@ const QuestShowPage = () => {
                     <QuestShowTags tags={quest.tags} />
 
                 </div>
-                <UpdateForm />
                 <div className="quest-show-full-bottom">
                     <div className="quest-show-left">
                         <div className="quest-show-map-holder">
