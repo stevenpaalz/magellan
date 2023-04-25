@@ -7,6 +7,7 @@
     /* align-items: center; */
 }
 
+
 .quest-show-hero {
     display: flex;
     justify-content: center;
@@ -229,4 +230,10 @@
 .quest-show-bar-right {
     display: flex;
     align-items: center;
+}
+
+.review-button{
+    margin-left: 0;
+    margin-top: 10px;
+    margin-right: 10px;
 }

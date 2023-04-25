@@ -10,6 +10,8 @@ import EventShowPage from './components/EventShowPage';
 import { getCurrentUser } from './store/session';
 import UserProfilePage from './components/UserProfilePage';
 import AboutPage from './components/AboutPage';
+import QuestForm from './components/Modals/QuestForm';
+import UpdateForm from './components/Modals/UpdateForm';
 
 const App = () => {
 
@@ -24,7 +26,9 @@ const App = () => {
     <Switch>
       <AuthRoute exact path="/" component={SplashPage} />
       <ProtectedRoute exact path="/quests" component={HomePage} />
+      <ProtectedRoute exact path="/quests/create" component={QuestForm} />
       <ProtectedRoute exact path="/quests/:id" component={QuestShowPage} />
+      <ProtectedRoute exact path="/quests/:id/edit" component={UpdateForm} />
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
       <ProtectedRoute exact path="/user-profile/:wildcard" component={UserProfilePage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />

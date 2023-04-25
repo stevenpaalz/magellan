@@ -10,11 +10,13 @@ import { useState } from 'react';
 import allTags from '../../data/Tags';
 import { setModal } from '../../store/modal';
 import QuestForm from '../Modals/QuestForm';
+import { useHistory } from 'react-router-dom';
 import QuestShowTags from '../QuestShowPage/QuestShowTags';
 
 const HomePage = () => {
   const mapstyle={ height: 'calc(100vh - 80px)', width: '100%' }
-  const dispatch= useDispatch()
+  const dispatch= useDispatch();
+  const history = useHistory();
   const modalState = useSelector(state=>state.modals.modalState);
   const [showFilter, setShowFilter] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -94,9 +96,14 @@ function filteredQuests(quests, tags){
 const quests = useSelector(state=>state.quests);
 const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests, tags) : Object.values(quests);
 
-  const questModal = (e) => {
-    dispatch(setModal("questForm"));
-    e.stopPropagation();
+  // const questModal = (e) => {
+  //   dispatch(setModal("questForm"));
+  //   e.stopPropagation();
+  // }
+  function createClick(e){
+    e.preventDefault();
+    history.replace("/quests/create");
+    // dispatch(setModal("questForm"))
   }
 
   if (questsFiltered.length < 1) {return(
@@ -110,11 +117,8 @@ const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests
         </div>
         <div className="width50">
           <div className="quests-button-index-headers">
-            <button className="filter-dropdown dropdown-selected-open" onClick={openFilter}>filters ⌵</button>
-            <form onSubmit={handleSearchSubmit} className="search-bar-container">
-              <input type="text" className="search-bar" placeholder="Enter a location or keyword" value={searchValue} onChange={(e)=>setSearchValue(e.target.value)}></input>
-              <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+            <button className="filter-dropdown" onClick={filterDropdownClick}>{modalstate==="filters"?"close filters ⌃":"select filters ⌵"}</button>
+
             <button onClick={questModal} className="create-quest-button">create quest</button>
           </div>
           {showFilter && <div className="dropdown-options dropdown-selected-open"> 
@@ -126,9 +130,9 @@ const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests
 
           <QuestIndex quests={questsFiltered}/>
           </div>
-          <div>
+          {/* <div>
             <QuestForm />
-          </div>
+          </div> */}
       </div>
     );
   }
