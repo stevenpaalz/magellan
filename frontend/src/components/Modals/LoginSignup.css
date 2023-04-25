@@ -10,16 +10,7 @@ div.page-overlay{
     justify-content: center;
     align-items: center;
 }
-.prof-img-dropdown{
-    height: 145px;
-    width: 145px;
-    border-radius: 5px;
-    object-fit: cover;
-}
-.prof-img-dropdown option{
-    height: fit-content;
-    width: fit-content;
-}
+
 .login-signup-form button, .submit-button{
     background-color: var(--turquoise);
     font-size: var(--font-size-400);
@@ -31,14 +22,28 @@ div.page-overlay{
     margin: 10px;
     width: 266px;
 }
+
 .login-signup-form button:hover, .submit-button:hover{
     background-color: #238C83;
     cursor: pointer;
 }
+
 .login-signup-form h1{
     font-size: 25px;
     font-weight: var(--font-weight-bold);
     margin: 5px;
+}
+
+.prof-img-dropdown{
+    height: 145px;
+    width: 145px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.prof-img-dropdown option{
+    height: fit-content;
+    width: fit-content;
 }
 
 button.img-dropdown {
@@ -77,6 +82,7 @@ button.demo-login:hover {
     border-radius: 5px;
     object-fit: cover;
 }
+
 .option-image{
     height: 80px;
     width: 80px;
@@ -84,13 +90,14 @@ button.demo-login:hover {
     object-fit: fill;
     margin: 10px;
 }
+
 .option-image:hover{
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
+
 .dropdown-options{
     position: absolute;
-    /* margin-left: 10px; */
     display: flex;
     flex-direction: column;
     background-color: #8dd8d7;
@@ -118,15 +125,15 @@ form.login-signup-form{
     overflow-y: auto;
 }
 
-
-
 p.error{
     color: #F23005;
     font-size: 12px;
 }
+
 p.error::before{
     content:"🚨 ";
 }
+
 p.error::after{
     content:" 🚨";
 }
@@ -137,6 +144,7 @@ button.form-swap{
     border: none;
     font-size: 18px;
 }
+
 button.form-swap:hover{
     background-color: transparent;
     color: #238C83;
@@ -149,13 +157,12 @@ button.form-swap:hover{
     align-items: flex-start;
     margin: 10px;
 }
+
 .login-signup-form p{
     margin-bottom: 5px;
 }
 
-
 .login-input-text {
-    /* border: 1px solid #31AFAC; */
     border: 1px solid #111;
     border-radius: 5px;
     padding: 8px;
