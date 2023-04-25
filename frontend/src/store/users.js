@@ -56,6 +56,20 @@ export const getUser = (userId) => async dispatch => {
         }
     }
 }
+export const updateUser = (user) => async dispatch => {
+    try{const res = await jwtFetch(`/api/users/${user._id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(user)
+        });
+        return dispatch(receiveUser(user));
+    }
+    catch(err) {
+        const res = await err.json();
+        if (res.statusCode === 400) {
+        return dispatch(receiveErrors(res.errors));
+        }
+    }
+}
 
 export const deleteUser = (userId) => async dispatch => {
     const res = await jwtFetch(`/api/users/${userId}`, {
