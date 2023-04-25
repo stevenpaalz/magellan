@@ -21,7 +21,7 @@ export default function SignUpForm(){
     const [profImg, setProfImg] = useState()
     const [homeState, setHomeState] = useState()
     const [errors, setErrors] = useState({})
-    const [dropdownButtonValue, setDropdownButtonValue] = useState("Select image")
+    const [dropdownButtonValue, setDropdownButtonValue] = useState("Select image ⌵")
     const [imgDropdownSelected, setImgDropdownSelected] = useState(false);
     const history = useHistory();
     
@@ -132,7 +132,7 @@ export default function SignUpForm(){
                     
                     <div className="login-signup-dropdown-label">Home state:</div>
                     <select onChange={e=>setHomeState(e.target.value)} defaultValue={"default"} name="homeState" className="login-signup-dropdown">
-                        <option disabled value={"default"}>Select state</option>
+                        <option disabled value={"default"}>State</option>
                         {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
                     </select>
                     {errors.homeState && <p className="error">{errors.homeState}</p>}

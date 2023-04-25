@@ -77,8 +77,8 @@ button.demo-login:hover {
 }
 
 .selected-image{
-    height: 120px;
-    width: 120px;
+    height: 75px;
+    width: 75px;
     border-radius: 5px;
     object-fit: cover;
 }
@@ -208,7 +208,7 @@ button.form-swap:hover{
     color: #31AFAC;
     background-color: transparent;
     border: none;
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-verybold);
     cursor: pointer;
     margin-left: 6px;
 }
@@ -221,7 +221,7 @@ button.login-signup-dropdown-image {
     color: #606060;
     font-size: var(--font-size-200);
     font-weight: var(--font-weight-normal);
-    text-align: left;
+    text-align: center;
 }
 
 button.login-signup-dropdown-image:hover {
