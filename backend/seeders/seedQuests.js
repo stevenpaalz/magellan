@@ -24,32 +24,6 @@ const quests = [];
 
 quests.push(
   new Quest({
-    title: "a/A Where?",
-    description: "New to a/A? Get yourself familiarize with nearby restaurants and parks to get away from your fellow classmates and instructors",
-    checkpoints: [
-      "Ask a co-hort mate to explore with you",
-      "Find a buddha statue and take a selfie with it",
-      "Napkin from a restaurant or bar",
-      "Picture with a delivery person P.S. there's a ghost kitchen nearby",
-      "Candy from a candy dispenser"
-    ],
-    duration: 1,
-    formattedAddress: "90 5th Ave, New York, NY 10011",
-    lat: 40.736351207089385,
-    lng: -73.9937814750412,
-    radius: 4,
-    tags: [
-      "food-and-drink",
-      "landmarks",
-      "locals-only"
-    ],
-    creator: demo._id,
-    imageUrls: ["https://magellan-dev.s3.amazonaws.com/unionsqnyc-jpg.jpg"]
-  })
-);
-
-quests.push(
-  new Quest({
     title: "Get lost in Chinatown",
       description: "Discover Chinatown like you're from there...",
       checkpoints: [
@@ -304,6 +278,32 @@ quests.push(
     imageUrls: ["https://magellan-dev.s3.amazonaws.com/cocktails.jpeg"]
   })
 )
+
+quests.push(
+  new Quest({
+    title: "App Academy Where?",
+    description: "New to a/A? Get yourself familiarize with nearby restaurants and parks to get away from your fellow classmates and instructors",
+    checkpoints: [
+      "Ask a co-hort mate to explore with you",
+      "Find a buddha statue and take a selfie with it",
+      "Napkin from a restaurant or bar",
+      "Picture with a delivery person P.S. there's a ghost kitchen nearby",
+      "Candy from a candy dispenser"
+    ],
+    duration: 1,
+    formattedAddress: "90 5th Ave, New York, NY 10011",
+    lat: 40.736351207089385,
+    lng: -73.9937814750412,
+    radius: 4,
+    tags: [
+      "food-and-drink",
+      "landmarks",
+      "locals-only"
+    ],
+    creator: demo._id,
+    imageUrls: ["https://magellan-dev.s3.amazonaws.com/unionsqnyc-jpg.jpg"]
+  })
+);
 
 const insertSeeds = () => {
     console.log("Resetting db and seeding quests...");
