@@ -115,11 +115,11 @@ const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests
             <button className="filter-dropdown dropdown-selected-open" onClick={openFilter}>filters ⌵</button>
             <form onSubmit={handleSearchSubmit} className="search-bar-container">
               <input type="text" className="search-bar" placeholder="Enter a location or keyword" value={searchValue} onChange={(e)=>setSearchValue(e.target.value)}></input>
-              <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
+              <button type="submit" className="search-button show-page-button show-page-button-blue-button"><i className="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <button onClick={createClick} className="create-quest-button">create quest</button>
           </div>
-          {showFilter && <div className="dropdown-options dropdown-selected-open"> 
+          {showFilter && <div className="dropdown-options dropdown-selected-open open-filter-dropdown"> 
                               {allTags.map((tag, i)=><label className="dropdown-option dropdown-selected-open" key={i}>
                                 <input className="dropdown-option dropdown-selected-open" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input>
                                 <QuestShowTags tags={[tag]} ></QuestShowTags>
