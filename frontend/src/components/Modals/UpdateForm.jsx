@@ -9,6 +9,8 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import './slider.css'
 import { useHistory } from "react-router-dom";
+import QuestShowTags from "../QuestShowPage/QuestShowTags";
+// import { NavLink } from "react-router-dom";
 
 export default function UpdateForm() {
     const history = useHistory();
@@ -70,6 +72,10 @@ export default function UpdateForm() {
             setErrors(questErrors)
         }
     }, [questErrors]);
+
+    useEffect(() => {
+        dispatch(getQuest(id))
+    }, [id, dispatch]);
 
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
@@ -194,7 +200,7 @@ export default function UpdateForm() {
     };
 
     function closeForm(){
-        history.replace("/quests");
+        history.replace('/quests');
     }
 
     const handleCheckpointAdd = () => {
@@ -216,10 +222,12 @@ export default function UpdateForm() {
 
     return(
         <div className="create-page">
-            <div className="create-upper-x-container">
-                <div onClick={closeForm} className="create-upper-x">
+            <div className="back-holder bring-down-back">
+                {/* <NavLink> */}
+                <div onClick={closeForm} className="back-text">
                     <i className="fa-solid fa-arrow-left"></i>
                 </div>
+                {/* </NavLink> */}
             </div>
             {formHeading}
             <form className="quest-form" onSubmit={handleSubmit}>
@@ -239,7 +247,8 @@ export default function UpdateForm() {
                             onChange={(e) => setDescription(e.target.value)}
                         /> 
                     </label>
-                <div className="form-address">
+                    <div className="create-quest-middle-section">
+                <div className="form-dur-rad">
                     <label className="form-label">
                         Street Address
                         <input className="form-input-field"
@@ -258,7 +267,7 @@ export default function UpdateForm() {
                     </label>
                     <label className="form-label">
                         State
-                        <select className="form-dropdown" onChange={(e) => setState(e.target.value)}>
+                        <select className="form-dropdown states-dropdown" onChange={(e) => setState(e.target.value)}>
                             <option value="NY" default>NY</option>
                             {states.map((state) => (
                                 <option key={state} value={state}>{state}</option>
@@ -298,13 +307,13 @@ export default function UpdateForm() {
                         <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
                     </label>
                 </div>
+                </div>
                 <label className="form-label">
                     Tags:
                 </label>
                 <label className="form-label-tags">
                 <label className="switch">
-                        Food and Drink
-                        <input type="checkbox"
+                <QuestShowTags tags={["food-and-drink"]} ></QuestShowTags>                        <input type="checkbox"
                             value="food-and-drink"
                             onChange={handleCheck}
                             defaultChecked={foodNDrink}
@@ -312,7 +321,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Family-Friendly
+                    <QuestShowTags tags={["family-friendly"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="family-friendly"
                             onChange={handleCheck}
@@ -321,7 +330,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Landmarks
+                    <QuestShowTags tags={["landmarks"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="landmarks"
                             onChange={handleCheck}
@@ -330,7 +339,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Public-Art
+                    <QuestShowTags tags={["public-art"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="public-art"
                             onChange={handleCheck}
@@ -339,7 +348,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Transportation
+                    <QuestShowTags tags={["transportation"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="transportation"
                             onChange={handleCheck}
@@ -350,7 +359,7 @@ export default function UpdateForm() {
                 </label>
                 <label className="form-label-tags">
                     <label className="switch">
-                        Sporty
+                    <QuestShowTags tags={["sporty"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="sporty"
                             onChange={handleCheck}
@@ -359,7 +368,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label>  
                     <label className="switch">
-                        Green
+                    <QuestShowTags tags={["green"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="green"
                             onChange={handleCheck}
@@ -368,7 +377,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label>  
                     <label className="switch">
-                        Obscure
+                    <QuestShowTags tags={["obscure"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="obscure"
                             onChange={handleCheck}
@@ -377,7 +386,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label>  
                     <label className="switch">
-                        Locals-Only
+                    <QuestShowTags tags={["obscure"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="locals-only"
                             onChange={handleCheck}
@@ -386,7 +395,7 @@ export default function UpdateForm() {
                         <span className="slider"></span>
                     </label>                
                     <label className="switch">
-                        Tourist-Traps
+                    <QuestShowTags tags={["tourist-traps"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="tourist-traps"
                             onChange={handleCheck}
@@ -399,7 +408,7 @@ export default function UpdateForm() {
                     Checkpoints:
                     {checkPointList.length < 15 &&
                                 <button type="button" className="checkpoint-add-button" onClick={handleCheckpointAdd}>
-                                    <i className="fa-solid fa-plus"></i> Add more Checkpoints
+                                    <i className="fa-solid fa-plus"></i> Add Checkpoint
                                 </button>
                     }
                 </label>
@@ -420,7 +429,7 @@ export default function UpdateForm() {
                                         key={`${index}UButton`} 
                                         className="checkpoint-remove-button" 
                                         onClick={() => handleCheckpointRemove(index)}>
-                                        <i className="fa-solid fa-minus"></i>
+                                        <i className="fa-solid fa-xmark"></i>
                                     </button>
                                 }
                             </div>

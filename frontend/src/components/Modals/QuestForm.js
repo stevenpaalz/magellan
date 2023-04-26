@@ -4,7 +4,7 @@ import { createQuest } from "../../store/quests";
 import states from "../../data/States";
 import './QuestForm.css'
 import { useRef } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { useEffect } from "react";
 import QuestShowTags from "../QuestShowPage/QuestShowTags";
 
@@ -110,7 +110,7 @@ export default function QuestForm() {
     };
 
     function closeForm(){
-        history.replace("/quests");
+        history.replace('/quests');
     }
 
     const handleCheckpointAdd = () => {
@@ -132,8 +132,8 @@ export default function QuestForm() {
 
     return(
         <div className="create-page">
-            <div className="create-upper-x-container">
-                <div onClick={closeForm} className="create-upper-x">
+            <div className="back-holder bring-down-back">
+                <div onClick={closeForm} className="back-text">
                     <i className="fa-solid fa-arrow-left"></i>
                 </div>
             </div>
