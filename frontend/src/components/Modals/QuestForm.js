@@ -97,9 +97,6 @@ export default function QuestForm() {
             } else {
                 setErrors(questErrors)
             }
-            
-            // else {
-                // };
         };
     };
 
