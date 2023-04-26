@@ -24,7 +24,6 @@ export default function PastEvents(){
     }, [filter])
     const allEvents = useSelector(state=> state.events)
     if (!allEvents){return null} 
-    // debugger
     let pastEvents = Object.values(allEvents).filter((event)=> ((Date.parse(event.startTime)+(event.quest.duration*3600000)) < Date.now()))
     let events = filter === "host" ? pastEvents.filter(event=> event.host._id === sessionUser._id) : pastEvents.filter(event=> Object.values(event.attendees).some(attendee => attendee._id === sessionUser._id) )
     return(
