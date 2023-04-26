@@ -5,6 +5,7 @@ import { deleteUser, updateUser } from "../../store/users";
 import USstates from "../../data/States";
 import { useEffect } from "react";
 import profileUrls from "../../data/ProfileImgUrls";
+import {logout} from "../../store/session";
 
 export default function UserInfo(){
     const dispatch = useDispatch()
@@ -24,7 +25,6 @@ export default function UserInfo(){
         if (userErrors){
             setErrors(userErrors)
         }
-        
     }, [userErrors])
 
     function handleDeleteClick(){
@@ -39,6 +39,7 @@ export default function UserInfo(){
     function deleteCurrentUser(){
         if(sessionUser.email!== "demo@email.com"){
             dispatch(deleteUser(sessionUser._id))
+            dispatch(logout())
         }else{
             alert("Please don't delete our demo user. We love him.\n(To test this feature, you can create a new user)")
             setDeleteClicked(false)
