@@ -6,6 +6,7 @@ import './QuestForm.css'
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import QuestShowTags from "../QuestShowPage/QuestShowTags";
 
 export default function QuestForm() {
     const history = useHistory();
@@ -157,7 +158,8 @@ export default function QuestForm() {
                             onChange={(e) => setDescription(e.target.value)}
                         /> 
                 </label>
-                <div className="form-address">
+                <div className="create-quest-middle-section">
+                <div className="form-dur-rad">
                     <label className="form-label">
                         Street Address
                         <input className="form-input-field"
@@ -176,7 +178,8 @@ export default function QuestForm() {
                     </label>
                     <label className="form-label">
                         State
-                        <select className="form-dropdown" onChange={(e) => setState(e.target.value)}>
+                        <select className="form-dropdown states-dropdown" defaultValue={"default"} onChange={(e) => setState(e.target.value)}>
+                            <option disabled value={"default"}> select a state ⌵ </option>
                             {states.map((state) => (
                                 <option key={state} value={state}>{state}</option>
                             ))}
@@ -212,15 +215,18 @@ export default function QuestForm() {
                     </label>
                     <label className="form-label">
                         Pictures
+                        {/* <div class="custom-file-upload"> upload a file */}
                         <input type='file' ref={fileRef} onChange={handleFiles} multiple/>
+                        {/* </div> */}
                     </label>
+                </div>
                 </div>
                 <label className="form-label">
                     Tags:
                 </label>
                 <label className="form-label-tags">
                 <label className="switch">
-                        Food and Drink
+                <QuestShowTags tags={["food-and-drink"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="food-and-drink"
                             onChange={handleCheck}
@@ -228,7 +234,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Family-Friendly
+                    <QuestShowTags tags={["family-friendly"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="family-friendly"
                             onChange={handleCheck}
@@ -236,7 +242,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Landmarks
+                    <QuestShowTags tags={["landmarks"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="landmarks"
                             onChange={handleCheck}
@@ -244,7 +250,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Public-Art
+                    <QuestShowTags tags={["public-art"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="public-art"
                             onChange={handleCheck}
@@ -252,7 +258,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label> 
                     <label className="switch">
-                        Transportation
+                    <QuestShowTags tags={["transportation"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="transportation"
                             onChange={handleCheck}
@@ -262,7 +268,7 @@ export default function QuestForm() {
                 </label>
                 <label className="form-label-tags">
                     <label className="switch">
-                        Sporty
+                    <QuestShowTags tags={["sporty"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="sporty"
                             onChange={handleCheck}
@@ -270,7 +276,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label>  
                     <label className="switch">
-                        Green
+                    <QuestShowTags tags={["green"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="green"
                             onChange={handleCheck}
@@ -278,7 +284,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label>  
                     <label className="switch">
-                        Obscure
+                    <QuestShowTags tags={["obscure"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="obscure"
                             onChange={handleCheck}
@@ -286,7 +292,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label>  
                     <label className="switch">
-                        Locals-Only
+                    <QuestShowTags tags={["locals-only"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="locals-only"
                             onChange={handleCheck}
@@ -294,7 +300,7 @@ export default function QuestForm() {
                         <span className="slider"></span>
                     </label>                
                     <label className="switch">
-                        Tourist-Traps
+                    <QuestShowTags tags={["tourist-traps"]} ></QuestShowTags>
                         <input type="checkbox"
                             value="tourist-traps"
                             onChange={handleCheck}
@@ -306,7 +312,7 @@ export default function QuestForm() {
                     Checkpoints:
                     {checkPointList.length < 15 &&
                                 <button type="button" className="checkpoint-add-button" onClick={handleCheckpointAdd}>
-                                    <i className="fa-solid fa-plus"></i> Add more Checkpoints
+                                    <i className="fa-solid fa-plus"></i> Add Checkpoint
                                 </button>
                     }
                 </label>
@@ -329,7 +335,7 @@ export default function QuestForm() {
                                         key={`${index}QButton`} 
                                         className="checkpoint-remove-button" 
                                         onClick={() => handleCheckpointRemove(index)}>
-                                        <i className="fa-solid fa-minus"></i>
+                                        <i className="fa-solid fa-xmark"></i>
                                     </button>
                                 }
                             </div>

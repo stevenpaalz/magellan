@@ -6,8 +6,19 @@ button.filter-dropdown{
     padding: 8px;
     border-radius: 4px;
     border: none;
-    margin-top: 20px;
-    margin-bottom: 10px;
+}
+.search-bar-container{
+    display: flex;
+    align-items: center;
+}
+.search-bar{
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid grey;
+    width: 175px
+}
+.search-bar:hover{
+    border:1px solid var(--turquoise);
 }
 .width50{
     width: 50%
@@ -69,9 +80,7 @@ button.create-quest-button{
     padding: 8px;
     border-radius: 4px;
     border: none;
-    margin: 20px;
-    margin-right: 0px;
-    margin-bottom: 10px;
+
 }
 
 .quests-button-index-headers {
@@ -80,10 +89,16 @@ button.create-quest-button{
     margin-left: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom:10px;
 }
 
 button.create-quest-button:hover{
     background-color: #4edad8;
     cursor: pointer;
+}
+button.search-button{
+    padding:6px 10px;
+    margin-left: 8px;
 }

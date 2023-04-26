@@ -11,3 +11,8 @@
     font-size: 20px;
     margin-top: 50px;
 }
+div.dropdown-options.dropdown-selected-open.open-filter-dropdown{
+   position:absolute; 
+   align-items: flex-start;
+   width: fit-content;
+}
