@@ -19,7 +19,7 @@ export default function EventCard({i, event, reviews}){
                 <label><p>tags:</p>
                 <QuestShowTags tags={event.quest.tags} />
                 </label>
-                <label><p>event starts:</p>
+                <label><p className="margin-top-ten">event starts:</p>
                 <h1>{startTime.toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}</h1>
                 </label>
                 <label><p>hosted by:</p>
