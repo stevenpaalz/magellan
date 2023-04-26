@@ -120,19 +120,26 @@ router.get('/:userId/events', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res) => {
-  const user = await User.findById(req.params.userId);
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
 
-  const userInfo = {
-    _id: user._id,
-    email: user.email,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    profileImageUrl: user.profileImageUrl,
-    homeCity: user.homeCity,
-    homeState: user.homeState
-  };
-  return res.json(userInfo);
+    const userInfo = {
+      _id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      profileImageUrl: user.profileImageUrl,
+      homeCity: user.homeCity,
+      homeState: user.homeState
+    };
+    return res.json(userInfo);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
 });
 
 router.get('/', async (req, res, next) => {
@@ -224,7 +231,7 @@ router.delete('/:userId', async (req, res, next) => {
       relatedEvents.push(event);
     }
     if (event.attendees.includes(req.params.userId)) {
-      let idx = event.attendees.findIndex(req.params.userId);
+      let idx = event.attendees.findIndex((el) => el === req.params.userId);
       event.attendees.splice(idx, 1)
     }
   })
@@ -247,7 +254,7 @@ try {
     userQuest.deleteOne();
   })
   user.deleteOne();
-  return res.json(req.params.userId)
+  return res.json(user);
 } catch(err) {
   next(err);
 }

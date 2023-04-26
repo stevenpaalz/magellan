@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
     try {
         const quests = await Quest.find()
                                     .populate("creator", "_id email firstName lastName profileImageUrl")
-                                    .sort({createdAt: -1});
+                                    .sort({title: 1});
         return res.json(quests);
     }
     catch(err) {
