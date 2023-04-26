@@ -10,8 +10,9 @@ button.filter-dropdown{
     margin-bottom: 10px;
 }
 .width50{
-    width: 50%
+    width: 50%;
 }
+
 button.filter-dropdown:hover{
     background-color: #4edad8;
     cursor: pointer;
@@ -86,4 +87,17 @@ button.create-quest-button{
 button.create-quest-button:hover{
     background-color: #4edad8;
     cursor: pointer;
+}
+
+.search-bar-container {
+    background-color: red;;
+}
+
+.search-bar {
+    background-color: orange;
+
+}
+
+.search-button {
+    background-color: yellow;
 }

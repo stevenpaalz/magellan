@@ -110,13 +110,19 @@ const questsFiltered = Object.values(tags).includes(true)? filteredQuests(quests
         <div className="homepage-left">
           <QuestMap quests={questsFiltered} style={mapstyle} lat={questsFiltered[0] ? questsFiltered[0].lat : null} lng={questsFiltered[0] ? questsFiltered[0].lng : null}/>
         </div>
+
+        
         <div className="width50">
           <div className="quests-button-index-headers">
             <button className="filter-dropdown dropdown-selected-open" onClick={openFilter}>filters ⌵</button>
+
+
             <form onSubmit={handleSearchSubmit} className="search-bar-container">
               <input type="text" className="search-bar" placeholder="Enter a location or keyword" value={searchValue} onChange={(e)=>setSearchValue(e.target.value)}></input>
               <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
             </form>
+
+
             <button onClick={createClick} className="create-quest-button">create quest</button>
           </div>
           {showFilter && <div className="dropdown-options dropdown-selected-open"> 
