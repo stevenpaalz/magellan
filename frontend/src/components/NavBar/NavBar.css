@@ -32,6 +32,10 @@ nav {
     height: 100%; 
 }
 
+.nav-bar-logo:hover {
+  content: url('../../../public/assets/magellansuperbright.png');
+}
+
 .signup-button {
     background-color: var(--offwhite);
     border: 1px solid var(--turquoise);

@@ -237,3 +237,7 @@
     margin-top: 10px;
     margin-right: 10px;
 }
+
+button.file-upload-button {
+    background-color: green;
+}
