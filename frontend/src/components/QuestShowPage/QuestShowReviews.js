@@ -68,8 +68,8 @@ const QuestShowReviews = ({ id, creatorId }) => {
           <div className="quest-show-review-text">"{review.text}"</div>
           {(review.author._id === sessionUser?._id) && 
             <>
-              <button className="show-page-button-blue-button show-page-button review-button" onClick={()=>handleEditClick(review.text, review.rating, review._id)}>edit</button>
-              <button className="show-page-button-red-button show-page-button review-button" onClick={()=>handleDeleteClick(review._id)}>delete</button>
+              <button className="show-page-button-blue-button show-page-button review-button" onClick={()=>handleEditClick(review.text, review.rating, review._id)}>Edit</button>
+              <button className="show-page-button-red-button show-page-button review-button" onClick={()=>handleDeleteClick(review._id)}>Delete</button>
             </>
           }
         </div>

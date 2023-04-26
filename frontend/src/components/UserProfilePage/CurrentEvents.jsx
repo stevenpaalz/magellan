@@ -31,8 +31,8 @@ export default function CurrentEvents(){
         <>
             <h1>{sessionUser.firstName}'s open events:</h1>
             <div className="host-attend-buttons">
-            <button className="host-button"onClick={handleClick}>You're Hosting</button>
-            <button className="attend-button" onClick={handleClick}>You're Attending</button>
+            <button className="host-button"onClick={handleClick}>Hosting</button>
+            <button className="attend-button" onClick={handleClick}>Attending</button>
             </div>
             {(!events || events.length === 0)&& <div className="card-column"><div className="quest-card"><h1>{sessionUser.firstName} has no current events</h1></div></div>}
             {(events && events!== []) &&<EventsIndex events={events} />}
