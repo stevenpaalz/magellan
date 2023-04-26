@@ -6,6 +6,8 @@ const Quest = mongoose.model('Quest');
 const Event = mongoose.model('Event');
 const { requireUser } = require('../../config/passport');
 const { getLatLng } = require('../../config/geocode');
+const { googleAPIKey } = require('../../config/keys');
+const { Client } = require('@googlemaps/google-maps-services-js');
 const Review = require('../../models/Review');
 const { validateQuestInput, validateQuestUpdate} = require('../../validations/quests');
 const validateReviewInput = require('../../validations/reviews');
@@ -70,6 +72,25 @@ router.post('/', multipleMulterUpload("images"), requireUser, validateQuestInput
     const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
     try {
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
+        const client = new Client();
+        try {
+            const response = await client.geocode({ params: { address: formattedAddressInput, key: googleAPIKey } });
+            if (!response.data.results[0]) {
+                const err = new Error("Validation Error");
+                err.statusCode = 400;
+                const errors = {};
+                errors.city = "Invalid address"
+                err.errors = errors;
+                return next(err);
+              }
+        } catch {
+            const err = new Error("Validation Error");
+            err.statusCode = 400;
+            const errors = {};
+            errors.city = "Invalid address"
+            err.errors = errors;
+            return next(err);
+        }
         const latlng = await getLatLng(formattedAddressInput);
         const latInput = latlng[0];
         const lngInput = latlng[1];
@@ -106,6 +127,25 @@ router.patch('/:id', multipleMulterUpload("images"), requireUser, validateQuestU
         }
 
         const formattedAddressInput = `${req.body.streetAddress}, ${req.body.city}, ${req.body.state} ${req.body.zipcode}`;
+        const client = new Client();
+        try {
+            const response = await client.geocode({ params: { address: formattedAddressInput, key: googleAPIKey } });
+            if (!response.data.results[0]) {
+                const err = new Error("Validation Error");
+                err.statusCode = 400;
+                const errors = {};
+                errors.city = "Invalid address"
+                err.errors = errors;
+                return next(err);
+                }
+        } catch {
+            const err = new Error("Validation Error");
+            err.statusCode = 400;
+            const errors = {};
+            errors.city = "Invalid address"
+            err.errors = errors;
+            return next(err);
+        }
         const latlng = await getLatLng(formattedAddressInput);
         const latInput = latlng[0];
         const lngInput = latlng[1];

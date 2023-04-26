@@ -16,9 +16,6 @@ exports.validateQuestInput = [
         .custom(uniqueTitle),
     check('description')
         .exists({checkFalsy: true}).withMessage('Quest must have a description'),
-    // check('checkpoints')
-    //     .isArray({min: 5})
-    //     .withMessage('Quest must have at least 5 checkpoints'),
     check('duration')
         .exists({checkFalsy: true}).withMessage('Quest must have a duration')
         .isFloat({min: 0}).withMessage('Duration must be greater than 0 hours'),
@@ -32,10 +29,8 @@ exports.validateQuestInput = [
     check('state')
         .exists({checkFalsy: true}).withMessage("Missing state field"),
     check('zipcode')
+        .isLength(5).withMessage("Invalid zipcode")
         .exists({checkFalsy: true}).withMessage("Missing zipcode field"),
-    // check('tags')
-    //     .isArray({min: 1})
-    //     .withMessage('Quest must have at least 1 tag'),
     handleValidationErrors
 ];
   
@@ -44,9 +39,6 @@ exports.validateQuestUpdate = [
         .exists({ checkFalsy: true }).withMessage('Quest must have a title'),
     check('description')
         .exists({checkFalsy: true}).withMessage('Quest must have a description'),
-    // check('checkpoints')
-    //     .isArray({min: 5})
-    //     .withMessage('Quest must have at least 5 checkpoints'),
     check('duration')
         .exists({checkFalsy: true}).withMessage('Quest must have a duration')
         .isFloat({min: 0}).withMessage('Duration must be greater than 0 hours'),
@@ -60,9 +52,7 @@ exports.validateQuestUpdate = [
     check('state')
         .exists({checkFalsy: true}).withMessage("Missing state field"),
     check('zipcode')
+        .isLength(5).withMessage("Invalid zipcode")
         .exists({checkFalsy: true}).withMessage("Missing zipcode field"),
-    // check('tags')
-    //     .isArray({min: 1})
-    //     .withMessage('Quest must have at least 1 tag'),
     handleValidationErrors
 ];
