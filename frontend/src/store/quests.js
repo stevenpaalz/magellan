@@ -93,13 +93,11 @@ export const createQuestReview = (formData, questId) => async dispatch => {
             method: 'POST',
             body: formData
         });
-        debugger
         if (res.ok) {
             const review = await res.json();
             return dispatch(receiveQuestReview(review));
         };
     } catch(err) {
-        debugger
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
             return dispatch(receiveQuestError(resBody.errors));
