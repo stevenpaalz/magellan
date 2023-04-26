@@ -73,6 +73,10 @@ export default function UpdateForm() {
         }
     }, [questErrors]);
 
+    useEffect(() => {
+        dispatch(getQuest(id))
+    }, [id, dispatch]);
+
     //picture uploads
     const handleFiles = ({ currentTarget }) => {
         const files = currentTarget.files; 
@@ -196,7 +200,7 @@ export default function UpdateForm() {
     };
 
     function closeForm(){
-        history.go(-2);
+        history.replace('/quests');
     }
 
     const handleCheckpointAdd = () => {

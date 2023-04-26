@@ -110,7 +110,7 @@ export default function QuestForm() {
     };
 
     function closeForm(){
-        history.go(-2);
+        history.replace('/quests');
     }
 
     const handleCheckpointAdd = () => {
