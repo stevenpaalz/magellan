@@ -30,8 +30,8 @@ export default function PastEvents(){
         <>
             <h1>{sessionUser.firstName}'s open events:</h1>
             <div className="host-attend-buttons">
-            <button className="host-button"onClick={handleClick}>You Hosted</button>
-            <button className="attend-button" onClick={handleClick}>You Attended</button>
+            <button className="host-button"onClick={handleClick}>Hosted</button>
+            <button className="attend-button" onClick={handleClick}>Attended</button>
             </div>
             {(!events || events.length === 0)&& <div className="card-column"><div className="quest-card"><h1>{sessionUser.firstName} has no past events</h1></div></div>}
             {(events && events!== []) &&<EventsIndex events={events} />}

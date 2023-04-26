@@ -9,7 +9,7 @@
 }
 .profile-right h1{
     font-size: 25px;
-    font-weight: bold;
+    font-weight: var(--font-weight-verybold);
     margin: 20px;
 }
 .profile-right .editing{
@@ -19,7 +19,7 @@
     background-color: var(--turquoise);
     margin: 20px;
     font-size: large;
-    font-weight: bold;
+    font-weight: var(--font-weight-verybold);
     padding: 10px;
     border-radius: 10px;
     
@@ -95,7 +95,7 @@
 }
 .host-button, .attend-button{
     font-size: 18px;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     color: white;
     padding: 8px;
     border-radius: 4px;
@@ -148,4 +148,22 @@
 .user-info-buttons{
     display: flex;
     flex-direction: column;
+}
+
+.dropdown-options.edit-profile{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #8dd8d7;
+    padding: 10px;
+    height: 30vh;
+    overflow-y: scroll;
+    border-radius: 5px;
+    left: 10px;
+    align-items: center;
+    width: 250px;
+}
+
+.margin-top-ten {
+    margin-top: 10px;
 }
