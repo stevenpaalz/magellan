@@ -95,7 +95,7 @@ export default function UserInfo(){
                     <>
                         <div>
                             <button className="img-dropdown" onClick={imgDropdownClick} ><img className="selected-image" src={profileUrls[profImg]} alt="selected image"/><p>click to select ⌵</p></button>
-                                {imgDropdownSelected && <div className="dropdown-options"> 
+                                {imgDropdownSelected && <div className="dropdown-options edit-profile"> 
                                 {profileUrls.map((img, i)=><img key={i} onClick={()=>{setProfImg(i)}} className="option-image" src={img} alt=""/>)}
                                 </div>}
                         </div>
@@ -108,7 +108,7 @@ export default function UserInfo(){
                             <button onClick={doneClicked} className="show-page-button show-page-button-turquoise-button delete-button">Done</button>
                         :<>
                             <button onClick={handleEditClick} className="show-page-button show-page-button-blue-button delete-button">Edit my info</button>
-                            <button onClick={handleDeleteClick} className="show-page-button show-page-button-red-button delete-button">Delete my Account</button>
+                            <button onClick={handleDeleteClick} className="show-page-button show-page-button-red-button delete-button">Delete my account</button>
                         </>}
                         
                     </div>
