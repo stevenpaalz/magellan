@@ -50,7 +50,32 @@ Technical Challenges:
 - CSRF validation and JWT login token validations
 - Gathering and seeding adequate data for testing
 
-[Here's a snippet of how the routing works!](https://github.com/stevenpaalz/magellan/blob/main/backend/routes/api/quests.js)
+Express Routing Example: 
+```js
+router.post('/', requireUser, validateEventInput, async (req, res, next) => {
+    try {
+        let attendeeIds = [];
+        for (let i = 0; i < req.body.attendees.length; i++) {
+            let user = await User.findOne({email: req.body.attendees[i]});
+            attendeeIds.push(user._id)
+        }
+        const newEvent = new Event({
+            quest: req.body.quest,
+            host: req.user._id,
+            attendees: attendeeIds,
+            startTime: req.body.startTime
+        })
+        let event = await newEvent.save();
+        event = await event.populate("host", "_id email firstName lastName profileImageUrl");
+        event = await event.populate("attendees", "_id email firstName lastName");
+        event = await event.populate("quest", "_id title description checkpoints duration formattedAddress lat lng radius tags creator imageUrls")
+        return res.json(event);
+    }
+    catch(err) {
+        next(err);
+    }
+})
+```
 
 **Frontend: React/Node.js** 
 
@@ -63,14 +88,61 @@ Technical Challenges:
 - Creating a checkpoint like system during expedition
 - Presenting information of quests in a way to be descriptive for selection but not to reveal too much to spoil the fun
 
-[Here's the code for our Home Page component](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/HomePage/index.js)
--- [And the Create/Update Quest form](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/QuestForm.js)
+Filter on Home Page Example:
+```js
+<div className="dropdown-options dropdown-selected-open open-filter-dropdown"> 
+    {allTags.map((tag, i)=><label className="dropdown-option dropdown-selected-open" key={i}>
+    <input className="dropdown-option dropdown-selected-open" type="checkbox" checked={tags[tag]? tags[tag] : false} onChange={(e)=>{filterChange(e, tag)}}></input>
+    <QuestShowTags tags={[tag]} ></QuestShowTags>
+    </label>)}
+</div>
+```
+
+Create/Update Quest Form Image File Handler Example:
+```js
+const handleFiles = ({ currentTarget }) => {
+    const files = currentTarget.files; 
+    setImages(files);
+    if (files.length !==0) {
+        let filesLoaded = 0; 
+        const urls = [];
+        Array.from(files).forEach((file, index) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                urls[index] = fileReader.result;
+                if (++filesLoaded === files.length)
+                setImageUrls(urls);
+            }
+        });
+    }
+    else setImageUrls([]);
+}
+```
+
 
 **Library for Google Map - [https://www.npmjs.com/package/google-map-react](https://www.npmjs.com/package/google-map-react)**
 
 Quests submitted by users will be saved in our backend and be rendered onto Google Map to show starting point of each quest.  Each quest data point will include latitude and longitude from the backend for use to populate the marker on the frontend.  
 
-[Here's some code where the map is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Map/index.js)
+Google map implementation: 
+```js
+<GoogleMapReact
+    bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
+    defaultCenter={{lat: 40.74233116818592, lng: -73.99140855323562}}
+    center={center}
+    defaultZoom={defaultZoom}>
+    {quests?.map((quest, i) => (
+        <QuestMarker 
+            key={i}
+            lat={quest.lat}
+            lng={quest.lng}
+            quest={quest}
+            decor={quests.length===1?"★":i+1}
+        />
+    ))}
+</GoogleMapReact>
+```
 
 Technical Challenges: 
 
@@ -82,7 +154,28 @@ Technical Challenges:
 
 To start the hunt expedition (event) we will utilize a calendar API to allow the user to setup the event.  The event can then be shared with other challengers to allow them to join. 
 
-[Here's some code where the calendar is implemented](https://github.com/stevenpaalz/magellan/blob/main/frontend/src/components/Modals/EventForm.js)
+Add guest function in create event form: 
+```js
+const addGuest = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (guest) {
+        setInvalidUser(false);
+        if (attendees[guest] || guest === host.email) {
+            setInvalidUser(true)
+            return;
+        }
+        if (Object.values(users).some((user) => user.email === guest)) {
+            attendees[guest] = guest;
+            setAttendees(attendees);
+            setGuest("");
+        }
+        else {
+            setInvalidUser(true);
+        }
+    }
+}
+```
 
 Technical Challenges: 
 
