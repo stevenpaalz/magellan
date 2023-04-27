@@ -12,11 +12,7 @@ Our advanced platform offers a seamless way to browse for and plan quests in you
 
 magellan is built using the MERN tech stack, supplemented with libraries to support maps and calendar functionality. 
 
-<img width="1790" alt="Screen Shot 2023-04-24 at 12 19 44 AM" src="https://user-images.githubusercontent.com/47993465/233991680-e77b80ee-cb7f-4447-afac-c9a583525b5e.png">
-
-<img width="1790" alt="Screen Shot 2023-04-24 at 12 20 30 AM" src="https://user-images.githubusercontent.com/47993465/233991782-3bb05377-0f5c-49e3-a9c4-b72cca200591.png">
-
-
+![img](./frontend/public/assets/gifone.gif)
 
 ## Functionality and MVP
 
@@ -49,6 +45,7 @@ Technical Challenges:
 - Setting up necessary routes via Express as needed
 - CSRF validation and JWT login token validations
 - Gathering and seeding adequate data for testing
+
 
 Express Routing Example: 
 ```js
@@ -88,6 +85,8 @@ Technical Challenges:
 - Creating a checkpoint like system during expedition
 - Presenting information of quests in a way to be descriptive for selection but not to reveal too much to spoil the fun
 
+![img](./frontend/public/assets/screenshot.jpg)
+
 Filter on Home Page Example:
 ```js
 <div className="dropdown-options dropdown-selected-open open-filter-dropdown"> 
@@ -121,6 +120,7 @@ const handleFiles = ({ currentTarget }) => {
 ```
 
 
+
 **Library for Google Map - [https://www.npmjs.com/package/google-map-react](https://www.npmjs.com/package/google-map-react)**
 
 Quests submitted by users will be saved in our backend and be rendered onto Google Map to show starting point of each quest.  Each quest data point will include latitude and longitude from the backend for use to populate the marker on the frontend.  
@@ -149,6 +149,8 @@ Technical Challenges:
 - Highlight the quest on the list when the corresponding marker is hover
 - Highlight the marker when a quest is hover from a list
 - Rendering the markers on the map with distinctive marker for different quest category
+
+![img](./frontend/public/assets/giftwo.gif)
 
 **Library for calendar - [https://react-day-picker.js.org/](https://react-day-picker.js.org/)** 
 
