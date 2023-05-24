@@ -23,5 +23,8 @@
   "homepage": "https://github.com/stevenpaalz/magellan#readme",
   "engines": {
     "node": "16.x"
+  },
+  "dependencies": {
+    "openai": "^3.2.1"
   }
 }
