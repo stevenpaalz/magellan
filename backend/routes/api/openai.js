@@ -1,4 +1,3 @@
-// import { Configuration, OpenAIApi } from "openai";
 const express = require('express');
 const router = express.Router();
 const { Configuration, OpenAIApi } = require('openai');
@@ -8,7 +7,6 @@ const configuration = new Configuration({
     apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
-// const response = await openai.listEngines();
 
 function generatePrompt(city, state, themeArray, numCheckpoints) {
     const themeString = themeArray.join(", ");
@@ -39,10 +37,10 @@ router.get("/", async (req, res, next) => {
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [
-                {"role": "system", "content": "You are a helpful assistant that creates scavenger hunts. Return responses as a numbered list of items in the scavenger hunt."},
+                {"role": "system", "content": "You are a helpful assistant that creates scavenger hunts. Return responses as a numbered list of items in the scavenger hunt. All items should generally meet the provided themes, each prompt should not be labeled with a theme."},
                 {"role": "user", "content": prompt},
             ],
-            temperature: 0.5,
+            temperature: 0.01,
         });
         return res.json(completion.data);
     } catch(err) {

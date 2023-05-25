@@ -1,0 +1,17 @@
+.ai-page {
+    height: calc(100vh - 80px);
+    display: flex;
+}
+
+.ai-page-left, .ai-page-right {
+    height: 100%;
+    width: calc(50vw - 2px);
+}
+
+.ai-page-left {
+    border-right: 2px solid gray;
+}
+
+.ai-page-right {
+    border-left: 2px solid gray;
+}

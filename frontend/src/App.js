@@ -12,6 +12,7 @@ import UserProfilePage from './components/UserProfilePage';
 import AboutPage from './components/AboutPage';
 import QuestForm from './components/Modals/QuestForm';
 import UpdateForm from './components/Modals/UpdateForm';
+import AIPage from './components/AIPage';
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
       <ProtectedRoute exact path="/user-profile/:wildcard" component={UserProfilePage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
+      <ProtectedRoute exact path="/ai" component={AIPage} />
       <Route exact path="/about" component={AboutPage}></Route>
     </Switch>
     </>
