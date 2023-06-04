@@ -9,9 +9,71 @@
 }
 
 .ai-page-left {
-    border-right: 2px solid gray;
+    border-right: 2px solid var(--orange);
 }
 
 .ai-page-right {
-    border-left: 2px solid gray;
+    border-left: 2px solid var(--orange);
+    overflow-y: scroll;
+}
+
+.ai-loading-gif {
+    width: 40vw;
+}
+
+.ai-loading-gif-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-response-container{
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+}
+
+.ai-response-textline{
+    margin: 5px 0 0 0;
+    padding-bottom: 5px;
+    font-size: 20px;
+    border-bottom: 2px var(--turquoise) solid;
+}
+
+.ai-response-textline:last-child{
+    border-bottom: none;
+}
+
+.ai-initial-text{
+    font-size: 28px;
+    color: gray;
+    text-align: center;
+    margin-top: 25vh;
+}
+
+.powered-by{
+    font-style: italic;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+}
+
+.powered-by p{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.openai-logo{
+    height: 24px;
+    align-items: baseline;
+    margin-left: 6px;
+}
+
+.ai-page-header{
+    font-size: 25px;
+    margin: 15px 10px;
+    text-align: center;
 }

@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 
 function generatePrompt(city, state, themeArray, numCheckpoints) {
     const themeString = themeArray.join(", ");
-    return `Create a scavenger hunt in ${city}, ${state}. Return your response as ${numCheckpoints} list items. This scavenger hunt should enable the user to explore that city. The scavenger hunt should include the following themes: ${themeString}`;
+    return `Create a scavenger hunt in ${city}, ${state}. Return your response as ${numCheckpoints} list items. This scavenger hunt should enable the user to explore that city. The scavenger hunt should include the following themes: ${themeString}. Do not label each returned item by theme.`;
 }
 
 router.post("/", async (req, res, next) => {

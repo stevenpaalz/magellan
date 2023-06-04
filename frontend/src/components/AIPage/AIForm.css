@@ -1,0 +1,60 @@
+.ai-form-themetags{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ai-form-themetag-container{
+    width: 50%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.ai-form-themetag-container input{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.ai-form{
+    padding: 15px;
+}
+
+.ai-form-inputs{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.ai-form-inputs label{
+    margin-right: 40px;
+    width: 40%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.ai-form-inputs input{
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.ai-form-inputs select{
+    margin-left: 5px; 
+    cursor: pointer;
+}
+
+.ai-form-submit{
+    width: 300px;
+    background-color: var(--turquoise);
+    font-size: 24px;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+
+#num-checkpoints-ai{
+    width: 100%;
+}
