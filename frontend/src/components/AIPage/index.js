@@ -34,16 +34,22 @@ const AIPage = () => {
         }
     }
 
-    const checkForErrors = () => {
-        setErrors([]);
+    const checkForErrors = async () => {
+        for (let i = 0; i < 4; i++) {
+            errors.pop();
+        }
+        setErrors(...errors);
         if (themeArray.length === 0) {
             errors.push("Must select at least one theme");
         }
         if (city === "") {
-            errors.push("Must enter a valid city");
+            errors.push("Enter a valid city");
         }
         if (state === "") {
-            errors.push("Must enter a valid state");
+            errors.push("Enter a valid state");
+        }
+        if (numCheckpoints < 1) {
+            errors.push("Must select at least 1 checkpoint");
         }
         setErrors([...errors]);
     }

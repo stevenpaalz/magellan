@@ -92,11 +92,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display:flex;
     align-items: center;
+    width: 40%;
+    justify-content: center;
 }
-/* .splash-right-cta p{
-    color: white;
-    margin-left: 5px
-} */
+
+#ai-splash-button{
+    background-color: var(--turquoise);
+}
+
 p.intro{
     font-weight: 500;
     line-height: 27px;
@@ -114,9 +117,20 @@ p.intro strong{
 .splash-right-cta:active{
     background-color: #b35a01;
 }
+
+#ai-splash-button:hover, #ai-splash-button:active{
+    background-color: #238C83;
+}
+
 img.icon{
     height: 23px;
     width: 23px;
     object-fit: cover;
     margin-right: 6px;
+}
+
+.splash-buttons-container{
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
 }

@@ -22,7 +22,7 @@ const AIForm = ({props}) => {
                             City:
                             <input type="text" value={props.city} onChange={(e)=>(props.setCity)(e.target.value)} />
                         </label>
-                        <label for="state">State:
+                        <label htmlFor="state">State:
                         <select onChange={e=>props.setState(e.target.value)} defaultValue={"default"} name="state" className="ai-state-dropdown">
                                 <option disabled value={"default"}>State</option>
                                 {USstates.map((state)=><option key={state} value={state}>{state}</option>)}
@@ -80,9 +80,12 @@ const AIForm = ({props}) => {
                     </div>
                 </form>
             </fieldset>
-            {props.errors.length > 0 && props.errors.map((error, i) => {
-                return <p className="formError" key={i}>{error}</p>
-            })}
+            <div className='ai-errors'>
+                {props.errors.length > 0 && props.errors.map((error, i) => {
+                    return <p className="formError" key={i}>{error}</p>
+                })}
+            </div>
+
         </div>
     )
 }

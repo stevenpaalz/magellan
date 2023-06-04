@@ -33,7 +33,7 @@ const App = () => {
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />
       <ProtectedRoute exact path="/user-profile/:wildcard" component={UserProfilePage} />
       <ProtectedRoute exact path="/user-profile" component={UserProfilePage} />
-      <ProtectedRoute exact path="/ai" component={AIPage} />
+      <Route exact path="/ai" component={AIPage} />
       <Route exact path="/about" component={AboutPage}></Route>
     </Switch>
     </>
