@@ -11,7 +11,10 @@ const LoggedInNavBar = () => {
                     <img src="../../../assets/headerlogo.png" alt="Logo" className="nav-bar-logo"/>
                 </NavLink>
             </div>
-            <div className="nav-right">   
+            <div className="nav-right">
+                <NavLink exact to="/ai">
+                    <div className="nav-button">ai quest</div>
+                </NavLink>    
                 <NavLink exact to="/about">
                     <div className="nav-button">about</div>
                 </NavLink> 
