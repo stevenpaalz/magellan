@@ -77,7 +77,7 @@ const AIPage = () => {
                 {initialText && <h3 className="ai-initial-text">Use the form on the left to get started</h3>}
                 {loadingGif && 
                     <div className="ai-loading-gif-container">
-                        <img className="ai-loading-gif" src="../../../assets/magellan_loading_v2.gif" alt="Response is loading"></img>
+                        <img className="ai-loading-gif" src="../../../assets/magellan_generating.gif" alt="Response is loading"></img>
                     </div>}
                 <div className='ai-response-container'>
                     {!loadingGif && aiResponse.map((checkpoint, idx) => {
