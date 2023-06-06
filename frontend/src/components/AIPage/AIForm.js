@@ -30,8 +30,8 @@ const AIForm = ({props}) => {
                         </label>
 
                         <label id="num-checkpoints-ai">
-                            Number of Checkpoints:
-                            <input type="number" max="10" min="0" value={props.numCheckpoints} onChange={(e)=>(props.setNumCheckpoints)(e.target.value)}/>
+                            Number of Checkpoints (min: 5, max: 10):
+                            <input type="number" max="10" min="5" value={props.numCheckpoints} onChange={(e)=>(props.setNumCheckpoints)(e.target.value)}/>
                         </label>
                     </div>
                     <div className="ai-form-themetags">

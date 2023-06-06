@@ -36,7 +36,7 @@ const SplashPage = () => {
             </div>
             <div className="splash-buttons-container">
               <button className="splash-right-cta" onClick={openSignup}><img src="../../../../assets/compass.png" className="icon"/>Get Questing!</button>
-              <button id="ai-splash-button" className="splash-right-cta" onClick={() => {history.replace("/ai")}}><i class="fa-solid fa-wand-magic-sparkles"></i>AI Quests</button>
+              <button id="ai-splash-button" className="splash-right-cta" onClick={() => {history.replace("/ai")}}><i className="fa-solid fa-wand-magic-sparkles"></i>AI Quests</button>
             </div>
           </div>
         </div>
