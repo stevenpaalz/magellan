@@ -26,7 +26,7 @@ export default function LoginForm(){
         const newUser = {email: email.toLowerCase(), password}
         const user = await dispatch(login(newUser))
         if (user) {
-        history.push("/quests")
+        // history.push("/quests")
         dispatch(setModal(false));
     }}
 
@@ -36,7 +36,7 @@ export default function LoginForm(){
             email: "demo@email.com",
             password: "password"
         }));
-        history.push("/quests");
+        // history.push("/quests");
         dispatch(setModal(false));
 
     }

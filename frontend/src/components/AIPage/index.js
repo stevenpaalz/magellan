@@ -1,9 +1,16 @@
 import "./AIPage.css";
 import AIForm from "./AIForm";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { callAI } from "../../ai";
+import { useHistory } from 'react-router-dom';
+import { setModal } from "../../store/modal";
+import { setAI } from "../../store/aiSuggest";
 
 const AIPage = () => {
+    const history = useHistory();
+    const dispatch = useDispatch(); 
+    const user = useSelector(state => state.session.user)
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [numCheckpoints, setNumCheckpoints] = useState("");
@@ -26,6 +33,7 @@ const AIPage = () => {
         const textRes = res.choices[0].message.content.slice(3);
         const arrayRes = textRes.split(/\s\d+\.\s/);
         setAIResponse(arrayRes);
+        dispatch(setAI({ city: city, state: state, themeArray: themeArray, checkpoints:arrayRes }));
         setLoadingGif(false);
         setDisabledForm(false);
         setTemperature(temperature + 0.05);
@@ -54,6 +62,15 @@ const AIPage = () => {
         setErrors([...errors]);
     }
 
+    const createClick = (e) => {
+        e.preventDefault();
+        if (user) {
+            history.replace("/quests/aicreate");
+        } else {
+            dispatch(setModal("logIn"))
+        }
+    }
+
     return(
         <div className='ai-page'>
             <div className='ai-page-left'>
@@ -77,12 +94,15 @@ const AIPage = () => {
                 {initialText && <h3 className="ai-initial-text">Use the form on the left to get started</h3>}
                 {loadingGif && 
                     <div className="ai-loading-gif-container">
-                        <img className="ai-loading-gif" src="../../../assets/magellan_loading_v2.gif" alt="Response is loading"></img>
+                        <img className="ai-loading-gif" src="../../../assets/magellan_generating.gif" alt="Response is loading"></img>
                     </div>}
                 <div className='ai-response-container'>
                     {!loadingGif && aiResponse.map((checkpoint, idx) => {
                         return <p className='ai-response-textline' key={idx + 1}>{idx + 1}. {checkpoint}</p>
                     })}
+                </div>
+                <div className='ai-form-route'>
+                    {!initialText && <button className="ai-form-submit" onClick={createClick} >Create AI Quest</button>}
                 </div>
             </div>
         </div>

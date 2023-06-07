@@ -13,6 +13,7 @@ import AboutPage from './components/AboutPage';
 import QuestForm from './components/Modals/QuestForm';
 import UpdateForm from './components/Modals/UpdateForm';
 import AIPage from './components/AIPage';
+import AIForm from './components/Modals/AICreateForm';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
       <AuthRoute exact path="/" component={SplashPage} />
       <ProtectedRoute exact path="/quests" component={HomePage} />
       <ProtectedRoute exact path="/quests/create" component={QuestForm} />
+      <ProtectedRoute exact path="/quests/aicreate" component={AIForm} />
       <ProtectedRoute exact path="/quests/:id" component={QuestShowPage} />
       <ProtectedRoute exact path="/quests/:id/edit" component={UpdateForm} />
       <ProtectedRoute exact path="/events/:id" component={EventShowPage} />

@@ -7,6 +7,7 @@ import quests from './quests';
 import reviews from './reviews';
 import events from './events';
 import users from './users';
+import aiSuggest from './aiSuggest';
 
 const rootReducer = combineReducers({
   session,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   quests,
   reviews,
   events,
-  users
+  users,
+  aiSuggest,
 });
 
 let enhancer;
