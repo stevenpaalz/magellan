@@ -57,7 +57,7 @@ const AIPage = () => {
             errors.push("Enter a valid state");
         }
         if (numCheckpoints < 1) {
-            errors.push("Must select at least 1 checkpoint");
+            errors.push("Must select at least 5 checkpoint");
         }
         setErrors([...errors]);
     }
@@ -68,6 +68,14 @@ const AIPage = () => {
             history.replace("/quests/aicreate");
         } else {
             dispatch(setModal("logIn"))
+        }
+    }
+
+    const createButton = () => {
+        if (user){
+            return <button className="ai-form-submit" onClick={createClick} >Create AI Quest</button>
+        } else {
+            return <button className="ai-form-submit" onClick={createClick} >Log In to Create Quest</button>
         }
     }
 
@@ -102,7 +110,7 @@ const AIPage = () => {
                     })}
                 </div>
                 <div className='ai-form-route'>
-                    {!initialText && <button className="ai-form-submit" onClick={createClick} >Create AI Quest</button>}
+                    {!initialText && createButton()}
                 </div>
             </div>
         </div>
