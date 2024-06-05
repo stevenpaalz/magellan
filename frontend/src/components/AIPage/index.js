@@ -30,8 +30,9 @@ const AIPage = () => {
         setLoadingGif(true);
         setDisabledForm(true);
         const res = await callAI(city, state, themeArray, numCheckpoints, temperature);
-        const textRes = res.choices[0].message.content.slice(3);
-        const arrayRes = textRes.split(/\s\d+\.\s/);
+        debugger
+        // const textRes = res.choices[0].message.content.slice(3);
+        const arrayRes = res.split(/(?:^|\s)\d+\.\s/).filter(Boolean);;
         setAIResponse(arrayRes);
         dispatch(setAI({ city: city, state: state, themeArray: themeArray, checkpoints:arrayRes }));
         setLoadingGif(false);

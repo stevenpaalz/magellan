@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const { Configuration, OpenAIApi } = require('openai');
+const { Router } = require('express');
+const router = Router();
 const { openAIKey } = require('../../config/keys');
+const { Configuration, OpenAIApi } = require('openai');
 
 const configuration = new Configuration({
     apiKey: openAIKey,
@@ -18,7 +18,7 @@ router.post("/", async (req, res, next) => {
         const err = new Error("AI Error");
         err.statusCode = 500;
         const errors = {};
-        errors.openai = "OpenAI API key not configured"
+        errors.openai = "OpenAI API key not configured";
         err.errors = errors;
         return next(err);
     }
@@ -27,23 +27,27 @@ router.post("/", async (req, res, next) => {
         const err = new Error("AI Error");
         err.statusCode = 400;
         const errors = {};
-        errors.openai = "Please enter a valid city"
+        errors.openai = "Please enter a valid city";
         err.errors = errors;
         return next(err);
     }
 
     try {
+        console.log("trying");
+
         const prompt = generatePrompt(req.body.city, req.body.state, req.body.themeArray, req.body.numCheckpoints);
+
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [
-                {"role": "system", "content": "You are a helpful assistant that creates scavenger hunts. Only include the numbered list items in your response. All items should generally meet the provided themes, each prompt should not be labeled with a theme."},
-                {"role": "user", "content": prompt},
+                { role: "system", content: "You are a helpful assistant that creates scavenger hunts. Only include the numbered list items in your response. All items should generally meet the provided themes, each prompt should not be labeled with a theme." },
+                { role: "user", content: prompt }
             ],
             temperature: 0.5,
         });
-        return res.json(completion.data);
-    } catch(err) {
+
+        return res.json(completion.data.choices[0].message.content);
+    } catch (err) {
         next(err);
     }
 });

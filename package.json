@@ -25,6 +25,6 @@
     "node": "16.x"
   },
   "dependencies": {
-    "openai": "^3.2.1"
+    "openai": "^4.48.1"
   }
 }
